@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class Customer
+    class StoreOwner
     {
-        UserInfo userInfo;
+        private UserInfo userInfo;
 
-        public Customer (UserInfo userInfo)
+        public StoreOwner(UserInfo userInfo)
         {
             this.userInfo = userInfo;
+        }
+        public bool addProduct(Product product)
+        {
+            return true;
         }
     }
 }

@@ -6,24 +6,47 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class Product
+    class Product : Item
     {
-        private ProductInfo productInfo;
-
-        Product(ProductInfo productInfo)
+        private string ProductId;
+        private string ProductName;
+        private double price;
+        //private double rating;
+        public Product(string id , string name , double price , Item item):base(item)
         {
-            this.productInfo = productInfo; 
+            this.ProductId = id;
+            this.ProductName = name;
+            this.price = price;
         }
 
-        public bool setProductInfo(ProductInfo productInfo)
+        public bool setId(string id)
         {
-            this.productInfo = productInfo;
+            this.ProductId = id;
             return true;
         }
-
-        public ProductInfo getProductInfo()
+        
+        public bool setName(string name)
         {
-            return this.productInfo;
+            this.ProductName = name;
+            return true;
+        }
+        public bool setPrice(double price)
+        {
+            this.price = price;
+            return true;
+        }
+        public string getId()
+        {
+            return this.ProductId;
+        }
+        
+        public string getName()
+        {
+            return this.ProductName;
+        }
+        public double getPrice()
+        {
+            return price;
         }
     }
 }

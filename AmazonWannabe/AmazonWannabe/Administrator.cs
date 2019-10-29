@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class Administrator : User
+    class Administrator
     {
-        public Boolean addSellerUser(UserInfo u)
+        UserInfo userInfo;
+
+        public Administrator (UserInfo userInfo)
+        {
+            this.userInfo = userInfo;
+        }
+        public bool addSellerUser(UserInfo u)
         {
             return true;
         }
-        public Boolean addItem(Item i)
+        public bool addProduct(Product i)
         {
             return true;
         }
