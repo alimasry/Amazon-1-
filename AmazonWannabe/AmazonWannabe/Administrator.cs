@@ -10,7 +10,7 @@ namespace AmazonWannabe
     {
         UserInfo userInfo;
 
-        public Administrator(UserInfo userInfo)
+        public Administrator (UserInfo userInfo)
         {
             this.userInfo = userInfo;
         }

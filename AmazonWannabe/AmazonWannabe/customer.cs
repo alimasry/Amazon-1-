@@ -15,5 +15,16 @@ namespace AmazonWannabe
         {
             this.userInfo = userInfo;
         }
+
+        public UserInfo getUserInfo()
+        {
+            return this.userInfo;
+        }
+
+        public bool setUserInfo(UserInfo userInfo)
+        {
+            this.userInfo = userInfo;
+            return true;
+        }
     }
 }

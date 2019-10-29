@@ -12,6 +12,10 @@ namespace AmazonWannabe
 {
     public partial class Login_Form : Form
     {
+        private const string serverName = "DESKTOP-QF9IM65";
+        private const string databaseName = "AmazonWannabe";
+        public const string connectionString = "Data Source=" + serverName + ";Initial Catalog =" + databaseName + "; Integrated Security=True;";
+
         FormEditor editor = new FormEditor();
         public Login_Form()
         {
