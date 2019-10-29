@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class seller : user
+    class Seller : User
     {
         private ArrayList storeList;
         private string bankAccount; 
 
-        public seller(string BA)
+        public Seller(string BA)
         {
             this.bankAccount = BA;
             storeList = new ArrayList();
         }
         public Boolean addProduct()
         {
-
+            return true;
         }
         public Boolean addStore()
         {
-
+            return true;
         }
     }
 }

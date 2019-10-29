@@ -7,22 +7,8 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class customer : user
+    class Customer : User
     {
-        private ArrayList creditCards;
-        private ArrayList addresses;
-        public customer()
-        {
-            this.creditCards = new ArrayList();
-            this.addresses = new ArrayList();
-        }
-        public void  addCreditCard(CreditCard cc)
-        {
-
-        }
-        public void addAdress(string ad)
-        {
-
-        }
+        
     }
 }

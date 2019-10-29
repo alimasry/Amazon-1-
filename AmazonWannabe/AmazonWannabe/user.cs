@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class user
+    class User
     {
-        private userInfo user_info;
-        public void setInfo(userInfo u)
+        private UserInfo user_info;
+        public void setInfo(UserInfo u)
         {
             this.user_info = u;
         }
-        public userInfo getInfo()
+        public UserInfo getInfo()
         {
             return this.user_info;
         }
