@@ -18,7 +18,7 @@ namespace AmazonWannabe
             string adminUsername = admin.getUserInfo().getUsername().Replace("'", "''");
 
             connection.Open();
-            string query = "INSERT INTO USERINFO(email, password, username) VALUES ('" + adminEmail + "','" + adminPassword + "','" + adminUsername + "')";
+            string query = "INSERT INTO USER_INFO(email, password, username) VALUES ('" + adminEmail + "','" + adminPassword + "','" + adminUsername + "')";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -56,7 +56,7 @@ namespace AmazonWannabe
             string password = null;
 
             string customerEmail = customer.getUserInfo().getEmail().Replace("'", "''");
-            string query = "SELECT password FROM CUSTOMER WHERE email = '" + customerEmail + "'";
+            string query = "SELECT password FROM CUSTOMERS WHERE email = '" + customerEmail + "'";
             connection.Open();
             using (SqlCommand command = new SqlCommand(query, connection))
             {
