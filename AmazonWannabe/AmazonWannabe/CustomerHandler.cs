@@ -26,6 +26,7 @@ namespace AmazonWannabe
                 } 
                 catch (SqlException)
                 {
+                    connection.Close();
                     return false;
                 }
             }
@@ -39,6 +40,7 @@ namespace AmazonWannabe
                 }
                 catch (SqlException)
                 {
+                    connection.Close();
                     return false;
                 }
             }
@@ -53,17 +55,23 @@ namespace AmazonWannabe
                 return false;
 
             string password = null;
+            string res = null;
 
             string customerEmail = customer.getUserInfo().getEmail().Replace("'", "''");
-            string query = "SELECT password FROM CUSTOMERS WHERE email = '" + customerEmail + "'";
+            string queryCheckPassword = "SELECT PASSWORD FROM USER_INFO WHERE EMAIL = '" + customerEmail + "'";
+            string queryCheckCustomer = "SELECT COUNT(*) FROM CUSTOMERS WHERE email = '" + customerEmail + "'";
             connection.Open();
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new SqlCommand(queryCheckPassword, connection))
             {
                 password = command.ExecuteScalar().ToString();
             }
+            using (SqlCommand command = new SqlCommand(queryCheckCustomer, connection))
+            {
+                res = command.ExecuteScalar().ToString();
+            }
             connection.Close();
 
-            if (password == customer.getUserInfo().getPassword())
+            if (password == customer.getUserInfo().getPassword() &&  res != "0")
                 return true;
             return false;
         }

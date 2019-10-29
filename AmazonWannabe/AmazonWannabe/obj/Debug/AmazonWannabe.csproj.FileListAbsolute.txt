@@ -29,3 +29,6 @@ C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\Amaz
 C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.csproj.CoreCompileInputs.cache
 C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.exe
 C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.pdb
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.Administrator_Form.resources
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.Search_Form.resources
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.StoreOwner_Form.resources

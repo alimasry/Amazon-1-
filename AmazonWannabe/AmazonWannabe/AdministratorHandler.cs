@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
@@ -11,7 +12,7 @@ namespace AmazonWannabe
     {
         private SqlConnection connection = new SqlConnection(Login_Form.connectionString);
 
-        public bool addCustomer(Administrator admin)
+        public bool addAdministrator(Administrator admin)
         {
             string adminEmail = admin.getUserInfo().getEmail().Replace("'", "''");
             string adminPassword = admin.getUserInfo().getPassword().Replace("'", "''");
@@ -27,6 +28,7 @@ namespace AmazonWannabe
                 }
                 catch (SqlException)
                 {
+                    connection.Close();
                     return false;
                 }
             }
@@ -40,6 +42,7 @@ namespace AmazonWannabe
                 }
                 catch (SqlException)
                 {
+                    connection.Close();
                     return false;
                 }
             }
@@ -54,17 +57,23 @@ namespace AmazonWannabe
                 return false;
 
             string password = null;
+            string res = null;
 
-            string customerEmail = admin.getUserInfo().getEmail().Replace("'", "''");
-            string query = "SELECT password FROM ADMINISTRATORS WHERE email = '" + customerEmail + "'";
+            string administratorEmail = admin.getUserInfo().getEmail().Replace("'", "''");
+            string queryCheckPassword = "SELECT PASSWORD FROM USER_INFO WHERE EMAIL = '" + administratorEmail + "'";
+            string queryCheckAdmin = "SELECT count(EMAIL) FROM ADMINISTRATORS WHERE email = '" + administratorEmail + "'";
             connection.Open();
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new SqlCommand(queryCheckPassword, connection))
             {
                 password = command.ExecuteScalar().ToString();
             }
+            using (SqlCommand command = new SqlCommand(queryCheckAdmin , connection))
+            {
+                res = command.ExecuteScalar().ToString();
+            }
             connection.Close();
 
-            if (password == admin.getUserInfo().getPassword())
+            if (password == admin.getUserInfo().getPassword() &&  res != "0")
                 return true;
             return false;
         }

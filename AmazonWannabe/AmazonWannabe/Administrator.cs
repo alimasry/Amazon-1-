@@ -27,5 +27,17 @@ namespace AmazonWannabe
         {
             return this.userInfo;
         }
+        public bool addItem(Item item)
+        {
+            if (item == null || item.getMinPrice() > item.getMaxPrice())
+                return false;
+
+            ItemHandler itemHandler = new ItemHandler();
+            if (!itemHandler.addItem(item))
+                return false;
+
+
+            return true;
+        }
     }
 }

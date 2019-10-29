@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Search_Form));
             this.productsGrid = new System.Windows.Forms.DataGridView();
+            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchItem = new System.Windows.Forms.ComboBox();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.searchButton = new System.Windows.Forms.Button();
-            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +45,8 @@
             // 
             this.productsGrid.AllowUserToAddRows = false;
             this.productsGrid.AllowUserToDeleteRows = false;
-            this.productsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.productsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.productsGrid.BackgroundColor = System.Drawing.Color.White;
             this.productsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -58,10 +59,24 @@
             this.productsGrid.Size = new System.Drawing.Size(909, 348);
             this.productsGrid.TabIndex = 0;
             // 
+            // productName
+            // 
+            this.productName.DataPropertyName = "Name";
+            this.productName.HeaderText = "Name";
+            this.productName.Name = "productName";
+            this.productName.ReadOnly = true;
+            this.productName.Width = 433;
+            // 
+            // productPrice
+            // 
+            this.productPrice.DataPropertyName = "Price";
+            this.productPrice.HeaderText = "Price";
+            this.productPrice.Name = "productPrice";
+            this.productPrice.ReadOnly = true;
+            this.productPrice.Width = 433;
+            // 
             // searchItem
             // 
-            this.searchItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchItem.FormattingEnabled = true;
             this.searchItem.Location = new System.Drawing.Point(70, 89);
             this.searchItem.Name = "searchItem";
@@ -109,22 +124,7 @@
             this.searchButton.Size = new System.Drawing.Size(48, 42);
             this.searchButton.TabIndex = 11;
             this.searchButton.UseVisualStyleBackColor = true;
-            // 
-            // productName
-            // 
-            this.productName.DataPropertyName = "Name";
-            this.productName.HeaderText = "Name";
-            this.productName.Name = "productName";
-            this.productName.ReadOnly = true;
-            this.productName.Width = 433;
-            // 
-            // productPrice
-            // 
-            this.productPrice.DataPropertyName = "Price";
-            this.productPrice.HeaderText = "Price";
-            this.productPrice.Name = "productPrice";
-            this.productPrice.ReadOnly = true;
-            this.productPrice.Width = 433;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // Search_Form
             // 

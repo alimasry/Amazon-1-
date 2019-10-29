@@ -12,6 +12,7 @@ namespace AmazonWannabe
 {
     public partial class Administrator_Form : Form
     {
+        ItemHandler itemHandler = new ItemHandler();
         FormEditor editor = new FormEditor();
         public Administrator_Form()
         {
@@ -21,7 +22,20 @@ namespace AmazonWannabe
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item("" , nameBox.Text , Convert.ToDouble(minPriceBox.Text) , Convert.ToDouble(maxPriceBox.Text));
+            Item item = new Item(nameBox.Text , Convert.ToDouble(minPriceBox.Text) , Convert.ToDouble(maxPriceBox.Text));
+            if(!itemHandler.addItem(item))
+            {
+                MessageBox.Show("Could not create item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Item created successfully.", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            Search_Form form = new Search_Form();
+            form.ShowDialog();
+            form.Dispose();
         }
     }
 }

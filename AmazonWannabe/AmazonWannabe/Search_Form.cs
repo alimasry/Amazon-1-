@@ -12,9 +12,16 @@ namespace AmazonWannabe
 {
     public partial class Search_Form : Form
     {
+        FormEditor editor = new FormEditor();
         public Search_Form()
         {
             InitializeComponent();
+            editor.EditButtons(this);
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

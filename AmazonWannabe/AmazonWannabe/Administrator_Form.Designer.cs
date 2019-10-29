@@ -135,6 +135,7 @@
             this.searchButton.TabIndex = 13;
             this.searchButton.Text = "Open Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // Administrator_Form
             // 
