@@ -8,33 +8,34 @@ namespace AmazonWannabe
 {
     class Item
     {
-        private string id;
-        private string name;
-        private string category;
-        private double minPrice;
-        private double maxPrice;
+        protected string ItemId;
+        protected string ItemName;
+        protected double minPrice;
+        protected double maxPrice;
 
-        Item(string id , string name , string category , double minPrice , double maxPrice)
+        public Item(string id , string name , double minPrice , double maxPrice)
         {
-            this.id = id;
-            this.name = name;
-            this.category = category;
+            this.ItemId = id;
+            this.ItemName = name;
             this.minPrice = minPrice;
             this.maxPrice = maxPrice;
         }
+        public Item(Item item)
+        {
+            this.ItemId = item.getId();
+            this.ItemName = item.getName();
+            this.minPrice = item.getMinPrice();
+            this.maxPrice = item.getMaxPrice();
+        }
+
         public bool setId(string id)
         {
-            this.id = id;
+            this.ItemId = id;
             return true;
         }
         public bool setName(string name)
         {
-            this.name = name;
-            return true;
-        }
-        public bool setCategory(string category)
-        {
-            this.category = category;
+            this.ItemName = name;
             return true;
         }
         public bool setRange(double minPrice , double maxPrice)
@@ -45,26 +46,21 @@ namespace AmazonWannabe
             this.maxPrice = maxPrice;
             return true;
         }
-
         public string getId()
         {
-            return this.id;
+            return ItemId;
         }
         public string getName()
         {
-            return this.name;
-        }
-        public string getCategory()
-        {
-            return this.category;
+            return ItemName;
         }
         public double getMinPrice()
         {
-            return this.minPrice;
+            return minPrice; ;
         }
         public double getMaxPrice()
         {
-            return this.maxPrice;
+            return maxPrice;
         }
     }
 }
