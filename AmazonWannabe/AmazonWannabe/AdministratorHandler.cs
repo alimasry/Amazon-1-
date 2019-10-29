@@ -31,7 +31,7 @@ namespace AmazonWannabe
                 }
             }
 
-            query = "INSERT INTO CUSTOMERS VALUES('" + adminEmail + "')";
+            query = "INSERT INTO ADMINISTRATORS VALUES('" + adminEmail + "')";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -48,15 +48,15 @@ namespace AmazonWannabe
             return true;
         }
 
-        public bool login(Administrator customer)
+        public bool login(Administrator admin)
         {
-            if (customer == null)
+            if (admin == null)
                 return false;
 
             string password = null;
 
-            string customerEmail = customer.getUserInfo().getEmail().Replace("'", "''");
-            string query = "SELECT password FROM CUSTOMERS WHERE email = '" + customerEmail + "'";
+            string customerEmail = admin.getUserInfo().getEmail().Replace("'", "''");
+            string query = "SELECT password FROM ADMINISTRATORS WHERE email = '" + customerEmail + "'";
             connection.Open();
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -64,7 +64,7 @@ namespace AmazonWannabe
             }
             connection.Close();
 
-            if (password == customer.getUserInfo().getPassword())
+            if (password == admin.getUserInfo().getPassword())
                 return true;
             return false;
         }

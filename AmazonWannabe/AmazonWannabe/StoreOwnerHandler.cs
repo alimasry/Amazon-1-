@@ -31,7 +31,7 @@ namespace AmazonWannabe
                 }
             }
 
-            query = "INSERT INTO CUSTOMERS VALUES('" + StoreOwnerEmail + "')";
+            query = "INSERT INTO STORE_OWNERS VALUES('" + StoreOwnerEmail + "')";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -56,7 +56,7 @@ namespace AmazonWannabe
             string password = null;
 
             string storeOwnerEmail = storeOwner.getUserInfo().getEmail().Replace("'", "''");
-            string query = "SELECT password FROM CUSTOMERS WHERE email = '" + storeOwnerEmail + "'";
+            string query = "SELECT password FROM STORE_OWNERS WHERE email = '" + storeOwnerEmail + "'";
             connection.Open();
             using (SqlCommand command = new SqlCommand(query, connection))
             {
