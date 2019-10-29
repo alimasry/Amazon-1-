@@ -22,5 +22,10 @@ namespace AmazonWannabe
         {
             return true;
         }
+
+        public UserInfo getUserInfo()
+        {
+            return this.userInfo;
+        }
     }
 }

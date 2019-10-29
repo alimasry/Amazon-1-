@@ -26,7 +26,7 @@ namespace AmazonWannabe
         {
             this.password = pass;
         }
-        public void setUserName(string u)
+        public void setUsername(string u)
         {
             this.username = u;
         } 
@@ -38,7 +38,7 @@ namespace AmazonWannabe
         {
             return this.password;
         }
-        public string setUserName()
+        public string getUsername()
         {
             return this.username;
         }
