@@ -10,7 +10,7 @@ namespace AmazonWannabe
     {
         UserInfo userInfo;
 
-        public Administrator (UserInfo userInfo)
+        public Administrator(UserInfo userInfo)
         {
             this.userInfo = userInfo;
         }
@@ -21,6 +21,11 @@ namespace AmazonWannabe
         public bool addProduct(Product i)
         {
             return true;
+        }
+
+        public UserInfo getUserInfo()
+        {
+            return this.userInfo;
         }
     }
 }
