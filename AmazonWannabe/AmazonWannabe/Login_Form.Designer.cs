@@ -50,14 +50,20 @@
             this.closeButton2 = new System.Windows.Forms.Button();
             this.registerButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.typeBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.loginPanel = new System.Windows.Forms.Panel();
             this.registerPanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // userLoginBox
             // 
             this.userLoginBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.userLoginBox.Location = new System.Drawing.Point(92, 105);
+            this.userLoginBox.Location = new System.Drawing.Point(80, 93);
             this.userLoginBox.Name = "userLoginBox";
             this.userLoginBox.Size = new System.Drawing.Size(588, 21);
             this.userLoginBox.TabIndex = 0;
@@ -66,7 +72,7 @@
             // 
             this.passLoginBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.passLoginBox.Location = new System.Drawing.Point(92, 169);
+            this.passLoginBox.Location = new System.Drawing.Point(80, 157);
             this.passLoginBox.Name = "passLoginBox";
             this.passLoginBox.Size = new System.Drawing.Size(588, 21);
             this.passLoginBox.TabIndex = 1;
@@ -74,7 +80,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 108);
+            this.label1.Location = new System.Drawing.Point(0, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 15);
             this.label1.TabIndex = 2;
@@ -83,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 172);
+            this.label2.Location = new System.Drawing.Point(0, 160);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 15);
             this.label2.TabIndex = 3;
@@ -96,7 +102,7 @@
             this.loginButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.loginButton.ImageKey = "login.png";
             this.loginButton.ImageList = this.imageList1;
-            this.loginButton.Location = new System.Drawing.Point(353, 390);
+            this.loginButton.Location = new System.Drawing.Point(341, 378);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(196, 42);
             this.loginButton.TabIndex = 4;
@@ -110,7 +116,7 @@
             this.closeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.closeButton.ImageIndex = 0;
             this.closeButton.ImageList = this.imageList1;
-            this.closeButton.Location = new System.Drawing.Point(555, 390);
+            this.closeButton.Location = new System.Drawing.Point(543, 378);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(125, 42);
             this.closeButton.TabIndex = 5;
@@ -133,7 +139,7 @@
             this.registerLink.AutoSize = true;
             this.registerLink.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerLink.LinkColor = System.Drawing.Color.Black;
-            this.registerLink.Location = new System.Drawing.Point(12, 405);
+            this.registerLink.Location = new System.Drawing.Point(13, 393);
             this.registerLink.Name = "registerLink";
             this.registerLink.Size = new System.Drawing.Size(54, 15);
             this.registerLink.TabIndex = 6;
@@ -143,6 +149,8 @@
             // 
             // registerPanel
             // 
+            this.registerPanel.Controls.Add(this.label8);
+            this.registerPanel.Controls.Add(this.comboBox1);
             this.registerPanel.Controls.Add(this.backButton);
             this.registerPanel.Controls.Add(this.registerButton);
             this.registerPanel.Controls.Add(this.closeButton2);
@@ -266,6 +274,66 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // typeBox
+            // 
+            this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeBox.FormattingEnabled = true;
+            this.typeBox.Items.AddRange(new object[] {
+            "Customer",
+            "Store Owner",
+            "Administrator"});
+            this.typeBox.Location = new System.Drawing.Point(80, 221);
+            this.typeBox.Name = "typeBox";
+            this.typeBox.Size = new System.Drawing.Size(588, 23);
+            this.typeBox.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(0, 224);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 15);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Type : ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(-3, 257);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 15);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Type : ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Customer",
+            "Store Owner",
+            "Administrator"});
+            this.comboBox1.Location = new System.Drawing.Point(119, 254);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(549, 23);
+            this.comboBox1.TabIndex = 11;
+            // 
+            // loginPanel
+            // 
+            this.loginPanel.Controls.Add(this.registerLink);
+            this.loginPanel.Controls.Add(this.label1);
+            this.loginPanel.Controls.Add(this.loginButton);
+            this.loginPanel.Controls.Add(this.label7);
+            this.loginPanel.Controls.Add(this.closeButton);
+            this.loginPanel.Controls.Add(this.userLoginBox);
+            this.loginPanel.Controls.Add(this.typeBox);
+            this.loginPanel.Controls.Add(this.passLoginBox);
+            this.loginPanel.Controls.Add(this.label2);
+            this.loginPanel.Location = new System.Drawing.Point(12, 12);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(668, 420);
+            this.loginPanel.TabIndex = 10;
+            // 
             // Login_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -273,22 +341,17 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(692, 444);
             this.ControlBox = false;
+            this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.registerPanel);
-            this.Controls.Add(this.registerLink);
-            this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.passLoginBox);
-            this.Controls.Add(this.userLoginBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login_Form";
             this.Text = "Login";
             this.registerPanel.ResumeLayout(false);
             this.registerPanel.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -314,6 +377,11 @@
         private System.Windows.Forms.TextBox emailRegisterBox;
         private System.Windows.Forms.TextBox userRegisterBox;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox typeBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel loginPanel;
     }
 }
 
