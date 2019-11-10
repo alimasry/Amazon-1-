@@ -15,25 +15,34 @@ namespace AmazonWannabe
         FormEditor editor = new FormEditor();
         ProductHandler productHandler = new ProductHandler();
         ItemHandler itemHandler = new ItemHandler();
+        StoreHandler storeHandler = new StoreHandler();
         List<Item> items;
+        List<Store> stores;
         public StoreOwner_Form()
         {
             InitializeComponent();
             editor.EditButtons(this);
             items = itemHandler.getItems();
+            stores = storeHandler.getStores();
 
             foreach (Item s in items)
             {
-                itemBox.Items.Add(s.getItemName());
+                itemBox.Items.Add(s.getName());
+            }
+            foreach(Store s in stores)
+            {
+                storeBox.Items.Add(s.getStoreName());
             }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             Item item = null;
+            Store store = null;
+
             foreach(Item i in items)
             {
-                if (itemBox.Text == i.getItemName())
+                if (itemBox.Text == i.getName())
                     item = i;
             }
             Product product = new Product("", nameBox.Text, Convert.ToDouble(priceBox.Text), item);

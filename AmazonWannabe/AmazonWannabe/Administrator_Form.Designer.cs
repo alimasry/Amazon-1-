@@ -39,6 +39,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.addButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.brandBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // nameBox
@@ -62,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 197);
+            this.label2.Location = new System.Drawing.Point(12, 220);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 15);
             this.label2.TabIndex = 3;
@@ -72,7 +74,7 @@
             // 
             this.maxPriceBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maxPriceBox.Location = new System.Drawing.Point(148, 194);
+            this.maxPriceBox.Location = new System.Drawing.Point(148, 217);
             this.maxPriceBox.Name = "maxPriceBox";
             this.maxPriceBox.Size = new System.Drawing.Size(443, 21);
             this.maxPriceBox.TabIndex = 2;
@@ -80,7 +82,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 158);
+            this.label3.Location = new System.Drawing.Point(12, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 15);
             this.label3.TabIndex = 5;
@@ -90,7 +92,7 @@
             // 
             this.minPriceBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.minPriceBox.Location = new System.Drawing.Point(148, 155);
+            this.minPriceBox.Location = new System.Drawing.Point(148, 170);
             this.minPriceBox.Name = "minPriceBox";
             this.minPriceBox.Size = new System.Drawing.Size(443, 21);
             this.minPriceBox.TabIndex = 4;
@@ -137,12 +139,32 @@
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Item Brand : ";
+            // 
+            // brandBox
+            // 
+            this.brandBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.brandBox.Location = new System.Drawing.Point(95, 103);
+            this.brandBox.Name = "brandBox";
+            this.brandBox.Size = new System.Drawing.Size(496, 21);
+            this.brandBox.TabIndex = 14;
+            // 
             // Administrator_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(603, 383);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.brandBox);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label3);
@@ -170,5 +192,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox brandBox;
     }
 }

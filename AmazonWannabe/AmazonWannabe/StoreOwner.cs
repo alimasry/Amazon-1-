@@ -19,6 +19,10 @@ namespace AmazonWannabe
         {
             return true;
         }
+        public bool addStore(Store store)
+        {
+            return true;
+        }
         public UserInfo getUserInfo()
         {
             return this.userInfo;

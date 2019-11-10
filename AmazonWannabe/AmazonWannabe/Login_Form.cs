@@ -126,6 +126,7 @@ namespace AmazonWannabe
                                   "where email = '" + email + "'\n";
             using(SQLiteCommand command = new SQLiteCommand(queryGetType , connection))
             {
+                this.Visible = false;
                 typeToForm[command.ExecuteScalar().ToString()].ShowDialog();
             }
 
