@@ -46,7 +46,7 @@ namespace AmazonWannabe
             DataSet ds = new DataSet();
             SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
             connection.Open();
-            string SQLquery = "SELECT * FROM Stores Where Approved=0";
+            string SQLquery = "SELECT * FROM Store Where Approved=0";
             using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
             {
                 try
@@ -78,7 +78,7 @@ namespace AmazonWannabe
             string StoreName = Convert.ToString(selectedRow.Cells[0].Value);
             SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
             connection.Open();
-            string SQLquery = "UPDATE Stores SET Approved=1 where Name='" + StoreName +"'" ;
+            string SQLquery = "UPDATE Store SET Approved=1 where Name='" + StoreName +"'" ;
             if (StoreName != null)
             {
                 using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))

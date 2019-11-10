@@ -65,7 +65,7 @@ namespace AmazonWannabe
 
             SQLiteConnection connection = new SQLiteConnection(connectionString);
             connection.Open();
-            string query = "INSERT INTO USER_INFO(email, password, username , type) VALUES ('" + email + "','" + password + "','" + username + "','" + type + "')";
+            string query = "INSERT INTO [USER INFO](email, password, username , type) VALUES ('" + email + "','" + password + "','" + username + "','" + type + "')";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 try
@@ -80,7 +80,7 @@ namespace AmazonWannabe
                 }
             }
 
-            query = "INSERT INTO " + type.Replace(" " , "_") + "s VALUES('" + email + "')";
+            query = "INSERT INTO [" + type + "] VALUES('" + email + "')";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 try
@@ -104,7 +104,7 @@ namespace AmazonWannabe
 
             string password = passLoginBox.Text.Replace("'", "''");
             string email = emailLoginBox.Text.Replace("'", "''");
-            string queryCheckUser = "SELECT count(*) FROM USER_INFO\n" +
+            string queryCheckUser = "SELECT count(*) FROM [USER INFO]\n" +
                                     "WHERE EMAIL = '" + email + "'\n" +
                                     "and PASSWORD = '" + password + "'\n";
             SQLiteConnection connection = new SQLiteConnection(connectionString);
@@ -122,7 +122,7 @@ namespace AmazonWannabe
                 return;
             }
 
-            string queryGetType = "SELECT type from user_info\n" +
+            string queryGetType = "SELECT type from [user info]\n" +
                                   "where email = '" + email + "'\n";
             using(SQLiteCommand command = new SQLiteCommand(queryGetType , connection))
             {

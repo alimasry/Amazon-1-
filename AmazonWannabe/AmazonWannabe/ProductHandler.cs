@@ -20,7 +20,7 @@ namespace AmazonWannabe
             string name = product.getName().Replace("'", "''");
             string price = product.getPrice().ToString();
             string itemName = product.getName().Replace("'", "''");
-            string addQuery = "INSERT INTO PRODUCTS(NAME , PRICE , ITEMNAME)" +
+            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME)" +
                               "VALUES('" + name + "' , " + price + " , '" + itemName + "')";
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))

@@ -17,7 +17,7 @@ namespace AmazonWannabe
             string brand = item.getBrand().Replace("'", "''");
             string maxPrice = item.getMaxPrice().ToString();
             string minPrice = item.getMinPrice().ToString();
-            string addQuery = "INSERT INTO ITEMS(NAME , BRAND , MAXPRICE , MINPRICE)" +
+            string addQuery = "INSERT INTO ITEM(NAME , BRAND , MAXPRICE , MINPRICE)" +
                               "VALUES('" + name + "' , '" + brand +  "' , " + maxPrice + " , " + minPrice + ")";
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
@@ -37,7 +37,7 @@ namespace AmazonWannabe
         }
         public List<Item> getItems()
         {
-            string query = "SELECT NAME , BRAND , MINPRICE , MAXPRICE FROM ITEMS";
+            string query = "SELECT NAME , BRAND , MINPRICE , MAXPRICE FROM ITEM";
             List<Item> ret = new List<Item>();
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
