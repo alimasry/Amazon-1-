@@ -45,7 +45,12 @@ namespace AmazonWannabe
                 if (itemBox.Text == i.getName())
                     item = i;
             }
-            Product product = new Product("", nameBox.Text, Convert.ToDouble(priceBox.Text), item);
+            foreach (Store i in stores)
+            {
+                if (storeBox.Text == i.getStoreName())
+                    store = i;
+            }
+            Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text), store.getStoreName(), item);
 
             if(!productHandler.addProduct(product))
             {
@@ -60,6 +65,38 @@ namespace AmazonWannabe
             Search_Form form = new Search_Form();
             form.ShowDialog();
             form.Dispose();
+        }
+
+        private void addStorePanel_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form login = Application.OpenForms["Login_Form"];
+            string email = ((Login_Form)login).userInfo.getEmail();
+            string name = storeNameBox.Text;
+            string type = storeTypeBox.Text;
+            string location = storeLocationBox.Text;
+
+            Store store = new Store(email, name, location, type);
+            if (!storeHandler.addStore(store))
+            {
+                MessageBox.Show("Could not add store.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            addProductPanel.Visible = true;
+            addStorePanel.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            addProductPanel.Visible = false;
+            addStorePanel.Visible = true;
         }
     }
 }

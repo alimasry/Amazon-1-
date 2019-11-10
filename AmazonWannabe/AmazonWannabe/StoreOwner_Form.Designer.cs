@@ -45,7 +45,15 @@
             this.storeBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.addStorePanel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.storeNameBox = new System.Windows.Forms.TextBox();
+            this.addStoreButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.storeTypeBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.storeLocationBox = new System.Windows.Forms.TextBox();
             this.addProductPanel.SuspendLayout();
+            this.addStorePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -153,6 +161,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Add Product";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -167,6 +176,7 @@
             this.button2.TabIndex = 16;
             this.button2.Text = "Add Store";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // addProductPanel
             // 
@@ -204,10 +214,81 @@
             // 
             // addStorePanel
             // 
-            this.addStorePanel.Location = new System.Drawing.Point(14, 162);
+            this.addStorePanel.Controls.Add(this.label7);
+            this.addStorePanel.Controls.Add(this.storeLocationBox);
+            this.addStorePanel.Controls.Add(this.label6);
+            this.addStorePanel.Controls.Add(this.storeTypeBox);
+            this.addStorePanel.Controls.Add(this.label5);
+            this.addStorePanel.Controls.Add(this.storeNameBox);
+            this.addStorePanel.Controls.Add(this.addStoreButton);
+            this.addStorePanel.Location = new System.Drawing.Point(208, 12);
             this.addStorePanel.Name = "addStorePanel";
-            this.addStorePanel.Size = new System.Drawing.Size(200, 100);
+            this.addStorePanel.Size = new System.Drawing.Size(605, 495);
             this.addStorePanel.TabIndex = 18;
+            this.addStorePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.addStorePanel_Paint);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 73);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 15);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Store Name : ";
+            // 
+            // storeNameBox
+            // 
+            this.storeNameBox.Location = new System.Drawing.Point(113, 70);
+            this.storeNameBox.Name = "storeNameBox";
+            this.storeNameBox.Size = new System.Drawing.Size(473, 21);
+            this.storeNameBox.TabIndex = 15;
+            // 
+            // addStoreButton
+            // 
+            this.addStoreButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addStoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addStoreButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addStoreButton.ImageIndex = 6;
+            this.addStoreButton.ImageList = this.imageList2;
+            this.addStoreButton.Location = new System.Drawing.Point(466, 453);
+            this.addStoreButton.Name = "addStoreButton";
+            this.addStoreButton.Size = new System.Drawing.Size(139, 42);
+            this.addStoreButton.TabIndex = 16;
+            this.addStoreButton.Text = "Add";
+            this.addStoreButton.UseVisualStyleBackColor = true;
+            this.addStoreButton.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 139);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 15);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Type : ";
+            // 
+            // storeTypeBox
+            // 
+            this.storeTypeBox.Location = new System.Drawing.Point(113, 136);
+            this.storeTypeBox.Name = "storeTypeBox";
+            this.storeTypeBox.Size = new System.Drawing.Size(473, 21);
+            this.storeTypeBox.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 211);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Location : ";
+            // 
+            // storeLocationBox
+            // 
+            this.storeLocationBox.Location = new System.Drawing.Point(113, 208);
+            this.storeLocationBox.Name = "storeLocationBox";
+            this.storeLocationBox.Size = new System.Drawing.Size(473, 21);
+            this.storeLocationBox.TabIndex = 20;
             // 
             // StoreOwner_Form
             // 
@@ -215,16 +296,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(825, 519);
-            this.Controls.Add(this.addStorePanel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.addStorePanel);
             this.Controls.Add(this.addProductPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "StoreOwner_Form";
             this.Text = "Store Owner";
             this.addProductPanel.ResumeLayout(false);
             this.addProductPanel.PerformLayout();
+            this.addStorePanel.ResumeLayout(false);
+            this.addStorePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -246,5 +329,12 @@
         private System.Windows.Forms.ComboBox storeBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel addStorePanel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox storeNameBox;
+        private System.Windows.Forms.Button addStoreButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox storeLocationBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox storeTypeBox;
     }
 }

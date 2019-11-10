@@ -14,6 +14,7 @@ namespace AmazonWannabe
     public partial class Login_Form : Form
     {
         public const string connectionString = "Data Source=database.sqlite3";
+        public UserInfo userInfo = null;
 
         Dictionary<string, Form> typeToForm = new Dictionary<string, Form>();
         FormEditor editor = new FormEditor();
@@ -117,7 +118,7 @@ namespace AmazonWannabe
 
             if (res == "0")
             {
-                MessageBox.Show("Username or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Email or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 connection.Close();
                 return;
             }
@@ -127,7 +128,9 @@ namespace AmazonWannabe
             using(SQLiteCommand command = new SQLiteCommand(queryGetType , connection))
             {
                 this.Visible = false;
+                userInfo = new UserInfo(email , password , "");
                 typeToForm[command.ExecuteScalar().ToString()].ShowDialog();
+                this.Close();
             }
 
             connection.Close();
