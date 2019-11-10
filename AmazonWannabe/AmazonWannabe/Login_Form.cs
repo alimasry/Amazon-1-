@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,9 @@ namespace AmazonWannabe
 {
     public partial class Login_Form : Form
     {
-        private const string serverName = @"DESKTOP-A32LPMS\FADY";
-        private const string databaseName = "AmazonWannabe";
-        public const string connectionString = "Data Source=" + serverName + ";Initial Catalog =" + databaseName + "; Integrated Security=True;";
+        public const string connectionString = "Data Source=database.sqlite3";
 
+        Dictionary<string, Form> typeToForm = new Dictionary<string, Form>();
         FormEditor editor = new FormEditor();
         public Login_Form()
         {
@@ -24,6 +24,10 @@ namespace AmazonWannabe
             editor.EditButtons(registerPanel);
             registerPanel.Visible = false;
             registerPanel.BringToFront();
+
+            typeToForm.Add("Administrator", new Administrator_Form());
+            typeToForm.Add("Store Owner", new StoreOwner_Form());
+            typeToForm.Add("Customer", new Search_Form());
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -48,102 +52,84 @@ namespace AmazonWannabe
 
         private void registerButton_Click(object sender, EventArgs e)
         {
-            if (!editor.CheckTextBoxes(registerPanel) || typeRegisterBox.Text == "")
-                return;
-
             if(passRegisterBox.Text != confpassRegisterBox.Text)
             {
                 MessageBox.Show("Password and Confirm password does not match.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            UserInfo userInfo = new UserInfo(emailRegisterBox.Text, userRegisterBox.Text, passRegisterBox.Text);
+            string email = emailRegisterBox.Text.Replace("'", "''");
+            string password = passRegisterBox.Text.Replace("'", "''");
+            string username = userRegisterBox.Text.Replace("'", "''");
+            string type = typeRegisterBox.Text;
 
-            if (typeRegisterBox.Text == "Customer")
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            connection.Open();
+            string query = "INSERT INTO USER_INFO(email, password, username , type) VALUES ('" + email + "','" + password + "','" + username + "','" + type + "')";
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                CustomerHandler customerHandler = new CustomerHandler();
-                Customer customer = new Customer(userInfo);
-                if(!customerHandler.addCustomer(customer))
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
                 {
                     MessageBox.Show("Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    connection.Close();
                     return;
                 }
             }
-            if (typeRegisterBox.Text == "Administrator")
+
+            query = "INSERT INTO " + type.Replace(" " , "_") + "s VALUES('" + email + "')";
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                AdministratorHandler customerHandler = new AdministratorHandler();
-                Administrator admin = new Administrator(userInfo);
-                if (!customerHandler.addAdministrator(admin))
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
                 {
                     MessageBox.Show("Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    connection.Close();
                     return;
                 }
             }
-            if (typeRegisterBox.Text == "Store Owner")
-            {
-                StoreOwnerHandler customerHandler = new StoreOwnerHandler();
-                StoreOwner storeOwner = new StoreOwner(userInfo);
-                if (!customerHandler.addStoreOwner(storeOwner))
-                {
-                    MessageBox.Show("Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            MessageBox.Show("Account created successfully.", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            connection.Close();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            UserInfo userInfo = new UserInfo(emailLoginBox.Text, emailLoginBox.Text, passLoginBox.Text);
+            string res = "";
 
-            if (typeLoginBox.Text == "Customer")
+            string password = passLoginBox.Text.Replace("'", "''");
+            string email = emailLoginBox.Text.Replace("'", "''");
+            string queryCheckUser = "SELECT count(*) FROM USER_INFO\n" +
+                                    "WHERE EMAIL = '" + email + "'\n" +
+                                    "and PASSWORD = '" + password + "'\n";
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            connection.Open();
+
+            using (SQLiteCommand command = new SQLiteCommand(queryCheckUser, connection))
             {
-                CustomerHandler customerHandler = new CustomerHandler();
-                Customer customer = new Customer(userInfo);
-                if (!customerHandler.login(customer))
-                {
-                    MessageBox.Show("Username or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                Search_Form form = new Search_Form();
-                this.Visible = false;
-                form.ShowDialog();
-                form.Dispose();
-                this.Close();
+                res = command.ExecuteScalar().ToString();
+            }
+
+            if (res == "0")
+            {
+                MessageBox.Show("Username or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                connection.Close();
                 return;
             }
-            if (typeLoginBox.Text == "Administrator")
+
+            string queryGetType = "SELECT type from user_info\n" +
+                                  "where email = '" + email + "'\n";
+            using(SQLiteCommand command = new SQLiteCommand(queryGetType , connection))
             {
-                AdministratorHandler customerHandler = new AdministratorHandler();
-                Administrator admin = new Administrator(userInfo);
-                if (!customerHandler.login(admin))
-                {
-                    MessageBox.Show("Username or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                Administrator_Form form = new Administrator_Form();
-                this.Visible = false;
-                form.ShowDialog();
-                form.Dispose();
-                this.Close();
-                return;
+                typeToForm[command.ExecuteScalar().ToString()].ShowDialog();
             }
-            if (typeLoginBox.Text == "Store Owner")
-            {
-                StoreOwnerHandler customerHandler = new StoreOwnerHandler();
-                StoreOwner storeOwner = new StoreOwner(userInfo);
-                if (!customerHandler.login(storeOwner))
-                {
-                    MessageBox.Show("Username or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                StoreOwner_Form form = new StoreOwner_Form();
-                this.Visible = false;
-                form.ShowDialog();
-                form.Dispose();
-                this.Close();
-                return;
-            }
+
+            connection.Close();
         }
     }
 }

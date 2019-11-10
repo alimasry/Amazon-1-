@@ -32,3 +32,13 @@ C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\Amaz
 C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.Administrator_Form.resources
 C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.Search_Form.resources
 C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.StoreOwner_Form.resources
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.dll
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.dll
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.xml
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.xml
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.csproj.CopyComplete

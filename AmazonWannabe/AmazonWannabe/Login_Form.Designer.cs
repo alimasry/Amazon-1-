@@ -52,8 +52,6 @@
             this.passRegisterBox = new System.Windows.Forms.TextBox();
             this.emailRegisterBox = new System.Windows.Forms.TextBox();
             this.userRegisterBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.typeLoginBox = new System.Windows.Forms.ComboBox();
             this.registerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,9 +78,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 15);
+            this.label1.Size = new System.Drawing.Size(48, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Username : ";
+            this.label1.Text = "Email : ";
             // 
             // label2
             // 
@@ -253,6 +251,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(0, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 15);
@@ -296,28 +295,6 @@
             this.userRegisterBox.Size = new System.Drawing.Size(549, 21);
             this.userRegisterBox.TabIndex = 0;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 236);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 15);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Type : ";
-            // 
-            // typeLoginBox
-            // 
-            this.typeLoginBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.typeLoginBox.FormattingEnabled = true;
-            this.typeLoginBox.Items.AddRange(new object[] {
-            "Customer",
-            "Store Owner",
-            "Administrator"});
-            this.typeLoginBox.Location = new System.Drawing.Point(92, 233);
-            this.typeLoginBox.Name = "typeLoginBox";
-            this.typeLoginBox.Size = new System.Drawing.Size(588, 23);
-            this.typeLoginBox.TabIndex = 9;
-            // 
             // Login_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -325,9 +302,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(692, 444);
             this.ControlBox = false;
-            this.Controls.Add(this.registerPanel);
-            this.Controls.Add(this.typeLoginBox);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.registerLink);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.closeButton);
@@ -335,6 +309,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passLoginBox);
             this.Controls.Add(this.emailLoginBox);
+            this.Controls.Add(this.registerPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login_Form";
@@ -370,8 +345,6 @@
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.ComboBox typeRegisterBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox typeLoginBox;
     }
 }
 

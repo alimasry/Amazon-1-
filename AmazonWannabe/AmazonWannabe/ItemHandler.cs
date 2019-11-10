@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace AmazonWannabe
 {
     class ItemHandler
     {
-        private SqlConnection connection = new SqlConnection(Login_Form.connectionString);
+        private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
         public bool addItem(Item item)
         {
             string name = item.getItemName().Replace("'", "''");
@@ -18,7 +19,7 @@ namespace AmazonWannabe
             string addQuery = "INSERT INTO ITEMS(NAME , MAXPRICE , MINPRICE)" +
                               "VALUES('" + name + "' , " + maxPrice + " , " + minPrice + ")";
             connection.Open();
-            using (SqlCommand command = new SqlCommand(addQuery, connection))
+            using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
             {
                 try
                 {
@@ -38,12 +39,12 @@ namespace AmazonWannabe
             string query = "SELECT NAME , MINPRICE , MAXPRICE FROM ITEMS";
             List<Item> ret = new List<Item>();
             connection.Open();
-            using (SqlCommand command = new SqlCommand(query , connection))
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                SqlDataReader reader = command.ExecuteReader();
-                while(reader.Read())
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    ret.Add(new Item(reader["Name"].ToString() , Convert.ToDouble(reader["minPrice"]) , Convert.ToDouble(reader["maxPrice"])));
+                    ret.Add(new Item(reader["Name"].ToString(), Convert.ToDouble(reader["minPrice"]), Convert.ToDouble(reader["maxPrice"])));
                 }
             }
             return ret;
