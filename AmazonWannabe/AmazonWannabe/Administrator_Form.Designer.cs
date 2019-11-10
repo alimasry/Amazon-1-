@@ -39,6 +39,13 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.addButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
+            this.view_pending = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Approve = new System.Windows.Forms.Button();
+            this.Close = new System.Windows.Forms.Button();
+            this.StoresGridView = new System.Windows.Forms.DataGridView();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StoresGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // nameBox
@@ -137,12 +144,66 @@
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
+            // view_pending
+            // 
+            this.view_pending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.view_pending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.view_pending.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.view_pending.ImageIndex = 6;
+            this.view_pending.ImageList = this.imageList1;
+            this.view_pending.Location = new System.Drawing.Point(236, 329);
+            this.view_pending.Name = "view_pending";
+            this.view_pending.Size = new System.Drawing.Size(210, 42);
+            this.view_pending.TabIndex = 14;
+            this.view_pending.Text = "View Pending Stores";
+            this.view_pending.UseVisualStyleBackColor = true;
+            this.view_pending.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.StoresGridView);
+            this.panel1.Controls.Add(this.Close);
+            this.panel1.Controls.Add(this.Approve);
+            this.panel1.Location = new System.Drawing.Point(120, -29);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(569, 410);
+            this.panel1.TabIndex = 15;
+            // 
+            // Approve
+            // 
+            this.Approve.Location = new System.Drawing.Point(46, 345);
+            this.Approve.Name = "Approve";
+            this.Approve.Size = new System.Drawing.Size(148, 36);
+            this.Approve.TabIndex = 0;
+            this.Approve.Text = "Approve";
+            this.Approve.UseVisualStyleBackColor = true;
+            this.Approve.Click += new System.EventHandler(this.Approve_Click);
+            // 
+            // Close
+            // 
+            this.Close.Location = new System.Drawing.Point(293, 345);
+            this.Close.Name = "Close";
+            this.Close.Size = new System.Drawing.Size(143, 36);
+            this.Close.TabIndex = 1;
+            this.Close.Text = "Close";
+            this.Close.UseVisualStyleBackColor = true;
+            this.Close.Click += new System.EventHandler(this.Close_Click);
+            // 
+            // StoresGridView
+            // 
+            this.StoresGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StoresGridView.Location = new System.Drawing.Point(46, 52);
+            this.StoresGridView.Name = "StoresGridView";
+            this.StoresGridView.Size = new System.Drawing.Size(390, 287);
+            this.StoresGridView.TabIndex = 2;
+            // 
             // Administrator_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(603, 383);
+            this.Controls.Add(this.view_pending);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label3);
@@ -151,9 +212,12 @@
             this.Controls.Add(this.maxPriceBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameBox);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Administrator_Form";
             this.Text = "Administrative Tools";
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StoresGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +234,10 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Button view_pending;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Close;
+        private System.Windows.Forms.Button Approve;
+        private System.Windows.Forms.DataGridView StoresGridView;
     }
 }

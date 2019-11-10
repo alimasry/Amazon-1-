@@ -302,6 +302,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(692, 444);
             this.ControlBox = false;
+            this.Controls.Add(this.registerPanel);
             this.Controls.Add(this.registerLink);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.closeButton);
@@ -309,7 +310,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passLoginBox);
             this.Controls.Add(this.emailLoginBox);
-            this.Controls.Add(this.registerPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login_Form";
