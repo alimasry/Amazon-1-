@@ -56,6 +56,7 @@
             this.productsGrid.ReadOnly = true;
             this.productsGrid.Size = new System.Drawing.Size(909, 348);
             this.productsGrid.TabIndex = 0;
+            this.productsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsGrid_CellDoubleClick_1);
             // 
             // productName
             // 
@@ -79,7 +80,7 @@
             this.searchItem.FormattingEnabled = true;
             this.searchItem.Location = new System.Drawing.Point(70, 89);
             this.searchItem.Name = "searchItem";
-            this.searchItem.Size = new System.Drawing.Size(185, 23);
+            this.searchItem.Size = new System.Drawing.Size(185, 30);
             this.searchItem.TabIndex = 1;
             // 
             // searchBar
@@ -88,7 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBar.Location = new System.Drawing.Point(70, 62);
             this.searchBar.Name = "searchBar";
-            this.searchBar.Size = new System.Drawing.Size(851, 21);
+            this.searchBar.Size = new System.Drawing.Size(851, 28);
             this.searchBar.TabIndex = 2;
             // 
             // label1
@@ -96,7 +97,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 3;
             this.label1.Text = "Search : ";
             // 
@@ -127,7 +128,7 @@
             // 
             // Search_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(933, 519);

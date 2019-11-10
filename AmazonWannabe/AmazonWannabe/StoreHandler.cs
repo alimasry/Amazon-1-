@@ -40,9 +40,30 @@ namespace AmazonWannabe
             connection.Close();
             return true;
         }
+
+        public bool addUserView(string storeName)
+        {
+            string incQuery = "UPDATE STORE SET USERVIEWS = USERVIEWS + 1 WHERE NAME = '" + storeName + "'";
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(incQuery, connection))
+            {
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException e)
+                {
+                    connection.Close();
+                    return false;
+                }
+            }
+            connection.Close();
+            return true;
+        }
+
         public List<Store> getStores()
         {
-            string query = "SELECT NAME , soldnum , type , location , approved , email FROM store";
+            string query = "SELECT * FROM store";
             List<Store> ret = new List<Store>();
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
@@ -53,7 +74,8 @@ namespace AmazonWannabe
                     ret.Add(new Store(reader["email"].ToString(), 
                             Int32.Parse(reader["soldNum"].ToString()),
                             reader["approved"].ToString() , reader["name"].ToString(),
-                            reader["location"].ToString() , reader["type"].ToString()));
+                            reader["location"].ToString() , reader["type"].ToString(), 
+                            Int32.Parse(reader["userviews"].ToString())));
                 }
             }
             connection.Close();

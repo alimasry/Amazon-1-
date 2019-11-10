@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,6 +29,8 @@ namespace AmazonWannabe
             stores = storeHandler.getStores();
             brands = brandHandler.getBrands();
 
+            addProductPanel.BringToFront();
+
             foreach (Item s in items)
             {
                 itemBox.Items.Add(s.getItemName());
@@ -40,6 +43,9 @@ namespace AmazonWannabe
             {
                 brandBox.Items.Add(s.getBrandName());
             }
+
+            //Thread update = new Thread(()=> update_stats());
+            //update.Start();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -102,14 +108,63 @@ namespace AmazonWannabe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            addProductPanel.Visible = true;
             addStorePanel.Visible = false;
+            statsPanel.Visible = false;
+            addProductPanel.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            addProductPanel.Visible = false;
             addStorePanel.Visible = true;
+            statsPanel.Visible = false;
+            addProductPanel.Visible = false;
+        }
+
+        private void userViewsLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productSoldLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void update_stats()
+        {
+            Form login = Application.OpenForms["Login_Form"];
+            UserInfo userInfo = ((Login_Form)login).userInfo;
+
+            StoreHandler storeHandler = new StoreHandler();
+            List<Store> stores = storeHandler.getStores();
+
+            int userViews = 0;
+            int productsSold = 0;
+            foreach (Store s in stores)
+            {
+                    if (s.getEmail() == userInfo.getEmail())
+                    {
+                        userViews += s.getUserViews();
+                        productsSold += s.getSoldNum();
+                    }
+            }
+
+            productsSoldCnt.Text = productsSold.ToString();
+            userViewsCnt.Text = userViews.ToString();
+        }
+
+        private void StatsViewButton_Click(object sender, EventArgs e)
+        {
+            addStorePanel.Visible = false;
+            statsPanel.Visible = true;
+            addProductPanel.Visible = false;
+            statsPanel.BringToFront();
+            update_stats();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

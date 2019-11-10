@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class Product : Item
+    public class Product : Item
     {
         private string ProductId;
         private string ProductName;

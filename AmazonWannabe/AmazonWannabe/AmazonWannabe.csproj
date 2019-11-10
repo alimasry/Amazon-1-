@@ -104,6 +104,12 @@
       <DependentUpon>StoreOwner_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs" />
+    <Compile Include="ViewItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewItem.Designer.cs">
+      <DependentUpon>ViewItem.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Administrator_Form.resx">
       <DependentUpon>Administrator_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +130,9 @@
     </Compile>
     <EmbeddedResource Include="StoreOwner_Form.resx">
       <DependentUpon>StoreOwner_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewItem.resx">
+      <DependentUpon>ViewItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
