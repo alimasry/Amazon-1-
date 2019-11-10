@@ -20,11 +20,12 @@ namespace AmazonWannabe
             InitializeComponent();
             editor.EditButtons(this);
             panel1.Visible = false;
+            panel2.Visible = false;
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item(nameBox.Text , brandBox.Text , Convert.ToDouble(minPriceBox.Text) , Convert.ToDouble(maxPriceBox.Text));
+            Item item = new Item(nameBox.Text  , Convert.ToDouble(minPriceBox.Text) , Convert.ToDouble(maxPriceBox.Text));
             if(!itemHandler.addItem(item))
             {
                 MessageBox.Show("Could not create item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -101,6 +102,39 @@ namespace AmazonWannabe
                 MessageBox.Show("Please select a specific row");
                 connection.Close();
             }
+        }
+
+        private void closeButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string brandName = Name_box.Text;
+            string brandCategory = Category_box.Text;
+            SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
+            connection.Open();
+            string SQLquery = "INSERT INTO [Brand](Name,Category) VALUES ('" + brandName + "','" + brandCategory + "')";
+            using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
+            {
+                try
+                {
+                    SQLcommand.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
+                {
+                    MessageBox.Show("Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    connection.Close();
+                    return;
+                }
+            }
+        }
+        private void Add_Brand_Click_1(object sender, EventArgs e)
+        {
+            panel2.BringToFront();
+            panel2.Visible = true;
+
         }
     }
 }
