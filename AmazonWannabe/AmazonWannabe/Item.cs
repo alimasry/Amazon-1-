@@ -20,12 +20,12 @@ namespace AmazonWannabe
         }
         public Item(Item item)
         {
-            this.itemName = item.getName();
+            this.itemName = item.getItemName();
             this.minPrice = item.getMinPrice();
             this.maxPrice = item.getMaxPrice();
         }
 
-        public bool setName(string name)
+        public bool setItemName(string name)
         {
             this.itemName = name;
             return true;
@@ -43,7 +43,7 @@ namespace AmazonWannabe
             return true;
         }
 
-        public string getName()
+        public string getItemName()
         {
             return itemName;
         }

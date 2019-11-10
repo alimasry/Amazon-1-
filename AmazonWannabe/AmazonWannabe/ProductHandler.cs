@@ -19,9 +19,11 @@ namespace AmazonWannabe
 
             string name = product.getName().Replace("'", "''");
             string price = product.getPrice().ToString();
-            string itemName = product.getName().Replace("'", "''");
-            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME)" +
-                              "VALUES('" + name + "' , " + price + " , '" + itemName + "')";
+            string itemName = product.getItemName().Replace("'", "''");
+            string store = product.getStoreName().Replace("'", "''"); 
+            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME)" +
+                              "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store + "')";
+            MessageBox.Show(addQuery);
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
             {
@@ -31,6 +33,7 @@ namespace AmazonWannabe
                 }
                 catch (SQLiteException e)
                 {
+                    MessageBox.Show(e.Message);
                     connection.Close();
                     return false;
                 }

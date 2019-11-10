@@ -13,7 +13,7 @@ namespace AmazonWannabe
         private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
         public bool addItem(Item item)
         {
-            string name = item.getName().Replace("'", "''");
+            string name = item.getItemName().Replace("'", "''");
             string maxPrice = item.getMaxPrice().ToString();
             string minPrice = item.getMinPrice().ToString();
             string addQuery = "INSERT INTO ITEM(NAME , BRAND , MAXPRICE , MINPRICE)" +

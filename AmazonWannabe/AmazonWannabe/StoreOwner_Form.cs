@@ -27,7 +27,7 @@ namespace AmazonWannabe
 
             foreach (Item s in items)
             {
-                itemBox.Items.Add(s.getName());
+                itemBox.Items.Add(s.getItemName());
             }
             foreach(Store s in stores)
             {
@@ -42,7 +42,7 @@ namespace AmazonWannabe
 
             foreach(Item i in items)
             {
-                if (itemBox.Text == i.getName())
+                if (itemBox.Text == i.getItemName())
                     item = i;
             }
             foreach (Store i in stores)

@@ -37,7 +37,7 @@ namespace AmazonWannabe
                     return false;
                 }
             }
-
+            connection.Close();
             return true;
         }
         public List<Store> getStores()

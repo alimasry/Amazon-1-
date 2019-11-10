@@ -23,5 +23,10 @@ namespace AmazonWannabe
         {
 
         }
+
+        private void productsGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

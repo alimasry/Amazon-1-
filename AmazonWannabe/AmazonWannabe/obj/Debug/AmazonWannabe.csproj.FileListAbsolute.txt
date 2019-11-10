@@ -55,3 +55,13 @@ C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\Syst
 C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.csproj.CopyComplete
 C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.exe
 C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.pdb
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.dll
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.dll
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.xml
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.xml
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\alima\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.csproj.CopyComplete
