@@ -12,13 +12,27 @@ namespace AmazonWannabe
         private string ProductName;
         private double price;
         private string storeName;
+        private int stockNum;
+        private string brandName;
         //private double rating;
-        public Product(string id , string name , double price , string storeName , Item item):base(item)
+        public Product(string id , string name , double price , int stockNum , string storeName , string brandName , Item item):base(item)
         {
             this.ProductId = id;
             this.ProductName = name;
             this.price = price;
+            this.stockNum = stockNum;
             this.storeName = storeName;
+            this.brandName = brandName;
+        }
+
+        public Product(string name , double price , string storeName , string brandName , Item item):base(item)
+        {
+            this.ProductId = null;
+            this.ProductName = name;
+            this.price = price;
+            this.stockNum = 0;
+            this.storeName = storeName;
+            this.brandName = brandName;
         }
 
         public bool setId(string id)
@@ -42,6 +56,11 @@ namespace AmazonWannabe
             this.storeName = storeName;
             return true;
         }
+        public bool setBrandName(string brandName)
+        {
+            this.brandName = brandName;
+            return true;
+        }
         public string getId()
         {
             return this.ProductId;
@@ -58,6 +77,10 @@ namespace AmazonWannabe
         public string getStoreName()
         {
             return storeName;
+        }
+        public string getBrandName()
+        {
+            return brandName;
         }
     }
 }

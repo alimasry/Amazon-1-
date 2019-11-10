@@ -44,12 +44,12 @@
             this.StoresGridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.closeButton2 = new System.Windows.Forms.Button();
-            this.Brand_Name = new System.Windows.Forms.Label();
-            this.Brand_Category = new System.Windows.Forms.Label();
-            this.Name_box = new System.Windows.Forms.TextBox();
             this.Category_box = new System.Windows.Forms.TextBox();
+            this.Name_box = new System.Windows.Forms.TextBox();
+            this.Brand_Category = new System.Windows.Forms.Label();
+            this.Brand_Name = new System.Windows.Forms.Label();
+            this.closeButton2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.Add_Brand = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -155,7 +155,6 @@
             this.panel1.Controls.Add(this.Approve);
             this.panel1.Controls.Add(this.StoresGridView);
             this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(579, 359);
             this.panel1.TabIndex = 15;
@@ -218,20 +217,37 @@
             this.panel2.Size = new System.Drawing.Size(425, 232);
             this.panel2.TabIndex = 14;
             // 
-            // button1
+            // Category_box
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 6;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(106, 177);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 42);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.Category_box.Location = new System.Drawing.Point(139, 98);
+            this.Category_box.Name = "Category_box";
+            this.Category_box.Size = new System.Drawing.Size(147, 21);
+            this.Category_box.TabIndex = 18;
+            // 
+            // Name_box
+            // 
+            this.Name_box.Location = new System.Drawing.Point(139, 58);
+            this.Name_box.Name = "Name_box";
+            this.Name_box.Size = new System.Drawing.Size(147, 21);
+            this.Name_box.TabIndex = 17;
+            // 
+            // Brand_Category
+            // 
+            this.Brand_Category.AutoSize = true;
+            this.Brand_Category.Location = new System.Drawing.Point(37, 95);
+            this.Brand_Category.Name = "Brand_Category";
+            this.Brand_Category.Size = new System.Drawing.Size(91, 15);
+            this.Brand_Category.TabIndex = 16;
+            this.Brand_Category.Text = "Brand Category";
+            // 
+            // Brand_Name
+            // 
+            this.Brand_Name.AutoSize = true;
+            this.Brand_Name.Location = new System.Drawing.Point(37, 54);
+            this.Brand_Name.Name = "Brand_Name";
+            this.Brand_Name.Size = new System.Drawing.Size(77, 15);
+            this.Brand_Name.TabIndex = 15;
+            this.Brand_Name.Text = "Brand Name";
             // 
             // closeButton2
             // 
@@ -248,37 +264,20 @@
             this.closeButton2.UseVisualStyleBackColor = true;
             this.closeButton2.Click += new System.EventHandler(this.closeButton2_Click);
             // 
-            // Brand_Name
+            // button1
             // 
-            this.Brand_Name.AutoSize = true;
-            this.Brand_Name.Location = new System.Drawing.Point(37, 54);
-            this.Brand_Name.Name = "Brand_Name";
-            this.Brand_Name.Size = new System.Drawing.Size(77, 15);
-            this.Brand_Name.TabIndex = 15;
-            this.Brand_Name.Text = "Brand Name";
-            // 
-            // Brand_Category
-            // 
-            this.Brand_Category.AutoSize = true;
-            this.Brand_Category.Location = new System.Drawing.Point(37, 95);
-            this.Brand_Category.Name = "Brand_Category";
-            this.Brand_Category.Size = new System.Drawing.Size(91, 15);
-            this.Brand_Category.TabIndex = 16;
-            this.Brand_Category.Text = "Brand Category";
-            // 
-            // Name_box
-            // 
-            this.Name_box.Location = new System.Drawing.Point(139, 58);
-            this.Name_box.Name = "Name_box";
-            this.Name_box.Size = new System.Drawing.Size(147, 21);
-            this.Name_box.TabIndex = 17;
-            // 
-            // Category_box
-            // 
-            this.Category_box.Location = new System.Drawing.Point(139, 98);
-            this.Category_box.Name = "Category_box";
-            this.Category_box.Size = new System.Drawing.Size(147, 21);
-            this.Category_box.TabIndex = 18;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.ImageIndex = 6;
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(106, 177);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 42);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Add_Brand
             // 
@@ -320,8 +319,8 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameBox);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Administrator_Form";
             this.Text = "Administrative Tools";

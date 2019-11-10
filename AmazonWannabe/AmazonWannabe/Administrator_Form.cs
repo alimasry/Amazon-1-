@@ -14,6 +14,7 @@ namespace AmazonWannabe
     public partial class Administrator_Form : Form
     {
         ItemHandler itemHandler = new ItemHandler();
+        BrandHandler brandHandler = new BrandHandler();
         FormEditor editor = new FormEditor();
         public Administrator_Form()
         {
@@ -113,28 +114,17 @@ namespace AmazonWannabe
         {
             string brandName = Name_box.Text;
             string brandCategory = Category_box.Text;
-            SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
-            connection.Open();
-            string SQLquery = "INSERT INTO [Brand](Name,Category) VALUES ('" + brandName + "','" + brandCategory + "')";
-            using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
+            Brand brand = new Brand(brandName, brandCategory);
+            if(!brandHandler.addBrand(brand))
             {
-                try
-                {
-                    SQLcommand.ExecuteNonQuery();
-                }
-                catch (SQLiteException)
-                {
-                    MessageBox.Show("Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    connection.Close();
-                    return;
-                }
+                MessageBox.Show("Could not create brand.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
         private void Add_Brand_Click_1(object sender, EventArgs e)
         {
             panel2.BringToFront();
             panel2.Visible = true;
-
         }
     }
 }

@@ -16,14 +16,17 @@ namespace AmazonWannabe
         ProductHandler productHandler = new ProductHandler();
         ItemHandler itemHandler = new ItemHandler();
         StoreHandler storeHandler = new StoreHandler();
+        BrandHandler brandHandler = new BrandHandler();
         List<Item> items;
         List<Store> stores;
+        List<Brand> brands;
         public StoreOwner_Form()
         {
             InitializeComponent();
             editor.EditButtons(this);
             items = itemHandler.getItems();
             stores = storeHandler.getStores();
+            brands = brandHandler.getBrands();
 
             foreach (Item s in items)
             {
@@ -33,12 +36,17 @@ namespace AmazonWannabe
             {
                 storeBox.Items.Add(s.getStoreName());
             }
+            foreach (Brand s in brands)
+            {
+                brandBox.Items.Add(s.getBrandName());
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             Item item = null;
             Store store = null;
+            Brand brand = null;
 
             foreach(Item i in items)
             {
@@ -50,7 +58,12 @@ namespace AmazonWannabe
                 if (storeBox.Text == i.getStoreName())
                     store = i;
             }
-            Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text), store.getStoreName(), item);
+            foreach (Brand i in brands)
+            {
+                if (brandBox.Text == i.getBrandName())
+                    brand = i;
+            }
+            Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text) , 0 , store.getStoreName() , brand.getBrandName(), item);
 
             if(!productHandler.addProduct(product))
             {

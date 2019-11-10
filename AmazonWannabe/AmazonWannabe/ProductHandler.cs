@@ -20,9 +20,10 @@ namespace AmazonWannabe
             string name = product.getName().Replace("'", "''");
             string price = product.getPrice().ToString();
             string itemName = product.getItemName().Replace("'", "''");
-            string store = product.getStoreName().Replace("'", "''"); 
-            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME)" +
-                              "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store + "')";
+            string store = product.getStoreName().Replace("'", "''");
+            string brand = product.getBrandName().Replace("'", "''");
+            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME , brandname)" +
+                              "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store +"' , '" + brand + "')";
             MessageBox.Show(addQuery);
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
@@ -41,6 +42,28 @@ namespace AmazonWannabe
             connection.Close();
 
             return true;
+        }
+        public List<Product> getProducts()
+        {
+            string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname FROM product";
+            List<Product> ret = new List<Product>();
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ret.Add(new Product(reader["id"].ToString() , 
+                        reader["name"].ToString(), 
+                        Convert.ToDouble(reader["price"]), 
+                        Convert.ToInt32(reader["stocknum"]) , 
+                        reader["Storename"].ToString() , 
+                        reader["brandname"].ToString() , 
+                        new Item(reader["itemname"].ToString() , 0 , 0)));
+                }
+            }
+            connection.Close();
+            return ret;
         }
     }
 }

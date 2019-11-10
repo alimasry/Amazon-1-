@@ -72,6 +72,8 @@
     <Compile Include="Administrator_Form.Designer.cs">
       <DependentUpon>Administrator_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Brand.cs" />
+    <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="FormEditor.cs" />
     <Compile Include="Item.cs" />

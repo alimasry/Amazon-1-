@@ -43,8 +43,6 @@
             // 
             // productsGrid
             // 
-            this.productsGrid.AllowUserToAddRows = false;
-            this.productsGrid.AllowUserToDeleteRows = false;
             this.productsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -77,6 +75,7 @@
             // 
             // searchItem
             // 
+            this.searchItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchItem.FormattingEnabled = true;
             this.searchItem.Location = new System.Drawing.Point(70, 89);
             this.searchItem.Name = "searchItem";
