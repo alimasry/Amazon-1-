@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class UserInfo
+    public class UserInfo
     {
         private string email;
         private string password;
         private string username;
         
+        public UserInfo()
+        {
+
+        }
         public UserInfo(string e,string u,string pass)
         {
             this.email = e;

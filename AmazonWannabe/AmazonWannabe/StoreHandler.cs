@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
@@ -21,8 +22,8 @@ namespace AmazonWannabe
             string location = store.getStoreLocation();
             string type = store.getStoreType();
             string addQuery = "insert into store(name , soldnum , type , location , approved , email)" +
-                              "values('" + name + "' , " + soldNum + " , '" + location + "' , " + approved + " , '" + email + "')";
-
+                              "values('" + name + "' , " + soldNum + " , '" + type + "' , '" + location + "' , "  + approved + " , '" + email + "')";
+            MessageBox.Show(addQuery);
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
             {
@@ -55,6 +56,7 @@ namespace AmazonWannabe
                             reader["location"].ToString() , reader["type"].ToString()));
                 }
             }
+            connection.Close();
             return ret;
         }
     }
