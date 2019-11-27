@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,12 @@ namespace AmazonWannabe
         ItemHandler itemHandler = new ItemHandler();
         ProductHandler productHandler = new ProductHandler();
         List<Item> items = new List<Item>();
+        CustomerHandler customerHandler = new CustomerHandler();
         public Search_Form()
         {
             InitializeComponent();
             editor.EditButtons(this);
-
+            Confirm_panel.Visible = false;
             items = itemHandler.getItems();
             foreach (Item s in items)
             {
@@ -36,6 +38,7 @@ namespace AmazonWannabe
                 DataGridViewRow r = (DataGridViewRow)productsGrid.Rows[0].Clone();
                 r.Cells[0].Value = p.getName();
                 r.Cells[1].Value = p.getPrice();
+                r.Cells[2].Value = p.getId();
                 if (r.Cells[0].Value.ToString() != searchBar.Text && searchBar.Text != "")
                     continue;
 
@@ -67,6 +70,44 @@ namespace AmazonWannabe
             ViewItem viewItem = new ViewItem(product);
             viewItem.ShowDialog();
             viewItem.Close();
+        }
+
+        private void Buy_button_Click(object sender, EventArgs e)
+        {
+            Confirm_panel.Visible = true;
+            Confirm_panel.BringToFront();
+        }
+
+        private void Close_panel_Click(object sender, EventArgs e)
+        {
+            Confirm_panel.Visible = false;
+            Confirm_panel.SendToBack();
+        }
+
+        private void Confirm_Click(object sender, EventArgs e)
+        {
+            if (!Agreement.Checked)
+            {
+                MessageBox.Show("please select the checkbox to confirm");
+            }
+            DataGridViewRow selectedRow = productsGrid.CurrentRow;
+            string productID = Convert.ToString(selectedRow.Cells[2].Value);
+            int ID = int.Parse(productID);
+            if (amountBox.Text == "" || addressBox.Text == "")
+            {
+                MessageBox.Show("please enter amount and address");
+            }
+            else
+            {
+                int amount = Int32.Parse(amountBox.Text);
+                float totalPrice = Int32.Parse(amountBox.Text) * Int32.Parse(Convert.ToString(selectedRow.Cells[1].Value));
+                string address = addressBox.Text;
+                int updated=productHandler.checkStock(amount, ID);
+                productHandler.updateStock(updated,ID);
+                customerHandler.addOrder(totalPrice, amount, address, ID);
+               
+            }
+
         }
     }
 }

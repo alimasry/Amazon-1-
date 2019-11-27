@@ -71,11 +71,13 @@ namespace AmazonWannabe
                 SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new Store(reader["email"].ToString(), 
-                            Int32.Parse(reader["soldNum"].ToString()),
-                            reader["approved"].ToString() , reader["name"].ToString(),
-                            reader["location"].ToString() , reader["type"].ToString(), 
-                            Int32.Parse(reader["userviews"].ToString())));
+                   
+                        ret.Add(new Store(reader["email"].ToString(),
+                                Int32.Parse(reader["soldNum"].ToString()),
+                                reader["approved"].ToString(), reader["name"].ToString(),
+                                reader["location"].ToString(), reader["type"].ToString(),
+                                Int32.Parse(reader["userviews"].ToString())));
+                  
                 }
             }
             connection.Close();

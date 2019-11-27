@@ -53,17 +53,79 @@ namespace AmazonWannabe
                 SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new Product(reader["id"].ToString() , 
-                        reader["name"].ToString(), 
-                        Convert.ToDouble(reader["price"]), 
-                        Convert.ToInt32(reader["stocknum"]) , 
-                        reader["Storename"].ToString() , 
-                        reader["brandname"].ToString() , 
-                        new Item(reader["itemname"].ToString() , 0 , 0)));
+                    try
+                    {
+                        ret.Add(new Product(reader["id"].ToString(),
+                            reader["name"].ToString(),
+                            Convert.ToDouble(reader["price"]),
+                            Convert.ToInt32(reader["stocknum"]),
+                            reader["Storename"].ToString(),
+                            reader["brandname"].ToString(),
+                            new Item(reader["itemname"].ToString(), 0, 0)));
+                    }
+                    catch(SQLiteException e)
+                    { 
+                        MessageBox.Show(e.Message);
+                        connection.Close();
+                    }
                 }
+              
             }
             connection.Close();
             return ret;
+        }
+        public int checkStock(int amount,int ID)
+        {
+            int updated;
+            string SQLquery2 = "Select StockNum from [Product] where ID='" + ID + "'\n";
+            
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(SQLquery2, connection))
+            {
+                try
+                {
+                   SQLiteDataReader rd = command.ExecuteReader();
+                   rd.Read();
+                   updated = rd.GetInt32(0);
+                }
+                catch (SQLiteException e)
+                {
+                   MessageBox.Show(e.Message);
+                   connection.Close();
+                   return 0;
+                }
+            }
+            connection.Close();
+            if (updated >= amount)
+            {
+                updated = updated - amount;
+            }
+            else
+            {
+                updated = 0;
+            }
+            return updated;
+        }
+
+        public int updateStock(int updated, int ID)
+        {
+            string SQLquery3 = "UPDATE [Product] set StockNum ='" + updated + "'where ID='" + ID + "'\n";
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        connection.Close();
+                        return 0;
+                    }
+                }
+                connection.Close();
+                return updated;
         }
     }
 }
