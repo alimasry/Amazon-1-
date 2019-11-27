@@ -27,7 +27,7 @@ namespace AmazonWannabe
         {
             return this.userInfo;
         }
-        public bool addItem(Item item)
+        public bool addItem(Product item)
         {
             if (item == null || item.getMinPrice() > item.getMaxPrice())
                 return false;

@@ -6,28 +6,32 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class Item
+    public class Item
     {
-        protected string ItemName;
+        protected string itemName;
         protected double minPrice;
         protected double maxPrice;
 
         public Item(string name , double minPrice , double maxPrice)
         {
-            this.ItemName = name;
+            this.itemName = name;
             this.minPrice = minPrice;
             this.maxPrice = maxPrice;
         }
         public Item(Item item)
         {
-            this.ItemName = item.getItemName();
+            this.itemName = item.getItemName();
             this.minPrice = item.getMinPrice();
             this.maxPrice = item.getMaxPrice();
         }
 
-        public bool setName(string name)
+        public bool setItemName(string name)
         {
-            this.ItemName = name;
+            this.itemName = name;
+            return true;
+        }
+        public bool setBrand(string brand)
+        {
             return true;
         }
         public bool setRange(double minPrice , double maxPrice)
@@ -41,7 +45,7 @@ namespace AmazonWannabe
 
         public string getItemName()
         {
-            return ItemName;
+            return itemName;
         }
         public double getMinPrice()
         {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SQLite;
 
 namespace AmazonWannabe
 {
@@ -15,7 +16,6 @@ namespace AmazonWannabe
         {
             this.userInfo = userInfo;
         }
-
         public UserInfo getUserInfo()
         {
             return this.userInfo;

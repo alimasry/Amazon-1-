@@ -14,6 +14,7 @@ namespace AmazonWannabe
     public partial class Login_Form : Form
     {
         public const string connectionString = "Data Source=database.sqlite3";
+        public UserInfo userInfo = null;
 
         Dictionary<string, Form> typeToForm = new Dictionary<string, Form>();
         FormEditor editor = new FormEditor();
@@ -65,7 +66,7 @@ namespace AmazonWannabe
 
             SQLiteConnection connection = new SQLiteConnection(connectionString);
             connection.Open();
-            string query = "INSERT INTO USER_INFO(email, password, username , type) VALUES ('" + email + "','" + password + "','" + username + "','" + type + "')";
+            string query = "INSERT INTO [USER INFO](email, password, username , type) VALUES ('" + email + "','" + password + "','" + username + "','" + type + "')";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 try
@@ -80,7 +81,7 @@ namespace AmazonWannabe
                 }
             }
 
-            query = "INSERT INTO " + type.Replace(" " , "_") + "s VALUES('" + email + "')";
+            query = "INSERT INTO [" + type + "] VALUES('" + email + "')";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 try
@@ -104,7 +105,7 @@ namespace AmazonWannabe
 
             string password = passLoginBox.Text.Replace("'", "''");
             string email = emailLoginBox.Text.Replace("'", "''");
-            string queryCheckUser = "SELECT count(*) FROM USER_INFO\n" +
+            string queryCheckUser = "SELECT count(*) FROM [USER INFO]\n" +
                                     "WHERE EMAIL = '" + email + "'\n" +
                                     "and PASSWORD = '" + password + "'\n";
             SQLiteConnection connection = new SQLiteConnection(connectionString);
@@ -117,16 +118,19 @@ namespace AmazonWannabe
 
             if (res == "0")
             {
-                MessageBox.Show("Username or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Email or Password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 connection.Close();
                 return;
             }
 
-            string queryGetType = "SELECT type from user_info\n" +
+            string queryGetType = "SELECT type from [user info]\n" +
                                   "where email = '" + email + "'\n";
             using(SQLiteCommand command = new SQLiteCommand(queryGetType , connection))
             {
+                this.Visible = false;
+                userInfo = new UserInfo(email , password , "");
                 typeToForm[command.ExecuteScalar().ToString()].ShowDialog();
+                this.Close();
             }
 
             connection.Close();

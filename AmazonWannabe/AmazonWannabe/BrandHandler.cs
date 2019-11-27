@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -8,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class ItemHandler
+    class BrandHandler
     {
         private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
-        public bool addItem(Item item)
+
+        public bool addBrand(Brand brand)
         {
-            string name = item.getItemName().Replace("'", "''");
-            string maxPrice = item.getMaxPrice().ToString();
-            string minPrice = item.getMinPrice().ToString();
-            string addQuery = "INSERT INTO ITEM(NAME , BRAND , MAXPRICE , MINPRICE)" +
-                              "VALUES('" + name + "' , '" +  "' , " + maxPrice + " , " + minPrice + ")";
+            string name = brand.getBrandName();
+            string category = brand.getBrandCategory();
+            string addQuery = "insert into brand(name , category)" +
+                              "values('" + name + "' , '" + category + "')";
+
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
             {
@@ -34,17 +34,17 @@ namespace AmazonWannabe
 
             return true;
         }
-        public List<Item> getItems()
+        public List<Brand> getBrands()
         {
-            string query = "SELECT NAME , MINPRICE , MAXPRICE FROM ITEM";
-            List<Item> ret = new List<Item>();
+            string query = "SELECT NAME , CATEGORY FROM BRAND";
+            List<Brand> ret = new List<Brand>();
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    ret.Add(new Item(reader["Name"].ToString() , Convert.ToDouble(reader["minPrice"]), Convert.ToDouble(reader["maxPrice"])));
+                    ret.Add(new Brand(reader["Name"].ToString(), reader["category"].ToString()));
                 }
             }
             return ret;
