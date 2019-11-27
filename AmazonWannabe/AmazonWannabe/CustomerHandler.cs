@@ -16,18 +16,19 @@ namespace AmazonWannabe
         {
             Form login = Application.OpenForms["Login_Form"];
             string userEmail = ((Login_Form)login).userInfo.getEmail();
-            string SQLquery = "insert into [Order]( Price, Amount , Address , productID , userEmail )" +
-                                 "values('" + totalPrice + "' , " + amount + " , '" + address + "' , '" + ID + "' , '" + userEmail + "')";
+            string SQLquery = "insert into [Order]( Price, Amount , Address , productID , userEmail )\n" +
+                                 "values(" + totalPrice + " , " + amount + " , '" + address + "' , " + ID + " , '" + userEmail + "')";
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(SQLquery, connection))
             {
                 try
                 {
+                    MessageBox.Show(SQLquery);
                     command.ExecuteNonQuery();
                 }
                 catch (SQLiteException e)
                 {
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show(e.Message + "2");
                     connection.Close();
                     return;
                 }

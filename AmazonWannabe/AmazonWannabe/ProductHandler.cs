@@ -84,15 +84,16 @@ namespace AmazonWannabe
             {
                 try
                 {
-                   SQLiteDataReader rd = command.ExecuteReader();
-                   rd.Read();
-                   updated = rd.GetInt32(0);
+                    SQLiteDataReader rd = command.ExecuteReader();
+                    rd.Read();
+                    updated = rd.GetInt32(0);
+                    rd.Close();
                 }
                 catch (SQLiteException e)
                 {
-                   MessageBox.Show(e.Message);
-                   connection.Close();
-                   return 0;
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return 0;
                 }
             }
             connection.Close();
@@ -109,7 +110,7 @@ namespace AmazonWannabe
 
         public int updateStock(int updated, int ID)
         {
-            string SQLquery3 = "UPDATE [Product] set StockNum ='" + updated + "'where ID='" + ID + "'\n";
+            string SQLquery3 = "UPDATE [Product] set StockNum =" + updated + " where ID=" + ID + "\n";
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
                 {
@@ -119,7 +120,7 @@ namespace AmazonWannabe
                     }
                     catch (SQLiteException e)
                     {
-                        MessageBox.Show(e.Message);
+                        MessageBox.Show(e.Message + "1");
                         connection.Close();
                         return 0;
                     }

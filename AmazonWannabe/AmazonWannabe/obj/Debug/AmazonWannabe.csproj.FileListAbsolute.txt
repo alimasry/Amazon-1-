@@ -89,3 +89,4 @@ C:\Users\hp-pc\Source\Repos\Kerberos-666\Amazon-1-\AmazonWannabe\AmazonWannabe\o
 C:\Users\hp-pc\Source\Repos\Kerberos-666\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.exe
 C:\Users\hp-pc\Source\Repos\Kerberos-666\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.pdb
 C:\Users\hp-pc\Source\Repos\Kerberos-666\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.csprojAssemblyReference.cache
+C:\Users\Fady\source\repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.ViewItem.resources
