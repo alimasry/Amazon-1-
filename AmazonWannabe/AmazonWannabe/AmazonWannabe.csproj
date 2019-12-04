@@ -72,6 +72,12 @@
     <Compile Include="Administrator_Form.Designer.cs">
       <DependentUpon>Administrator_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminStats_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminStats_Form.Designer.cs">
+      <DependentUpon>AdminStats_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
@@ -86,6 +92,7 @@
       <DependentUpon>Login_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductHandler.cs" />
+    <Compile Include="QueryHandler.cs" />
     <Compile Include="Search_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +120,9 @@
     </Compile>
     <EmbeddedResource Include="Administrator_Form.resx">
       <DependentUpon>Administrator_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminStats_Form.resx">
+      <DependentUpon>AdminStats_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>

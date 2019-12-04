@@ -56,13 +56,11 @@
             this.addStoreButton = new System.Windows.Forms.Button();
             this.StatsViewButton = new System.Windows.Forms.Button();
             this.statsPanel = new System.Windows.Forms.Panel();
-            this.productSoldLabel = new System.Windows.Forms.Label();
-            this.userViewsLabel = new System.Windows.Forms.Label();
-            this.productsSoldCnt = new System.Windows.Forms.Label();
-            this.userViewsCnt = new System.Windows.Forms.Label();
+            this.statsView = new System.Windows.Forms.DataGridView();
             this.addProductPanel.SuspendLayout();
             this.addStorePanel.SuspendLayout();
             this.statsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statsView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -336,55 +334,21 @@
             // 
             // statsPanel
             // 
-            this.statsPanel.Controls.Add(this.userViewsCnt);
-            this.statsPanel.Controls.Add(this.productsSoldCnt);
-            this.statsPanel.Controls.Add(this.userViewsLabel);
-            this.statsPanel.Controls.Add(this.productSoldLabel);
+            this.statsPanel.Controls.Add(this.statsView);
             this.statsPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statsPanel.Location = new System.Drawing.Point(205, 9);
             this.statsPanel.Name = "statsPanel";
             this.statsPanel.Size = new System.Drawing.Size(605, 495);
             this.statsPanel.TabIndex = 18;
             // 
-            // productSoldLabel
+            // statsView
             // 
-            this.productSoldLabel.AutoSize = true;
-            this.productSoldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productSoldLabel.Location = new System.Drawing.Point(10, 19);
-            this.productSoldLabel.Name = "productSoldLabel";
-            this.productSoldLabel.Size = new System.Drawing.Size(170, 29);
-            this.productSoldLabel.TabIndex = 8;
-            this.productSoldLabel.Text = "Products Sold:";
-            this.productSoldLabel.Click += new System.EventHandler(this.productSoldLabel_Click);
-            // 
-            // userViewsLabel
-            // 
-            this.userViewsLabel.AutoSize = true;
-            this.userViewsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userViewsLabel.Location = new System.Drawing.Point(11, 59);
-            this.userViewsLabel.Name = "userViewsLabel";
-            this.userViewsLabel.Size = new System.Drawing.Size(141, 29);
-            this.userViewsLabel.TabIndex = 9;
-            this.userViewsLabel.Text = "User Views:";
-            this.userViewsLabel.Click += new System.EventHandler(this.userViewsLabel_Click);
-            // 
-            // productsSoldCnt
-            // 
-            this.productsSoldCnt.AutoSize = true;
-            this.productsSoldCnt.Location = new System.Drawing.Point(201, 19);
-            this.productsSoldCnt.Name = "productsSoldCnt";
-            this.productsSoldCnt.Size = new System.Drawing.Size(31, 29);
-            this.productsSoldCnt.TabIndex = 10;
-            this.productsSoldCnt.Text = "...";
-            // 
-            // userViewsCnt
-            // 
-            this.userViewsCnt.AutoSize = true;
-            this.userViewsCnt.Location = new System.Drawing.Point(201, 54);
-            this.userViewsCnt.Name = "userViewsCnt";
-            this.userViewsCnt.Size = new System.Drawing.Size(31, 29);
-            this.userViewsCnt.TabIndex = 11;
-            this.userViewsCnt.Text = "...";
+            this.statsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.statsView.Location = new System.Drawing.Point(0, 0);
+            this.statsView.Name = "statsView";
+            this.statsView.RowTemplate.Height = 28;
+            this.statsView.Size = new System.Drawing.Size(608, 498);
+            this.statsView.TabIndex = 0;
             // 
             // StoreOwner_Form
             // 
@@ -407,7 +371,7 @@
             this.addStorePanel.ResumeLayout(false);
             this.addStorePanel.PerformLayout();
             this.statsPanel.ResumeLayout(false);
-            this.statsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statsView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -440,9 +404,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel statsPanel;
         private System.Windows.Forms.Button StatsViewButton;
-        private System.Windows.Forms.Label userViewsLabel;
-        private System.Windows.Forms.Label productSoldLabel;
-        private System.Windows.Forms.Label userViewsCnt;
-        private System.Windows.Forms.Label productsSoldCnt;
+        private System.Windows.Forms.DataGridView statsView;
     }
 }

@@ -52,6 +52,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Add_Brand = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.addStatsButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StoresGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -63,7 +64,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameBox.Location = new System.Drawing.Point(95, 56);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(496, 21);
+            this.nameBox.Size = new System.Drawing.Size(496, 28);
             this.nameBox.TabIndex = 0;
             // 
             // label2
@@ -71,7 +72,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 128);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 15);
+            this.label2.Size = new System.Drawing.Size(184, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "Item Maximum Price : ";
             // 
@@ -81,7 +82,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maxPriceBox.Location = new System.Drawing.Point(145, 134);
             this.maxPriceBox.Name = "maxPriceBox";
-            this.maxPriceBox.Size = new System.Drawing.Size(151, 21);
+            this.maxPriceBox.Size = new System.Drawing.Size(151, 28);
             this.maxPriceBox.TabIndex = 2;
             // 
             // minPriceBox
@@ -90,7 +91,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.minPriceBox.Location = new System.Drawing.Point(147, 95);
             this.minPriceBox.Name = "minPriceBox";
-            this.minPriceBox.Size = new System.Drawing.Size(151, 21);
+            this.minPriceBox.Size = new System.Drawing.Size(151, 28);
             this.minPriceBox.TabIndex = 4;
             // 
             // imageList1
@@ -200,7 +201,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 15);
+            this.label1.Size = new System.Drawing.Size(110, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "Item Name : ";
             // 
@@ -221,14 +222,14 @@
             // 
             this.Category_box.Location = new System.Drawing.Point(139, 98);
             this.Category_box.Name = "Category_box";
-            this.Category_box.Size = new System.Drawing.Size(147, 21);
+            this.Category_box.Size = new System.Drawing.Size(147, 28);
             this.Category_box.TabIndex = 18;
             // 
             // Name_box
             // 
             this.Name_box.Location = new System.Drawing.Point(139, 58);
             this.Name_box.Name = "Name_box";
-            this.Name_box.Size = new System.Drawing.Size(147, 21);
+            this.Name_box.Size = new System.Drawing.Size(147, 28);
             this.Name_box.TabIndex = 17;
             // 
             // Brand_Category
@@ -236,7 +237,7 @@
             this.Brand_Category.AutoSize = true;
             this.Brand_Category.Location = new System.Drawing.Point(37, 95);
             this.Brand_Category.Name = "Brand_Category";
-            this.Brand_Category.Size = new System.Drawing.Size(91, 15);
+            this.Brand_Category.Size = new System.Drawing.Size(136, 22);
             this.Brand_Category.TabIndex = 16;
             this.Brand_Category.Text = "Brand Category";
             // 
@@ -245,7 +246,7 @@
             this.Brand_Name.AutoSize = true;
             this.Brand_Name.Location = new System.Drawing.Point(37, 54);
             this.Brand_Name.Name = "Brand_Name";
-            this.Brand_Name.Size = new System.Drawing.Size(77, 15);
+            this.Brand_Name.Size = new System.Drawing.Size(110, 22);
             this.Brand_Name.TabIndex = 15;
             this.Brand_Name.Text = "Brand Name";
             // 
@@ -299,16 +300,32 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 15);
+            this.label3.Size = new System.Drawing.Size(179, 22);
             this.label3.TabIndex = 17;
             this.label3.Text = "Item Minimum Price : ";
             // 
+            // addStatsButton
+            // 
+            this.addStatsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addStatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addStatsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addStatsButton.ImageIndex = 6;
+            this.addStatsButton.ImageList = this.imageList1;
+            this.addStatsButton.Location = new System.Drawing.Point(12, 225);
+            this.addStatsButton.Name = "addStatsButton";
+            this.addStatsButton.Size = new System.Drawing.Size(139, 42);
+            this.addStatsButton.TabIndex = 18;
+            this.addStatsButton.Text = "Add Stats";
+            this.addStatsButton.UseVisualStyleBackColor = true;
+            this.addStatsButton.Click += new System.EventHandler(this.addStatsButton_Click);
+            // 
             // Administrator_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(603, 383);
+            this.Controls.Add(this.addStatsButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.maxPriceBox);
             this.Controls.Add(this.Add_Brand);
@@ -357,5 +374,6 @@
         private System.Windows.Forms.Button closeButton2;
         private System.Windows.Forms.Button Add_Brand;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button addStatsButton;
     }
 }

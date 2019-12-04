@@ -126,5 +126,11 @@ namespace AmazonWannabe
             panel2.BringToFront();
             panel2.Visible = true;
         }
+
+        private void addStatsButton_Click(object sender, EventArgs e)
+        {
+            AdminStats_Form adminStatForm = new AdminStats_Form();
+            adminStatForm.Show();
+        }
     }
 }

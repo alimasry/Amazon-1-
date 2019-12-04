@@ -44,8 +44,8 @@ namespace AmazonWannabe
                 brandBox.Items.Add(s.getBrandName());
             }
 
-            //Thread update = new Thread(()=> update_stats());
-            //update.Start();
+            statsView.Columns.Add("Name", "Name");
+            statsView.Columns.Add("Value", "Value");
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -135,22 +135,12 @@ namespace AmazonWannabe
             Form login = Application.OpenForms["Login_Form"];
             UserInfo userInfo = ((Login_Form)login).userInfo;
 
-            StoreHandler storeHandler = new StoreHandler();
-            List<Store> stores = storeHandler.getStores();
+            QueryHandler queryHandler = new QueryHandler();
+            List<object[]> queries = queryHandler.getQueries();
 
-            int userViews = 0;
-            int productsSold = 0;
-            foreach (Store s in stores)
-            {
-                    if (s.getEmail() == userInfo.getEmail())
-                    {
-                        userViews += s.getUserViews();
-                        productsSold += s.getSoldNum();
-                    }
+            foreach (object[] query in queries) {
+                statsView.Rows.Add(query);
             }
-
-            productsSoldCnt.Text = productsSold.ToString();
-            userViewsCnt.Text = userViews.ToString();
         }
 
         private void StatsViewButton_Click(object sender, EventArgs e)
