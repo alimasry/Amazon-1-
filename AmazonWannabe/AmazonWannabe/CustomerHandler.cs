@@ -16,7 +16,6 @@ namespace AmazonWannabe
             string userEmail = CredentialHandler.getCurrentUser().getEmail();
             string SQLquery = "insert into [Order]( Price, Amount , Address , productID , userEmail )\n" +
                                  "values(" + totalPrice + " , " + amount + " , '" + address + "' , " + ID + " , '" + userEmail + "')";
-            MessageBox.Show(SQLquery);
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
