@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class UserDBHandler : IDBHandler
+    class UserDBHandler : IDBInsertHandler , IDBRemoveHandler
     {
         public bool Insert(object user)
         {
