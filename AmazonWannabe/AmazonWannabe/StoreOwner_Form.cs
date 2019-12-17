@@ -89,8 +89,7 @@ namespace AmazonWannabe
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form login = Application.OpenForms["Login_Form"];
-            string email = ((Login_Form)login).userInfo.getEmail();
+            string email = CredentialHandler.getCurrentUser().getEmail();
             string name = storeNameBox.Text;
             string type = storeTypeBox.Text;
             string location = storeLocationBox.Text;
@@ -129,15 +128,17 @@ namespace AmazonWannabe
 
         private void update_stats()
         {
-            Form login = Application.OpenForms["Login_Form"];
-            UserInfo userInfo = ((Login_Form)login).userInfo;
+            UserInfo userInfo = CredentialHandler.getCurrentUser();
 
             QueryHandler queryHandler = new QueryHandler();
             List<object[]> queries = queryHandler.getQueries();
 
+            statsView.Rows.Clear();
+
             foreach (object[] query in queries) {
                 statsView.Rows.Add(query);
             }
+            statsView.Refresh();
         }
 
         private void StatsViewButton_Click(object sender, EventArgs e)

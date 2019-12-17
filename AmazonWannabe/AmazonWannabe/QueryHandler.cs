@@ -42,10 +42,9 @@ namespace AmazonWannabe
 
         private object[] execQuery(object[] query)
         {
-            Form login = Application.OpenForms["Login_Form"];
-            string email = ((Login_Form)login).userInfo.getEmail().Replace("'", "''");
+            string email = CredentialHandler.getCurrentUser().getEmail().Replace("'", "''");
             string q = "Select " + query[1] + "(" + query[2] + ") from STORE WHERE EMAIL = '" + email + "'";
-            String value;
+            string value = "";
 
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
@@ -55,6 +54,9 @@ namespace AmazonWannabe
                     value = command.ExecuteScalar().ToString();
                 }
             }
+            if (value == "")
+                value = "0";
+
             return new object[] { query[0], value };
         }
 
