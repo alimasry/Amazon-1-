@@ -10,7 +10,6 @@ namespace AmazonWannabe
 {
     class CustomerHandler
     {
-        private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
 
         public void addOrder(float totalPrice,int amount,string address,int ID)
         {
@@ -18,22 +17,23 @@ namespace AmazonWannabe
             string userEmail = ((Login_Form)login).userInfo.getEmail();
             string SQLquery = "insert into [Order]( Price, Amount , Address , productID , userEmail )\n" +
                                  "values(" + totalPrice + " , " + amount + " , '" + address + "' , " + ID + " , '" + userEmail + "')";
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(SQLquery, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                try
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(SQLquery, connection))
                 {
-                    MessageBox.Show(SQLquery);
-                    command.ExecuteNonQuery();
-                }
-                catch (SQLiteException e)
-                {
-                    MessageBox.Show(e.Message + "2");
-                    connection.Close();
-                    return;
+                    try
+                    {
+                        MessageBox.Show(SQLquery);
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message + "2");
+                        return;
+                    }
                 }
             }
-            connection.Close();
         }
     }
 }

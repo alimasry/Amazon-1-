@@ -72,6 +72,7 @@
             this.passLoginBox.Name = "passLoginBox";
             this.passLoginBox.Size = new System.Drawing.Size(588, 21);
             this.passLoginBox.TabIndex = 1;
+            this.passLoginBox.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -273,6 +274,7 @@
             this.confpassRegisterBox.Name = "confpassRegisterBox";
             this.confpassRegisterBox.Size = new System.Drawing.Size(549, 21);
             this.confpassRegisterBox.TabIndex = 3;
+            this.confpassRegisterBox.UseSystemPasswordChar = true;
             // 
             // passRegisterBox
             // 
@@ -280,6 +282,7 @@
             this.passRegisterBox.Name = "passRegisterBox";
             this.passRegisterBox.Size = new System.Drawing.Size(549, 21);
             this.passRegisterBox.TabIndex = 2;
+            this.passRegisterBox.UseSystemPasswordChar = true;
             // 
             // emailRegisterBox
             // 

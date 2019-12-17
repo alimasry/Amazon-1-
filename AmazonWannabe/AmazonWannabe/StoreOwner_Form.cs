@@ -81,9 +81,6 @@ namespace AmazonWannabe
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            Search_Form form = new Search_Form();
-            form.ShowDialog();
-            form.Dispose();
         }
 
         private void addStorePanel_Paint(object sender, PaintEventArgs e)

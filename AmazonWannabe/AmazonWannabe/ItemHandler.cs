@@ -10,7 +10,6 @@ namespace AmazonWannabe
 {
     class ItemHandler
     {
-        private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
         public bool addItem(Item item)
         {
             string name = item.getItemName().Replace("'", "''");
@@ -18,17 +17,19 @@ namespace AmazonWannabe
             string minPrice = item.getMinPrice().ToString();
             string addQuery = "INSERT INTO ITEM(NAME , BRAND , MAXPRICE , MINPRICE)" +
                               "VALUES('" + name + "' , '" +  "' , " + maxPrice + " , " + minPrice + ")";
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                try
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
                 {
-                    command.ExecuteNonQuery();
-                }
-                catch (SQLiteException)
-                {
-                    connection.Close();
-                    return false;
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -38,13 +39,16 @@ namespace AmazonWannabe
         {
             string query = "SELECT NAME , MINPRICE , MAXPRICE FROM ITEM";
             List<Item> ret = new List<Item>();
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    ret.Add(new Item(reader["Name"].ToString() , Convert.ToDouble(reader["minPrice"]), Convert.ToDouble(reader["maxPrice"])));
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ret.Add(new Item(reader["Name"].ToString(), Convert.ToDouble(reader["minPrice"]), Convert.ToDouble(reader["maxPrice"])));
+                    }
                 }
             }
             return ret;

@@ -9,8 +9,6 @@ namespace AmazonWannabe
 {
     class BrandHandler
     {
-        private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
-
         public bool addBrand(Brand brand)
         {
             string name = brand.getBrandName();
@@ -18,17 +16,19 @@ namespace AmazonWannabe
             string addQuery = "insert into brand(name , category)" +
                               "values('" + name + "' , '" + category + "')";
 
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                try
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
                 {
-                    command.ExecuteNonQuery();
-                }
-                catch (SQLiteException)
-                {
-                    connection.Close();
-                    return false;
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -38,13 +38,16 @@ namespace AmazonWannabe
         {
             string query = "SELECT NAME , CATEGORY FROM BRAND";
             List<Brand> ret = new List<Brand>();
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    ret.Add(new Brand(reader["Name"].ToString(), reader["category"].ToString()));
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ret.Add(new Brand(reader["Name"].ToString(), reader["category"].ToString()));
+                    }
                 }
             }
             return ret;

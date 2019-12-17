@@ -20,7 +20,7 @@ namespace AmazonWannabe
 
             MessageBox.Show(query);
 
-            using (SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
@@ -33,7 +33,6 @@ namespace AmazonWannabe
                     catch (SQLiteException)
                     {
                         MessageBox.Show("Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        connection.Close();
                         return;
                     }
                 }
@@ -48,7 +47,7 @@ namespace AmazonWannabe
             string q = "Select " + query[1] + "(" + query[2] + ") from STORE WHERE EMAIL = '" + email + "'";
             String value;
 
-            using (SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(q, connection))
@@ -63,7 +62,7 @@ namespace AmazonWannabe
         {
             string query = "SELECT * FROM QUERY";
             List<object[]> ret = new List<object[]>();
-            using (SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))

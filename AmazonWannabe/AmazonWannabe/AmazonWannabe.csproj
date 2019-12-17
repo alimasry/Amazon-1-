@@ -81,8 +81,11 @@
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="UserDBHandler.cs" />
     <Compile Include="CustomerHandler.cs" />
+    <Compile Include="DBConnection.cs" />
     <Compile Include="FormEditor.cs" />
+    <Compile Include="IDBHandler.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemHandler.cs" />
     <Compile Include="Login_Form.cs">
@@ -111,6 +114,7 @@
     <Compile Include="StoreOwner_Form.Designer.cs">
       <DependentUpon>StoreOwner_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="CredentialHandler.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="ViewItem.cs">
       <SubType>Form</SubType>

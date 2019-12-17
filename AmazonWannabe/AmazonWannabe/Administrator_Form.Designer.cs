@@ -361,7 +361,7 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button view_pending;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button Close;
+        private new System.Windows.Forms.Button Close;
         private System.Windows.Forms.Button Approve;
         private System.Windows.Forms.DataGridView StoresGridView;
         private System.Windows.Forms.Label label1;

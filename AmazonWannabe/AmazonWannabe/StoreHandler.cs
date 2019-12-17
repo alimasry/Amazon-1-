@@ -10,9 +10,6 @@ namespace AmazonWannabe
 {
     class StoreHandler
     {
-
-        private SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
-        
         public bool addStore(Store store)
         {
             string email = store.getEmail();
@@ -24,40 +21,42 @@ namespace AmazonWannabe
             string addQuery = "insert into store(name , soldnum , type , location , approved , email)" +
                               "values('" + name + "' , " + soldNum + " , '" + type + "' , '" + location + "' , "  + approved + " , '" + email + "')";
             MessageBox.Show(addQuery);
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                try
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
                 {
-                    command.ExecuteNonQuery();
-                }
-                catch (SQLiteException)
-                {
-                    connection.Close();
-                    return false;
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
                 }
             }
-            connection.Close();
             return true;
         }
 
         public bool addUserView(string storeName)
         {
             string incQuery = "UPDATE STORE SET USERVIEWS = USERVIEWS + 1 WHERE NAME = '" + storeName + "'";
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(incQuery, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                try
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(incQuery, connection))
                 {
-                    command.ExecuteNonQuery();
-                }
-                catch (SQLiteException e)
-                {
-                    connection.Close();
-                    return false;
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        return false;
+                    }
                 }
             }
-            connection.Close();
             return true;
         }
 
@@ -65,22 +64,23 @@ namespace AmazonWannabe
         {
             string query = "SELECT * FROM store";
             List<Store> ret = new List<Store>();
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                   
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
                         ret.Add(new Store(reader["email"].ToString(),
                                 Int32.Parse(reader["soldNum"].ToString()),
                                 reader["approved"].ToString(), reader["name"].ToString(),
                                 reader["location"].ToString(), reader["type"].ToString(),
                                 Int32.Parse(reader["userviews"].ToString())));
-                  
+                    }
                 }
             }
-            connection.Close();
             return ret;
         }
     }

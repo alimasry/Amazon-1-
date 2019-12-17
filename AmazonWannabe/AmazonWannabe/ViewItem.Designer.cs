@@ -118,7 +118,7 @@
         #endregion
 
         private System.Windows.Forms.Label ProductNameLabel;
-        private System.Windows.Forms.Label ProductName;
+        private new System.Windows.Forms.Label ProductName;
         private System.Windows.Forms.Label StoreName;
         private System.Windows.Forms.Label StoreNameLabel;
         private System.Windows.Forms.Label ProductPrice;

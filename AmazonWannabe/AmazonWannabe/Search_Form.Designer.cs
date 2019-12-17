@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Search_Form));
             this.productsGrid = new System.Windows.Forms.DataGridView();
+            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchItem = new System.Windows.Forms.ComboBox();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,9 +52,8 @@
             this.Agreement = new System.Windows.Forms.CheckBox();
             this.Confirm = new System.Windows.Forms.Button();
             this.Close_panel = new System.Windows.Forms.Button();
-            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adminFormButton = new System.Windows.Forms.Button();
+            this.storeOwnerFormButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
             this.Confirm_panel.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +75,28 @@
             this.productsGrid.Size = new System.Drawing.Size(909, 348);
             this.productsGrid.TabIndex = 0;
             this.productsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsGrid_CellDoubleClick_1);
+            // 
+            // productName
+            // 
+            this.productName.DataPropertyName = "Name";
+            this.productName.HeaderText = "Name";
+            this.productName.Name = "productName";
+            this.productName.ReadOnly = true;
+            this.productName.Width = 433;
+            // 
+            // productPrice
+            // 
+            this.productPrice.DataPropertyName = "Price";
+            this.productPrice.HeaderText = "Price";
+            this.productPrice.Name = "productPrice";
+            this.productPrice.ReadOnly = true;
+            this.productPrice.Width = 433;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
             // searchItem
             // 
@@ -252,27 +276,25 @@
             this.Close_panel.UseVisualStyleBackColor = true;
             this.Close_panel.Click += new System.EventHandler(this.Close_panel_Click);
             // 
-            // productName
+            // adminFormButton
             // 
-            this.productName.DataPropertyName = "Name";
-            this.productName.HeaderText = "Name";
-            this.productName.Name = "productName";
-            this.productName.ReadOnly = true;
-            this.productName.Width = 433;
+            this.adminFormButton.Location = new System.Drawing.Point(12, 12);
+            this.adminFormButton.Name = "adminFormButton";
+            this.adminFormButton.Size = new System.Drawing.Size(98, 35);
+            this.adminFormButton.TabIndex = 14;
+            this.adminFormButton.Text = "Tools";
+            this.adminFormButton.UseVisualStyleBackColor = true;
+            this.adminFormButton.Click += new System.EventHandler(this.AdminFormButton_Click);
             // 
-            // productPrice
+            // storeOwnerFormButton
             // 
-            this.productPrice.DataPropertyName = "Price";
-            this.productPrice.HeaderText = "Price";
-            this.productPrice.Name = "productPrice";
-            this.productPrice.ReadOnly = true;
-            this.productPrice.Width = 433;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
+            this.storeOwnerFormButton.Location = new System.Drawing.Point(12, 12);
+            this.storeOwnerFormButton.Name = "storeOwnerFormButton";
+            this.storeOwnerFormButton.Size = new System.Drawing.Size(98, 35);
+            this.storeOwnerFormButton.TabIndex = 15;
+            this.storeOwnerFormButton.Text = "Tools";
+            this.storeOwnerFormButton.UseVisualStyleBackColor = true;
+            this.storeOwnerFormButton.Click += new System.EventHandler(this.storeOwnerFormButton_Click);
             // 
             // Search_Form
             // 
@@ -287,6 +309,8 @@
             this.Controls.Add(this.searchItem);
             this.Controls.Add(this.productsGrid);
             this.Controls.Add(this.Confirm_panel);
+            this.Controls.Add(this.storeOwnerFormButton);
+            this.Controls.Add(this.adminFormButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Search_Form";
             this.Text = "Search";
@@ -322,5 +346,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn productPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.Button adminFormButton;
+        private System.Windows.Forms.Button storeOwnerFormButton;
     }
 }

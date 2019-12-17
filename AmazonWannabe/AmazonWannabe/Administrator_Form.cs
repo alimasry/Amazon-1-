@@ -37,36 +37,33 @@ namespace AmazonWannabe
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            Search_Form form = new Search_Form();
-            form.ShowDialog();
-            form.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SQLiteDataAdapter adapter;
             DataSet ds = new DataSet();
-            SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
-            connection.Open();
-            string SQLquery = "SELECT * FROM Store Where Approved=0";
-            using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                try
+                connection.Open();
+                string SQLquery = "SELECT * FROM Store Where Approved=0";
+                using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
                 {
-                    adapter = new SQLiteDataAdapter(SQLcommand);
-                    adapter.Fill(ds);
-                    StoresGridView.DataSource = ds.Tables[0];
-                    panel1.BringToFront();
-                    panel1.Visible =true ;
-                }
-                catch (SQLiteException)
-                {
-                    MessageBox.Show("Error");
-                    connection.Close();
-                    return;
+                    try
+                    {
+                        adapter = new SQLiteDataAdapter(SQLcommand);
+                        adapter.Fill(ds);
+                        StoresGridView.DataSource = ds.Tables[0];
+                        panel1.BringToFront();
+                        panel1.Visible = true;
+                    }
+                    catch (SQLiteException)
+                    {
+                        MessageBox.Show("Error");
+                        return;
+                    }
                 }
             }
-            connection.Close();
         }
 
         private void Close_Click(object sender, EventArgs e)
@@ -78,30 +75,27 @@ namespace AmazonWannabe
         {
             DataGridViewRow selectedRow = StoresGridView.CurrentRow;
             string StoreName = Convert.ToString(selectedRow.Cells[0].Value);
-            SQLiteConnection connection = new SQLiteConnection(Login_Form.connectionString);
-            connection.Open();
-            string SQLquery = "UPDATE Store SET Approved=1 where Name='" + StoreName +"'" ;
-            if (StoreName != null)
+            using (SQLiteConnection connection = DBConnection.getConnection())
             {
-                using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
+                connection.Open();
+                string SQLquery = "UPDATE Store SET Approved=1 where Name='" + StoreName + "'";
+                if (StoreName != null)
                 {
-                    try
+                    using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
                     {
-                        SQLcommand.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        connection.Close();
-                        return;
+                        try
+                        {
+                            SQLcommand.ExecuteNonQuery();
+                        }
+                        catch (SQLiteException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
+                        }
                     }
                 }
-                connection.Close();
-            }
-            else
-            {
-                MessageBox.Show("Please select a specific row");
-                connection.Close();
+                else
+                    MessageBox.Show("Please select a specific row");
             }
         }
 

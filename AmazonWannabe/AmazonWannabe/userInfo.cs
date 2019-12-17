@@ -11,16 +11,23 @@ namespace AmazonWannabe
         private string email;
         private string password;
         private string username;
+        private string type;
         
         public UserInfo()
         {
 
         }
-        public UserInfo(string e,string u,string pass)
+        public UserInfo(string email,string username,string password, string type)
         {
-            this.email = e;
-            this.password = pass;
-            this.username = u;
+            this.email = email;
+            this.password = password;
+            this.username = username;
+            this.type = type;
+        }
+
+        public void setType(string t)
+        {
+            this.type = t;
         }
         public void setEmail(string e)
         {
@@ -45,6 +52,10 @@ namespace AmazonWannabe
         public string getUsername()
         {
             return this.username;
+        }
+        public string getType()
+        {
+            return this.type;
         }
     }
 }

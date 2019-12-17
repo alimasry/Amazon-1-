@@ -18,7 +18,8 @@ namespace AmazonWannabe
         ProductHandler productHandler = new ProductHandler();
         List<Item> items = new List<Item>();
         CustomerHandler customerHandler = new CustomerHandler();
-        public Search_Form()
+
+        public Search_Form(string type)
         {
             InitializeComponent();
             editor.EditButtons(this);
@@ -28,6 +29,12 @@ namespace AmazonWannabe
             {
                 searchItem.Items.Add(s.getItemName());
             }
+
+            // TODO: make code below better
+            if (type != "Administrator")
+                adminFormButton.Visible = false;
+            if (type != "Store Owner")
+                storeOwnerFormButton.Visible = false;
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -108,6 +115,20 @@ namespace AmazonWannabe
                
             }
 
+        }
+
+        private void AdminFormButton_Click(object sender, EventArgs e)
+        {
+            Administrator_Form adminForm = new Administrator_Form();
+            adminForm.ShowDialog();
+            adminForm.Dispose();
+        }
+
+        private void storeOwnerFormButton_Click(object sender, EventArgs e)
+        {
+            StoreOwner_Form storeOwnerForm = new StoreOwner_Form();
+            storeOwnerForm.ShowDialog();
+            storeOwnerForm.Dispose();
         }
     }
 }
