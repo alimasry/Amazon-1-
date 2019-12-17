@@ -43,10 +43,12 @@ namespace AmazonWannabe
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        ret.Add(new Brand(reader["Name"].ToString(), reader["category"].ToString()));
+                        while (reader.Read())
+                        {
+                            ret.Add(new Brand(reader["Name"].ToString(), reader["category"].ToString()));
+                        }
                     }
                 }
             }

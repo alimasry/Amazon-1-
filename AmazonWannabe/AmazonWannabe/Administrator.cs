@@ -14,19 +14,12 @@ namespace AmazonWannabe
         {
             this.userInfo = userInfo;
         }
-        public bool addSellerUser(UserInfo u)
-        {
-            return true;
-        }
-        public bool addProduct(Product i)
-        {
-            return true;
-        }
 
         public UserInfo getUserInfo()
         {
             return this.userInfo;
         }
+
         public bool addItem(Product item)
         {
             if (item == null || item.getMinPrice() > item.getMaxPrice())

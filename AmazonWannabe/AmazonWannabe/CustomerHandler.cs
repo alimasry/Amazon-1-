@@ -13,10 +13,10 @@ namespace AmazonWannabe
 
         public void addOrder(float totalPrice,int amount,string address,int ID)
         {
-            Form login = Application.OpenForms["Login_Form"];
-            string userEmail = ((Login_Form)login).userInfo.getEmail();
+            string userEmail = CredentialHandler.getCurrentUser().getEmail();
             string SQLquery = "insert into [Order]( Price, Amount , Address , productID , userEmail )\n" +
                                  "values(" + totalPrice + " , " + amount + " , '" + address + "' , " + ID + " , '" + userEmail + "')";
+            MessageBox.Show(SQLquery);
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
@@ -29,7 +29,7 @@ namespace AmazonWannabe
                     }
                     catch (SQLiteException e)
                     {
-                        MessageBox.Show(e.Message + "2");
+                        MessageBox.Show(e.Message);
                         return;
                     }
                 }

@@ -72,15 +72,17 @@ namespace AmazonWannabe
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(queryCheckUser, connection))
                 {
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    if (reader.Read())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        string type = reader["TYPE"].ToString();
-                        string username = reader["USERNAME"].ToString();
-                        return new UserInfo(email, password, username, type);
+                        if (reader.Read())
+                        {
+                            string type = reader["TYPE"].ToString();
+                            string username = reader["USERNAME"].ToString();
+                            return new UserInfo(email, password, username, type);
+                        }
+                        else
+                            return null;
                     }
-                    else
-                        return null;
                 }
             }
         }

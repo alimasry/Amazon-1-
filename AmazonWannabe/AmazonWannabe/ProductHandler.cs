@@ -52,25 +52,26 @@ namespace AmazonWannabe
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        try
+                        while (reader.Read())
                         {
-                            ret.Add(new Product(reader["id"].ToString(),
-                                reader["name"].ToString(),
-                                Convert.ToDouble(reader["price"]),
-                                Convert.ToInt32(reader["stocknum"]),
-                                reader["Storename"].ToString(),
-                                reader["brandname"].ToString(),
-                                new Item(reader["itemname"].ToString(), 0, 0)));
-                        }
-                        catch (SQLiteException e)
-                        {
-                            MessageBox.Show(e.Message);
+                            try
+                            {
+                                ret.Add(new Product(reader["id"].ToString(),
+                                    reader["name"].ToString(),
+                                    Convert.ToDouble(reader["price"]),
+                                    Convert.ToInt32(reader["stocknum"]),
+                                    reader["Storename"].ToString(),
+                                    reader["brandname"].ToString(),
+                                    new Item(reader["itemname"].ToString(), 0, 0)));
+                            }
+                            catch (SQLiteException e)
+                            {
+                                MessageBox.Show(e.Message);
+                            }
                         }
                     }
-
                 }
             }
             return ret;
@@ -87,10 +88,12 @@ namespace AmazonWannabe
                 {
                     try
                     {
-                        SQLiteDataReader rd = command.ExecuteReader();
-                        rd.Read();
-                        updated = rd.GetInt32(0);
-                        rd.Close();
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            updated = reader.GetInt32(0);
+                            reader.Close();
+                        }
                     }
                     catch (SQLiteException e)
                     {

@@ -67,12 +67,14 @@ namespace AmazonWannabe
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        object[] q = execQuery(new object[] { reader["name"].ToString(),
+                        while (reader.Read())
+                        {
+                            object[] q = execQuery(new object[] { reader["name"].ToString(),
                             reader["type"].ToString(), reader["field"].ToString()});
-                        ret.Add(q);
+                            ret.Add(q);
+                        }
                     }
                 }
             }
