@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    interface IDBHandler
+    interface IDBRemoveHandler
     {
-        bool Insert(Object obj);
         bool Remove(Object obj);
     }
 }
