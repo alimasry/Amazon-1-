@@ -85,7 +85,6 @@
     <Compile Include="CustomerHandler.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="FormEditor.cs" />
-    <Compile Include="IDBHandler.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemHandler.cs" />
     <Compile Include="Login_Form.cs">

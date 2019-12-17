@@ -61,7 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.emailLoginBox.Location = new System.Drawing.Point(92, 105);
             this.emailLoginBox.Name = "emailLoginBox";
-            this.emailLoginBox.Size = new System.Drawing.Size(588, 21);
+            this.emailLoginBox.Size = new System.Drawing.Size(588, 24);
             this.emailLoginBox.TabIndex = 0;
             // 
             // passLoginBox
@@ -70,7 +70,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.passLoginBox.Location = new System.Drawing.Point(92, 169);
             this.passLoginBox.Name = "passLoginBox";
-            this.passLoginBox.Size = new System.Drawing.Size(588, 21);
+            this.passLoginBox.Size = new System.Drawing.Size(588, 24);
             this.passLoginBox.TabIndex = 1;
             this.passLoginBox.UseSystemPasswordChar = true;
             // 
@@ -79,7 +79,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 15);
+            this.label1.Size = new System.Drawing.Size(57, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "Email : ";
             // 
@@ -88,7 +88,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 172);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 15);
+            this.label2.Size = new System.Drawing.Size(87, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Password : ";
             // 
@@ -139,7 +139,7 @@
             this.registerLink.LinkColor = System.Drawing.Color.Black;
             this.registerLink.Location = new System.Drawing.Point(12, 405);
             this.registerLink.Name = "registerLink";
-            this.registerLink.Size = new System.Drawing.Size(54, 15);
+            this.registerLink.Size = new System.Drawing.Size(67, 20);
             this.registerLink.TabIndex = 6;
             this.registerLink.TabStop = true;
             this.registerLink.Text = "Register";
@@ -175,7 +175,7 @@
             "Administrator"});
             this.typeRegisterBox.Location = new System.Drawing.Point(119, 254);
             this.typeRegisterBox.Name = "typeRegisterBox";
-            this.typeRegisterBox.Size = new System.Drawing.Size(549, 23);
+            this.typeRegisterBox.Size = new System.Drawing.Size(549, 26);
             this.typeRegisterBox.TabIndex = 12;
             // 
             // label8
@@ -183,7 +183,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(0, 257);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 15);
+            this.label8.Size = new System.Drawing.Size(52, 18);
             this.label8.TabIndex = 11;
             this.label8.Text = "Type : ";
             // 
@@ -236,7 +236,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(0, 116);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 15);
+            this.label6.Size = new System.Drawing.Size(57, 18);
             this.label6.TabIndex = 7;
             this.label6.Text = "Email : ";
             // 
@@ -245,7 +245,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(-3, 210);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 15);
+            this.label5.Size = new System.Drawing.Size(144, 18);
             this.label5.TabIndex = 6;
             this.label5.Text = "Confirm Password : ";
             // 
@@ -255,7 +255,7 @@
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(0, 69);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 15);
+            this.label4.Size = new System.Drawing.Size(89, 18);
             this.label4.TabIndex = 5;
             this.label4.Text = "Username : ";
             // 
@@ -264,7 +264,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(-3, 163);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 15);
+            this.label3.Size = new System.Drawing.Size(87, 18);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password : ";
             // 
@@ -272,7 +272,7 @@
             // 
             this.confpassRegisterBox.Location = new System.Drawing.Point(119, 207);
             this.confpassRegisterBox.Name = "confpassRegisterBox";
-            this.confpassRegisterBox.Size = new System.Drawing.Size(549, 21);
+            this.confpassRegisterBox.Size = new System.Drawing.Size(549, 24);
             this.confpassRegisterBox.TabIndex = 3;
             this.confpassRegisterBox.UseSystemPasswordChar = true;
             // 
@@ -280,7 +280,7 @@
             // 
             this.passRegisterBox.Location = new System.Drawing.Point(119, 160);
             this.passRegisterBox.Name = "passRegisterBox";
-            this.passRegisterBox.Size = new System.Drawing.Size(549, 21);
+            this.passRegisterBox.Size = new System.Drawing.Size(549, 24);
             this.passRegisterBox.TabIndex = 2;
             this.passRegisterBox.UseSystemPasswordChar = true;
             // 
@@ -288,19 +288,19 @@
             // 
             this.emailRegisterBox.Location = new System.Drawing.Point(119, 113);
             this.emailRegisterBox.Name = "emailRegisterBox";
-            this.emailRegisterBox.Size = new System.Drawing.Size(549, 21);
+            this.emailRegisterBox.Size = new System.Drawing.Size(549, 24);
             this.emailRegisterBox.TabIndex = 1;
             // 
             // userRegisterBox
             // 
             this.userRegisterBox.Location = new System.Drawing.Point(119, 66);
             this.userRegisterBox.Name = "userRegisterBox";
-            this.userRegisterBox.Size = new System.Drawing.Size(549, 21);
+            this.userRegisterBox.Size = new System.Drawing.Size(549, 24);
             this.userRegisterBox.TabIndex = 0;
             // 
             // Login_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(692, 444);

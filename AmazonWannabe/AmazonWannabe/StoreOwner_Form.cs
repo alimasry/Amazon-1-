@@ -26,7 +26,7 @@ namespace AmazonWannabe
             InitializeComponent();
             editor.EditButtons(this);
             items = itemHandler.getItems();
-            stores = storeHandler.getStores();
+            stores = storeHandler.Get();
             brands = brandHandler.getBrands();
 
             addProductPanel.BringToFront();
@@ -95,7 +95,7 @@ namespace AmazonWannabe
             string location = storeLocationBox.Text;
 
             Store store = new Store(email, name, location, type);
-            if (!storeHandler.addStore(store))
+            if (!storeHandler.Add(store))
             {
                 MessageBox.Show("Could not add store.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
