@@ -81,10 +81,6 @@
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="IDBGetHandler.cs" />
-    <Compile Include="IDBInsertHandler.cs" />
-    <Compile Include="IDBRemoveHandler.cs" />
-    <Compile Include="IDBUpdateHandler.cs" />
     <Compile Include="UserDBHandler.cs" />
     <Compile Include="CustomerHandler.cs" />
     <Compile Include="DBConnection.cs" />

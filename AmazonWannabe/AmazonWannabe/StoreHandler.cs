@@ -10,7 +10,7 @@ namespace AmazonWannabe
 {
     class StoreHandler
     {
-        public bool addStore(Store store)
+        public bool Add(Store store)
         {
             string email = store.getEmail();
             int soldNum = store.getSoldNum();
@@ -20,7 +20,6 @@ namespace AmazonWannabe
             string type = store.getStoreType();
             string addQuery = "insert into store(name , soldnum , type , location , approved , email)" +
                               "values('" + name + "' , " + soldNum + " , '" + type + "' , '" + location + "' , "  + approved + " , '" + email + "')";
-            MessageBox.Show(addQuery);
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
@@ -60,7 +59,7 @@ namespace AmazonWannabe
             return true;
         }
 
-        public List<Store> getStores()
+        public List<Store> Get()
         {
             string query = "SELECT * FROM store";
             List<Store> ret = new List<Store>();

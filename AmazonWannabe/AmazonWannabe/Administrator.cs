@@ -20,7 +20,7 @@ namespace AmazonWannabe
             return this.userInfo;
         }
 
-        public bool addItem(Product item)
+        public bool AddItem(Item item)
         {
             if (item == null || item.getMinPrice() > item.getMaxPrice())
                 return false;
@@ -29,6 +29,17 @@ namespace AmazonWannabe
             if (!itemHandler.addItem(item))
                 return false;
 
+
+            return true;
+        }
+        public bool AddBrand(Brand brand)
+        {
+            if (brand == null || brand.getBrandName() == "" || brand.getBrandCategory() == "")
+                return false;
+
+            BrandHandler brandHandler = new BrandHandler();
+            if (!brandHandler.addBrand(brand))
+                return false;
 
             return true;
         }

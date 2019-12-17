@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class UserDBHandler : IDBInsertHandler , IDBRemoveHandler
+    class UserDBHandler
     {
         public bool Insert(object user)
         {
@@ -30,8 +30,9 @@ namespace AmazonWannabe
                     {
                         command.ExecuteNonQuery();
                     }
-                    catch (SQLiteException)
+                    catch (SQLiteException e)
                     {
+                        MessageBox.Show(e.Message);
                         return false;
                     }
                 }
@@ -56,13 +57,13 @@ namespace AmazonWannabe
             return true;
         }
 
-        public bool Remove(object customer)
+        public Object Get(object user)
         {
-            throw new NotImplementedException();
-        }
+            UserInfo userInfo = (UserInfo)user;
 
-        public UserInfo get(string email, string password)
-        {
+            string email = userInfo.getEmail();
+            string password = userInfo.getPassword();
+
             string queryCheckUser = "SELECT [TYPE], [USERNAME] FROM [USER INFO]\n" +
                                     "WHERE EMAIL = '" + email.Replace("'", "''") + "'\n" +
                                     "and PASSWORD = '" + password.Replace("'", "''") + "'\n";
