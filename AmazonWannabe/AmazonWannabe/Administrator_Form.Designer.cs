@@ -36,7 +36,6 @@
             this.minPriceBox = new System.Windows.Forms.TextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.addButton = new System.Windows.Forms.Button();
-            this.searchButton = new System.Windows.Forms.Button();
             this.view_pending = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Close = new System.Windows.Forms.Button();
@@ -48,8 +47,8 @@
             this.Name_box = new System.Windows.Forms.TextBox();
             this.Brand_Category = new System.Windows.Forms.Label();
             this.Brand_Name = new System.Windows.Forms.Label();
-            this.closeButton2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CloseBrandButton = new System.Windows.Forms.Button();
+            this.AddBrandButton = new System.Windows.Forms.Button();
             this.Add_Brand = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.addStatsButton = new System.Windows.Forms.Button();
@@ -64,7 +63,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameBox.Location = new System.Drawing.Point(95, 56);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(496, 28);
+            this.nameBox.Size = new System.Drawing.Size(496, 24);
             this.nameBox.TabIndex = 0;
             // 
             // label2
@@ -72,7 +71,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 128);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(184, 22);
+            this.label2.Size = new System.Drawing.Size(155, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Item Maximum Price : ";
             // 
@@ -82,7 +81,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maxPriceBox.Location = new System.Drawing.Point(145, 134);
             this.maxPriceBox.Name = "maxPriceBox";
-            this.maxPriceBox.Size = new System.Drawing.Size(151, 28);
+            this.maxPriceBox.Size = new System.Drawing.Size(151, 24);
             this.maxPriceBox.TabIndex = 2;
             // 
             // minPriceBox
@@ -91,7 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.minPriceBox.Location = new System.Drawing.Point(147, 95);
             this.minPriceBox.Name = "minPriceBox";
-            this.minPriceBox.Size = new System.Drawing.Size(151, 28);
+            this.minPriceBox.Size = new System.Drawing.Size(151, 24);
             this.minPriceBox.TabIndex = 4;
             // 
             // imageList1
@@ -121,21 +120,6 @@
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // searchButton
-            // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.searchButton.ImageIndex = 5;
-            this.searchButton.ImageList = this.imageList1;
-            this.searchButton.Location = new System.Drawing.Point(12, 329);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(206, 42);
-            this.searchButton.TabIndex = 13;
-            this.searchButton.Text = "Open Search";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
-            // 
             // view_pending
             // 
             this.view_pending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -148,7 +132,7 @@
             this.view_pending.TabIndex = 14;
             this.view_pending.Text = "View Pending Stores";
             this.view_pending.UseVisualStyleBackColor = true;
-            this.view_pending.Click += new System.EventHandler(this.button1_Click);
+            this.view_pending.Click += new System.EventHandler(this.ViewPendingButton_Click);
             // 
             // panel1
             // 
@@ -193,6 +177,7 @@
             this.StoresGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StoresGridView.Location = new System.Drawing.Point(3, 3);
             this.StoresGridView.Name = "StoresGridView";
+            this.StoresGridView.RowHeadersWidth = 51;
             this.StoresGridView.Size = new System.Drawing.Size(576, 300);
             this.StoresGridView.TabIndex = 2;
             // 
@@ -201,7 +186,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 22);
+            this.label1.Size = new System.Drawing.Size(92, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Item Name : ";
             // 
@@ -211,8 +196,8 @@
             this.panel2.Controls.Add(this.Name_box);
             this.panel2.Controls.Add(this.Brand_Category);
             this.panel2.Controls.Add(this.Brand_Name);
-            this.panel2.Controls.Add(this.closeButton2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.CloseBrandButton);
+            this.panel2.Controls.Add(this.AddBrandButton);
             this.panel2.Location = new System.Drawing.Point(50, 47);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(425, 232);
@@ -222,14 +207,14 @@
             // 
             this.Category_box.Location = new System.Drawing.Point(139, 98);
             this.Category_box.Name = "Category_box";
-            this.Category_box.Size = new System.Drawing.Size(147, 28);
+            this.Category_box.Size = new System.Drawing.Size(147, 24);
             this.Category_box.TabIndex = 18;
             // 
             // Name_box
             // 
             this.Name_box.Location = new System.Drawing.Point(139, 58);
             this.Name_box.Name = "Name_box";
-            this.Name_box.Size = new System.Drawing.Size(147, 28);
+            this.Name_box.Size = new System.Drawing.Size(147, 24);
             this.Name_box.TabIndex = 17;
             // 
             // Brand_Category
@@ -237,7 +222,7 @@
             this.Brand_Category.AutoSize = true;
             this.Brand_Category.Location = new System.Drawing.Point(37, 95);
             this.Brand_Category.Name = "Brand_Category";
-            this.Brand_Category.Size = new System.Drawing.Size(136, 22);
+            this.Brand_Category.Size = new System.Drawing.Size(111, 18);
             this.Brand_Category.TabIndex = 16;
             this.Brand_Category.Text = "Brand Category";
             // 
@@ -246,39 +231,39 @@
             this.Brand_Name.AutoSize = true;
             this.Brand_Name.Location = new System.Drawing.Point(37, 54);
             this.Brand_Name.Name = "Brand_Name";
-            this.Brand_Name.Size = new System.Drawing.Size(110, 22);
+            this.Brand_Name.Size = new System.Drawing.Size(91, 18);
             this.Brand_Name.TabIndex = 15;
             this.Brand_Name.Text = "Brand Name";
             // 
-            // closeButton2
+            // CloseBrandButton
             // 
-            this.closeButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.closeButton2.ImageKey = "close.png";
-            this.closeButton2.ImageList = this.imageList1;
-            this.closeButton2.Location = new System.Drawing.Point(279, 177);
-            this.closeButton2.Name = "closeButton2";
-            this.closeButton2.Size = new System.Drawing.Size(125, 42);
-            this.closeButton2.TabIndex = 14;
-            this.closeButton2.Text = "Close";
-            this.closeButton2.UseVisualStyleBackColor = true;
-            this.closeButton2.Click += new System.EventHandler(this.closeButton2_Click);
+            this.CloseBrandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBrandButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseBrandButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CloseBrandButton.ImageKey = "close.png";
+            this.CloseBrandButton.ImageList = this.imageList1;
+            this.CloseBrandButton.Location = new System.Drawing.Point(279, 177);
+            this.CloseBrandButton.Name = "CloseBrandButton";
+            this.CloseBrandButton.Size = new System.Drawing.Size(125, 42);
+            this.CloseBrandButton.TabIndex = 14;
+            this.CloseBrandButton.Text = "Close";
+            this.CloseBrandButton.UseVisualStyleBackColor = true;
+            this.CloseBrandButton.Click += new System.EventHandler(this.closeButton2_Click);
             // 
-            // button1
+            // AddBrandButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 6;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(106, 177);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 42);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.AddBrandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddBrandButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddBrandButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddBrandButton.ImageIndex = 6;
+            this.AddBrandButton.ImageList = this.imageList1;
+            this.AddBrandButton.Location = new System.Drawing.Point(106, 177);
+            this.AddBrandButton.Name = "AddBrandButton";
+            this.AddBrandButton.Size = new System.Drawing.Size(102, 42);
+            this.AddBrandButton.TabIndex = 13;
+            this.AddBrandButton.Text = "Add";
+            this.AddBrandButton.UseVisualStyleBackColor = true;
+            this.AddBrandButton.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Add_Brand
             // 
@@ -300,7 +285,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 22);
+            this.label3.Size = new System.Drawing.Size(151, 18);
             this.label3.TabIndex = 17;
             this.label3.Text = "Item Minimum Price : ";
             // 
@@ -321,7 +306,7 @@
             // 
             // Administrator_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(603, 383);
@@ -332,12 +317,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.view_pending);
             this.Controls.Add(this.minPriceBox);
-            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameBox);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Administrator_Form";
             this.Text = "Administrative Tools";
@@ -358,7 +342,6 @@
         private System.Windows.Forms.TextBox minPriceBox;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button view_pending;
         private System.Windows.Forms.Panel panel1;
         private new System.Windows.Forms.Button Close;
@@ -366,12 +349,12 @@
         private System.Windows.Forms.DataGridView StoresGridView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddBrandButton;
         private System.Windows.Forms.TextBox Category_box;
         private System.Windows.Forms.TextBox Name_box;
         private System.Windows.Forms.Label Brand_Category;
         private System.Windows.Forms.Label Brand_Name;
-        private System.Windows.Forms.Button closeButton2;
+        private System.Windows.Forms.Button CloseBrandButton;
         private System.Windows.Forms.Button Add_Brand;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button addStatsButton;

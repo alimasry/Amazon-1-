@@ -14,11 +14,14 @@ namespace AmazonWannabe
     public partial class Administrator_Form : Form
     {
         ItemHandler itemHandler = new ItemHandler();
-        BrandHandler brandHandler = new BrandHandler();
         FormEditor editor = new FormEditor();
+        Administrator admin;
         public Administrator_Form()
         {
             InitializeComponent();
+
+            admin = new Administrator(CredentialHandler.getCurrentUser());
+
             editor.EditButtons(this);
             panel1.Visible = false;
             panel2.Visible = false;
@@ -26,8 +29,8 @@ namespace AmazonWannabe
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item(nameBox.Text  , Convert.ToDouble(minPriceBox.Text) , Convert.ToDouble(maxPriceBox.Text));
-            if(!itemHandler.addItem(item))
+            Item item = new Item(nameBox.Text, Convert.ToDouble(minPriceBox.Text), Convert.ToDouble(maxPriceBox.Text));
+            if (!admin.AddItem(item))
             {
                 MessageBox.Show("Could not create item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -35,11 +38,7 @@ namespace AmazonWannabe
             MessageBox.Show("Item created successfully.", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void ViewPendingButton_Click(object sender, EventArgs e)
         {
             SQLiteDataAdapter adapter;
             DataSet ds = new DataSet();
@@ -109,7 +108,7 @@ namespace AmazonWannabe
             string brandName = Name_box.Text;
             string brandCategory = Category_box.Text;
             Brand brand = new Brand(brandName, brandCategory);
-            if(!brandHandler.addBrand(brand))
+            if(!admin.AddBrand(brand))
             {
                 MessageBox.Show("Could not create brand.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

@@ -24,7 +24,8 @@ namespace AmazonWannabe
         static public bool login(string email, string password)
         {
             UserDBHandler userDBHandler = new UserDBHandler();
-            currentUser = userDBHandler.get(email, password);
+            UserInfo userInfo = new UserInfo(email, null, password, null);
+            currentUser = (UserInfo)userDBHandler.Get(userInfo);
             return currentUser != null;
         }
 
