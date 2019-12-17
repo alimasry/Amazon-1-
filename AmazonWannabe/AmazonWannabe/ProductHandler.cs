@@ -23,7 +23,6 @@ namespace AmazonWannabe
             string brand = product.getBrandName().Replace("'", "''");
             string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME , brandname)" +
                               "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store +"' , '" + brand + "')";
-            MessageBox.Show(addQuery);
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
@@ -43,9 +42,22 @@ namespace AmazonWannabe
 
             return true;
         }
-        public List<Product> getProducts()
+
+        public List<Product> GetByName(string name)
         {
-            string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname FROM product";
+            return Get("NAME = '" + name + "'");
+        }
+        public List<Product> GetByStoreName(string storeName)
+        {
+            return Get("STORENAME = '" + storeName + "'");
+        }
+        public List<Product> Get(string extension = null)
+        {
+            string query = "SELECT * FROM product ";
+            if(extension != null)
+            {
+                query += "WHERE " + extension;
+            }
             List<Product> ret = new List<Product>();
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
@@ -75,6 +87,30 @@ namespace AmazonWannabe
                 }
             }
             return ret;
+        }
+        public string GetLatestID()
+        {
+            string query = "SELECT MAX(ID) FROM PRODUCT";
+            string ret;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        ret = command.ExecuteScalar().ToString();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            return ret;
+
         }
         public int checkStock(int amount,int ID)
         {

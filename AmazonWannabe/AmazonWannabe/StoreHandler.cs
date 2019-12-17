@@ -59,9 +59,11 @@ namespace AmazonWannabe
             return true;
         }
 
-        public List<Store> Get()
+        public List<Store> Get(string email , string name = null)
         {
-            string query = "SELECT * FROM store";
+            string query = "SELECT * FROM store ";
+            if (name != null)
+                query += "WHERE NAME = " + name;
             List<Store> ret = new List<Store>();
             using (SQLiteConnection connection = DBConnection.getConnection())
             {

@@ -30,10 +30,7 @@ namespace AmazonWannabe
             this.itemName = name;
             return true;
         }
-        public bool setBrand(string brand)
-        {
-            return true;
-        }
+
         public bool setRange(double minPrice , double maxPrice)
         {
             if (minPrice > maxPrice)

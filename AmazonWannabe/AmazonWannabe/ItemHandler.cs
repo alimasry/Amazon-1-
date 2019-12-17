@@ -35,7 +35,7 @@ namespace AmazonWannabe
 
             return true;
         }
-        public List<Item> getItems()
+        public List<Item> Get()
         {
             string query = "SELECT NAME , MINPRICE , MAXPRICE FROM ITEM";
             List<Item> ret = new List<Item>();

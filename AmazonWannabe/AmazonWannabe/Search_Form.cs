@@ -24,7 +24,7 @@ namespace AmazonWannabe
             InitializeComponent();
             editor.EditButtons(this);
             Confirm_panel.Visible = false;
-            items = itemHandler.getItems();
+            items = itemHandler.Get();
             foreach (Item s in items)
             {
                 searchItem.Items.Add(s.getItemName());
@@ -39,7 +39,7 @@ namespace AmazonWannabe
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            List<Product> products = productHandler.getProducts();
+            List<Product> products = productHandler.Get();
             foreach(Product p in products)
             {
                 DataGridViewRow r = (DataGridViewRow)productsGrid.Rows[0].Clone();
@@ -64,7 +64,7 @@ namespace AmazonWannabe
             if (selectedRow == null)
                 return;
             string productName = Convert.ToString(selectedRow.Cells[0].Value);
-            List<Product> products = productHandler.getProducts();
+            List<Product> products = productHandler.Get();
 
             Product product = null;
             foreach(Product p in products)
