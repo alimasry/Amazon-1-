@@ -81,13 +81,13 @@ namespace AmazonWannabe
             }
             Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text) , Convert.ToInt32(stockNumBox.Text) , store.getStoreName() , brand.getBrandName(), item);
 
-            if(!productHandler.addProduct(product))
+            if(!productHandler.Add(product))
             {
                 MessageBox.Show("Could not add product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            StoreHistory storeHistory = new StoreHistory(storeBox.Text , "Add" , productHandler.GetLatestID() , itemBox.Text , brandBox.Text , Convert.ToInt32(stockNumBox.Text) , Convert.ToDouble(priceBox.Text));
+            StoreHistory storeHistory = new StoreHistory(null , storeBox.Text , nameBox.Text , "Add" , productHandler.GetLatestID() , itemBox.Text , brandBox.Text , Convert.ToInt32(stockNumBox.Text) , Convert.ToDouble(priceBox.Text));
             historyHandler.Add(storeHistory);
             
             MessageBox.Show("Added product successfully", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -184,6 +184,7 @@ namespace AmazonWannabe
             {
                 HistoryGridView.Rows.Add(s.Id,
                                          s.Action,
+                                         s.ProductName,
                                          s.ProductID,
                                          s.StoreName,
                                          s.ItemName,
@@ -229,7 +230,30 @@ namespace AmazonWannabe
 
         private void UndoLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if(HistoryGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = HistoryGridView.CurrentRow;
+                string action = row.Cells[1].Value.ToString();
+                string productID = row.Cells[3].Value.ToString();
+                //MessageBox.Show(row.Cells[0].Value.ToString());
+                string id = row.Cells[0].Value.ToString();
+                string storeName = row.Cells[4].Value.ToString();
+                string itemName = row.Cells[5].Value.ToString();
+                string brandName = row.Cells[6].Value.ToString();
+                int stockNum = Convert.ToInt32(row.Cells[7].Value.ToString());
+                string productName = row.Cells[2].Value.ToString();
+                double price = Convert.ToDouble(row.Cells[8].Value.ToString());
 
+                StoreHistory storeHistory = new StoreHistory(id, storeName, productName, action, productID, itemName, brandName, stockNum, price);
+                
+                if(!historyHandler.UndoChange(storeHistory))
+                {
+                    MessageBox.Show("Failed to undo change");
+                }
+
+                update_history();
+                MessageBox.Show("Undo Done!");
+            }
         }
     }
 }

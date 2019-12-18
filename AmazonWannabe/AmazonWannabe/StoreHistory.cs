@@ -10,6 +10,7 @@ namespace AmazonWannabe
     {
         string id;
         string storeName;
+        string productName;
         string action;
         string productID;
         string itemName;
@@ -17,9 +18,11 @@ namespace AmazonWannabe
         int stockNum;
         double price;
 
-        public StoreHistory(string storeName , string action , string productID , string itemName=null , string brandName=null , int stockNum=0 , double price=0)
+        public StoreHistory(string id , string storeName , string productName , string action , string productID , string itemName=null , string brandName=null , int stockNum=0 , double price=0)
         {
+            this.id = id;
             this.storeName = storeName;
+            this.productName = productName;
             this.action = action;
             this.productID = productID;
             this.itemName = itemName;
@@ -35,5 +38,6 @@ namespace AmazonWannabe
         public int StockNum { get => stockNum; set => stockNum = value; }
         public double Price { get => price; set => price = value; }
         public string Id { get => id; set => id = value; }
+        public string ProductName { get => productName; set => productName = value; }
     }
 }

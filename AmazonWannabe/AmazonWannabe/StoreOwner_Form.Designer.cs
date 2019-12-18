@@ -41,6 +41,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.addProductPanel = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.stockNumBox = new System.Windows.Forms.TextBox();
             this.brandBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.storeBox = new System.Windows.Forms.ComboBox();
@@ -63,13 +65,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.storeBox2 = new System.Windows.Forms.ComboBox();
             this.ProductsGridView = new System.Windows.Forms.DataGridView();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewHistoryButton = new System.Windows.Forms.Button();
             this.HistoryPanel = new System.Windows.Forms.Panel();
             this.UndoLabel = new System.Windows.Forms.LinkLabel();
@@ -77,16 +72,22 @@
             this.label10 = new System.Windows.Forms.Label();
             this.storeBox3 = new System.Windows.Forms.ComboBox();
             this.HistoryGridView = new System.Windows.Forms.DataGridView();
+            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistoryProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryStoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryBrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryStockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label11 = new System.Windows.Forms.Label();
-            this.stockNumBox = new System.Windows.Forms.TextBox();
             this.addProductPanel.SuspendLayout();
             this.addStorePanel.SuspendLayout();
             this.statsPanel.SuspendLayout();
@@ -221,6 +222,22 @@
             this.addProductPanel.Name = "addProductPanel";
             this.addProductPanel.Size = new System.Drawing.Size(608, 498);
             this.addProductPanel.TabIndex = 17;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 111);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(172, 18);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "Product Stock Number : ";
+            // 
+            // stockNumBox
+            // 
+            this.stockNumBox.Location = new System.Drawing.Point(190, 108);
+            this.stockNumBox.Name = "stockNumBox";
+            this.stockNumBox.Size = new System.Drawing.Size(396, 24);
+            this.stockNumBox.TabIndex = 19;
             // 
             // brandBox
             // 
@@ -458,6 +475,100 @@
             this.ProductsGridView.Size = new System.Drawing.Size(608, 422);
             this.ProductsGridView.TabIndex = 0;
             // 
+            // ViewHistoryButton
+            // 
+            this.ViewHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ViewHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ViewHistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ViewHistoryButton.ImageList = this.imageList2;
+            this.ViewHistoryButton.Location = new System.Drawing.Point(12, 204);
+            this.ViewHistoryButton.Name = "ViewHistoryButton";
+            this.ViewHistoryButton.Size = new System.Drawing.Size(190, 42);
+            this.ViewHistoryButton.TabIndex = 22;
+            this.ViewHistoryButton.Text = "View History";
+            this.ViewHistoryButton.UseVisualStyleBackColor = true;
+            this.ViewHistoryButton.Click += new System.EventHandler(this.ViewHistoryButton_Click);
+            // 
+            // HistoryPanel
+            // 
+            this.HistoryPanel.Controls.Add(this.UndoLabel);
+            this.HistoryPanel.Controls.Add(this.SearchHistoryButton);
+            this.HistoryPanel.Controls.Add(this.label10);
+            this.HistoryPanel.Controls.Add(this.storeBox3);
+            this.HistoryPanel.Controls.Add(this.HistoryGridView);
+            this.HistoryPanel.Location = new System.Drawing.Point(206, 9);
+            this.HistoryPanel.Name = "HistoryPanel";
+            this.HistoryPanel.Size = new System.Drawing.Size(608, 498);
+            this.HistoryPanel.TabIndex = 23;
+            // 
+            // UndoLabel
+            // 
+            this.UndoLabel.AutoSize = true;
+            this.UndoLabel.Location = new System.Drawing.Point(561, 425);
+            this.UndoLabel.Name = "UndoLabel";
+            this.UndoLabel.Size = new System.Drawing.Size(44, 18);
+            this.UndoLabel.TabIndex = 25;
+            this.UndoLabel.TabStop = true;
+            this.UndoLabel.Text = "Undo";
+            this.UndoLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UndoLabel_LinkClicked);
+            // 
+            // SearchHistoryButton
+            // 
+            this.SearchHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchHistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SearchHistoryButton.ImageList = this.imageList2;
+            this.SearchHistoryButton.Location = new System.Drawing.Point(469, 456);
+            this.SearchHistoryButton.Name = "SearchHistoryButton";
+            this.SearchHistoryButton.Size = new System.Drawing.Size(139, 42);
+            this.SearchHistoryButton.TabIndex = 24;
+            this.SearchHistoryButton.Text = "Search";
+            this.SearchHistoryButton.UseVisualStyleBackColor = true;
+            this.SearchHistoryButton.Click += new System.EventHandler(this.SearchHistoryButton_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(4, 435);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 18);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Store : ";
+            // 
+            // storeBox3
+            // 
+            this.storeBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.storeBox3.FormattingEnabled = true;
+            this.storeBox3.Location = new System.Drawing.Point(66, 432);
+            this.storeBox3.Name = "storeBox3";
+            this.storeBox3.Size = new System.Drawing.Size(163, 26);
+            this.storeBox3.TabIndex = 3;
+            // 
+            // HistoryGridView
+            // 
+            this.HistoryGridView.AllowUserToAddRows = false;
+            this.HistoryGridView.AllowUserToDeleteRows = false;
+            this.HistoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.HistoryGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.HistoryID,
+            this.HistoryAction,
+            this.HistoryProductName,
+            this.HistoryProductID,
+            this.HistoryStoreName,
+            this.HistoryItemName,
+            this.HistoryBrandName,
+            this.HistoryStockNum,
+            this.HistoryPrice});
+            this.HistoryGridView.Location = new System.Drawing.Point(0, 0);
+            this.HistoryGridView.MultiSelect = false;
+            this.HistoryGridView.Name = "HistoryGridView";
+            this.HistoryGridView.ReadOnly = true;
+            this.HistoryGridView.RowHeadersWidth = 51;
+            this.HistoryGridView.RowTemplate.Height = 24;
+            this.HistoryGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.HistoryGridView.Size = new System.Drawing.Size(608, 422);
+            this.HistoryGridView.TabIndex = 0;
+            // 
             // ProductID
             // 
             this.ProductID.HeaderText = "ProductID";
@@ -514,99 +625,6 @@
             this.BrandName.ReadOnly = true;
             this.BrandName.Width = 79;
             // 
-            // ViewHistoryButton
-            // 
-            this.ViewHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ViewHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ViewHistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ViewHistoryButton.ImageList = this.imageList2;
-            this.ViewHistoryButton.Location = new System.Drawing.Point(12, 204);
-            this.ViewHistoryButton.Name = "ViewHistoryButton";
-            this.ViewHistoryButton.Size = new System.Drawing.Size(190, 42);
-            this.ViewHistoryButton.TabIndex = 22;
-            this.ViewHistoryButton.Text = "View History";
-            this.ViewHistoryButton.UseVisualStyleBackColor = true;
-            this.ViewHistoryButton.Click += new System.EventHandler(this.ViewHistoryButton_Click);
-            // 
-            // HistoryPanel
-            // 
-            this.HistoryPanel.Controls.Add(this.UndoLabel);
-            this.HistoryPanel.Controls.Add(this.SearchHistoryButton);
-            this.HistoryPanel.Controls.Add(this.label10);
-            this.HistoryPanel.Controls.Add(this.storeBox3);
-            this.HistoryPanel.Controls.Add(this.HistoryGridView);
-            this.HistoryPanel.Location = new System.Drawing.Point(205, 9);
-            this.HistoryPanel.Name = "HistoryPanel";
-            this.HistoryPanel.Size = new System.Drawing.Size(608, 498);
-            this.HistoryPanel.TabIndex = 23;
-            // 
-            // UndoLabel
-            // 
-            this.UndoLabel.AutoSize = true;
-            this.UndoLabel.Location = new System.Drawing.Point(561, 425);
-            this.UndoLabel.Name = "UndoLabel";
-            this.UndoLabel.Size = new System.Drawing.Size(44, 18);
-            this.UndoLabel.TabIndex = 25;
-            this.UndoLabel.TabStop = true;
-            this.UndoLabel.Text = "Undo";
-            this.UndoLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UndoLabel_LinkClicked);
-            // 
-            // SearchHistoryButton
-            // 
-            this.SearchHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SearchHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SearchHistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SearchHistoryButton.ImageList = this.imageList2;
-            this.SearchHistoryButton.Location = new System.Drawing.Point(469, 456);
-            this.SearchHistoryButton.Name = "SearchHistoryButton";
-            this.SearchHistoryButton.Size = new System.Drawing.Size(139, 42);
-            this.SearchHistoryButton.TabIndex = 24;
-            this.SearchHistoryButton.Text = "Search";
-            this.SearchHistoryButton.UseVisualStyleBackColor = true;
-            this.SearchHistoryButton.Click += new System.EventHandler(this.SearchHistoryButton_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 435);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 18);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Store : ";
-            // 
-            // storeBox3
-            // 
-            this.storeBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.storeBox3.FormattingEnabled = true;
-            this.storeBox3.Location = new System.Drawing.Point(66, 432);
-            this.storeBox3.Name = "storeBox3";
-            this.storeBox3.Size = new System.Drawing.Size(163, 26);
-            this.storeBox3.TabIndex = 3;
-            // 
-            // HistoryGridView
-            // 
-            this.HistoryGridView.AllowUserToAddRows = false;
-            this.HistoryGridView.AllowUserToDeleteRows = false;
-            this.HistoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.HistoryGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.HistoryID,
-            this.HistoryAction,
-            this.HistoryProductID,
-            this.HistoryStoreName,
-            this.HistoryItemName,
-            this.HistoryBrandName,
-            this.HistoryStockNum,
-            this.HistoryPrice});
-            this.HistoryGridView.Location = new System.Drawing.Point(0, 0);
-            this.HistoryGridView.MultiSelect = false;
-            this.HistoryGridView.Name = "HistoryGridView";
-            this.HistoryGridView.ReadOnly = true;
-            this.HistoryGridView.RowHeadersWidth = 51;
-            this.HistoryGridView.RowTemplate.Height = 24;
-            this.HistoryGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.HistoryGridView.Size = new System.Drawing.Size(608, 422);
-            this.HistoryGridView.TabIndex = 0;
-            // 
             // HistoryID
             // 
             this.HistoryID.HeaderText = "ID";
@@ -624,13 +642,22 @@
             this.HistoryAction.ReadOnly = true;
             this.HistoryAction.Width = 79;
             // 
+            // HistoryProductName
+            // 
+            this.HistoryProductName.HeaderText = "Product Name";
+            this.HistoryProductName.MinimumWidth = 6;
+            this.HistoryProductName.Name = "HistoryProductName";
+            this.HistoryProductName.ReadOnly = true;
+            this.HistoryProductName.Width = 80;
+            // 
             // HistoryProductID
             // 
             this.HistoryProductID.HeaderText = "Product ID";
             this.HistoryProductID.MinimumWidth = 6;
             this.HistoryProductID.Name = "HistoryProductID";
             this.HistoryProductID.ReadOnly = true;
-            this.HistoryProductID.Width = 80;
+            this.HistoryProductID.Visible = false;
+            this.HistoryProductID.Width = 69;
             // 
             // HistoryStoreName
             // 
@@ -671,22 +698,6 @@
             this.HistoryPrice.Name = "HistoryPrice";
             this.HistoryPrice.ReadOnly = true;
             this.HistoryPrice.Width = 79;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 111);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(172, 18);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "Product Stock Number : ";
-            // 
-            // stockNumBox
-            // 
-            this.stockNumBox.Location = new System.Drawing.Point(190, 108);
-            this.stockNumBox.Name = "stockNumBox";
-            this.stockNumBox.Size = new System.Drawing.Size(396, 24);
-            this.stockNumBox.TabIndex = 19;
             // 
             // StoreOwner_Form
             // 
@@ -756,13 +767,6 @@
         private System.Windows.Forms.DataGridView ProductsGridView;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox storeBox2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StockNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StoreName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrandName;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.LinkLabel RemoveLabel;
         private System.Windows.Forms.Button ViewHistoryButton;
@@ -771,16 +775,24 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox storeBox3;
         private System.Windows.Forms.DataGridView HistoryGridView;
+        private System.Windows.Forms.LinkLabel UndoLabel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox stockNumBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StockNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StoreName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrandName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryAction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistoryProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryStoreName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryBrandName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryStockNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryPrice;
-        private System.Windows.Forms.LinkLabel UndoLabel;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox stockNumBox;
     }
 }

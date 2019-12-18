@@ -11,7 +11,7 @@ namespace AmazonWannabe
 {
     class ProductHandler
     {
-        public bool addProduct(Product product)
+        public bool Add(Product product)
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
                 return false;
@@ -111,6 +111,56 @@ namespace AmazonWannabe
 
             return ret;
 
+        }
+        public bool Delete(string productId)
+        {
+            string query = "DELETE FROM PRODUCT WHERE ID = " + productId;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        public bool Update(Product product)
+        {
+            string query = "UPDATE PRODUCT SET " +
+                           "NAME = '" + product.getName() + "'," +
+                           "PRICE = " + product.getPrice() + "," +
+                           "STOCKNUM = " + product.getStockNum() + "," +
+                           "ITEMNAME = '" + product.getItemName() + "'," +
+                           "STORENAME = '" + product.getStoreName() + "'," +
+                           "BRANDNAME = '" + product.getBrandName() + "' " +
+                           "WHERE PRODUCTID = " + product.getId();
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
         public int checkStock(int amount,int ID)
         {
