@@ -81,6 +81,8 @@
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="customerDBHandler.cs" />
+    <Compile Include="productDBHandler.cs" />
     <Compile Include="UserDBHandler.cs" />
     <Compile Include="CustomerHandler.cs" />
     <Compile Include="DBConnection.cs" />
