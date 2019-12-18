@@ -17,7 +17,7 @@ namespace AmazonWannabe
         ItemHandler itemHandler = new ItemHandler();
         ProductHandler productHandler = new ProductHandler();
         List<Item> items = new List<Item>();
-
+        orderHandler order = new orderHandler();
         public Search_Form(string type)
         {
             InitializeComponent();
@@ -107,10 +107,9 @@ namespace AmazonWannabe
             else
             {
                 int amount = Int32.Parse(amountBox.Text);
-                float totalPrice = Int32.Parse(amountBox.Text) * Int32.Parse(Convert.ToString(selectedRow.Cells[1].Value));
+                float price = Int32.Parse(Convert.ToString(selectedRow.Cells[1].Value));
                 string address = addressBox.Text;
-                productHandler.check(amount,ID,totalPrice,address);
-               
+                productHandler.check(amount,ID,price,address);
             }
 
         }

@@ -12,7 +12,7 @@ namespace AmazonWannabe
     class ProductHandler
     {
         productDBHandler productDB = new productDBHandler();
-        CustomerHandler customer = new CustomerHandler();
+        orderHandler order = new orderHandler();
         public bool addProduct(Product product)
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
@@ -49,13 +49,13 @@ namespace AmazonWannabe
         {
             return productDB.productsQuery();
         }
-        public void check(int amount, int ID, float totalPrice, string address)
+        public void check(int amount, int ID, float price, string address)
         {
             int updated = productDB.checkStock(amount, ID);
             if (updated > 0)
             {
                 productDB.updateStock(updated, ID);
-                customer.addOrder(totalPrice, amount, address, ID);
+                order.addOrder(price, amount, address, ID);
             }
         }
     }
