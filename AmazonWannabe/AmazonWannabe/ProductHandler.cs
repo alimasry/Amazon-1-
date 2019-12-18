@@ -11,7 +11,13 @@ namespace AmazonWannabe
 {
     class ProductHandler
     {
+<<<<<<< HEAD
         public bool Add(Product product)
+=======
+        productDBHandler productDB = new productDBHandler();
+        orderHandler order = new orderHandler();
+        public bool addProduct(Product product)
+>>>>>>> 0992f3de7fe9515c71b2708ea37b9b2aaab4b75c
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
                 return false;
@@ -53,6 +59,7 @@ namespace AmazonWannabe
         }
         public List<Product> Get(string extension = null)
         {
+<<<<<<< HEAD
             string query = "SELECT * FROM product ";
             if(extension != null)
             {
@@ -197,29 +204,18 @@ namespace AmazonWannabe
                 updated = 0;
             }
             return updated;
+=======
+            return productDB.productsQuery();
+>>>>>>> 0992f3de7fe9515c71b2708ea37b9b2aaab4b75c
         }
-
-        public int updateStock(int updated, int ID)
+        public void check(int amount, int ID, float price, string address)
         {
-            string SQLquery3 = "UPDATE [Product] set StockNum =" + updated + " where ID=" + ID + "\n";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            int updated = productDB.checkStock(amount, ID);
+            if (updated > 0)
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
-                {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message + "1");
-                        return 0;
-                    }
-                }
+                productDB.updateStock(updated, ID);
+                order.addOrder(price, amount, address, ID);
             }
-             
-            return updated;
         }
     }
 }

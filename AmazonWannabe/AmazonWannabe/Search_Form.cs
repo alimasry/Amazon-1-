@@ -17,8 +17,7 @@ namespace AmazonWannabe
         ItemHandler itemHandler = new ItemHandler();
         ProductHandler productHandler = new ProductHandler();
         List<Item> items = new List<Item>();
-        CustomerHandler customerHandler = new CustomerHandler();
-
+        orderHandler order = new orderHandler();
         public Search_Form(string type)
         {
             InitializeComponent();
@@ -93,13 +92,14 @@ namespace AmazonWannabe
 
         private void Confirm_Click(object sender, EventArgs e)
         {
+            bool agreed = Agreement.Checked;
+             DataGridViewRow selectedRow = productsGrid.CurrentRow;
+            string productID = Convert.ToString(selectedRow.Cells[2].Value);
+            int ID = int.Parse(productID);
             if (!Agreement.Checked)
             {
                 MessageBox.Show("please select the checkbox to confirm");
             }
-            DataGridViewRow selectedRow = productsGrid.CurrentRow;
-            string productID = Convert.ToString(selectedRow.Cells[2].Value);
-            int ID = int.Parse(productID);
             if (amountBox.Text == "" || addressBox.Text == "")
             {
                 MessageBox.Show("please enter amount and address");
@@ -107,12 +107,9 @@ namespace AmazonWannabe
             else
             {
                 int amount = Int32.Parse(amountBox.Text);
-                float totalPrice = Int32.Parse(amountBox.Text) * Int32.Parse(Convert.ToString(selectedRow.Cells[1].Value));
+                float price = Int32.Parse(Convert.ToString(selectedRow.Cells[1].Value));
                 string address = addressBox.Text;
-                int updated=productHandler.checkStock(amount, ID);
-                productHandler.updateStock(updated,ID);
-                customerHandler.addOrder(totalPrice, amount, address, ID);
-               
+                productHandler.check(amount,ID,price,address);
             }
 
         }

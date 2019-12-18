@@ -123,7 +123,8 @@ namespace AmazonWannabe
         private void addStatsButton_Click(object sender, EventArgs e)
         {
             AdminStats_Form adminStatForm = new AdminStats_Form();
-            adminStatForm.Show();
+            adminStatForm.ShowDialog();
+            adminStatForm.Dispose();
         }
     }
 }
