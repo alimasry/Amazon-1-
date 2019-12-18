@@ -81,11 +81,9 @@
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
-<<<<<<< HEAD
     <Compile Include="StoreHistory.cs" />
     <Compile Include="StoreHistoryDBHandler.cs" />
     <Compile Include="StoreHistoryHandler.cs" />
-=======
     <Compile Include="firstDiscount.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="orderDBHandler.cs" />
@@ -95,7 +93,6 @@
     <Compile Include="productDBHandler.cs" />
     <Compile Include="regularOrder.cs" />
     <Compile Include="twoDiscount.cs" />
->>>>>>> 0992f3de7fe9515c71b2708ea37b9b2aaab4b75c
     <Compile Include="UserDBHandler.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="FormEditor.cs" />

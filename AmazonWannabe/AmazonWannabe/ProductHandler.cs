@@ -11,13 +11,10 @@ namespace AmazonWannabe
 {
     class ProductHandler
     {
-<<<<<<< HEAD
-        public bool Add(Product product)
-=======
+
         productDBHandler productDB = new productDBHandler();
         orderHandler order = new orderHandler();
-        public bool addProduct(Product product)
->>>>>>> 0992f3de7fe9515c71b2708ea37b9b2aaab4b75c
+        public bool Add(Product product)
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
                 return false;
@@ -59,41 +56,7 @@ namespace AmazonWannabe
         }
         public List<Product> Get(string extension = null)
         {
-<<<<<<< HEAD
-            string query = "SELECT * FROM product ";
-            if(extension != null)
-            {
-                query += "WHERE " + extension;
-            }
-            List<Product> ret = new List<Product>();
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            try
-                            {
-                                ret.Add(new Product(reader["id"].ToString(),
-                                    reader["name"].ToString(),
-                                    Convert.ToDouble(reader["price"]),
-                                    Convert.ToInt32(reader["stocknum"]),
-                                    reader["Storename"].ToString(),
-                                    reader["brandname"].ToString(),
-                                    new Item(reader["itemname"].ToString(), 0, 0)));
-                            }
-                            catch (SQLiteException e)
-                            {
-                                MessageBox.Show(e.Message);
-                            }
-                        }
-                    }
-                }
-            }
-            return ret;
+            return productDB.productsQuery();
         }
         public string GetLatestID()
         {
@@ -204,9 +167,6 @@ namespace AmazonWannabe
                 updated = 0;
             }
             return updated;
-=======
-            return productDB.productsQuery();
->>>>>>> 0992f3de7fe9515c71b2708ea37b9b2aaab4b75c
         }
         public void check(int amount, int ID, float price, string address)
         {
