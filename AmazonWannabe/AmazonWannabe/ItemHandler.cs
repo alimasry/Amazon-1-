@@ -35,7 +35,7 @@ namespace AmazonWannabe
 
             return true;
         }
-        public List<Item> getItems()
+        public List<Item> Get()
         {
             string query = "SELECT NAME , MINPRICE , MAXPRICE FROM ITEM";
             List<Item> ret = new List<Item>();
@@ -53,6 +53,30 @@ namespace AmazonWannabe
                     }
                 }
             }
+            return ret;
+        }
+        public Item GetByName(string name)
+        {
+            string query = "SELECT NAME , MINPRICE , MAXPRICE FROM ITEM WHERE NAME = '" + name + "'";
+
+            Item ret = null;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        double minPrice = Convert.ToDouble(reader["minprice"].ToString());
+                        double maxPrice = Convert.ToDouble(reader["maxprice"].ToString());
+
+                        ret = new Item(name, minPrice, maxPrice);
+                    }
+                }
+            }
+
             return ret;
         }
     }

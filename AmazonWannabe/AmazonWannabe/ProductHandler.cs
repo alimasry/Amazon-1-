@@ -11,9 +11,10 @@ namespace AmazonWannabe
 {
     class ProductHandler
     {
+
         productDBHandler productDB = new productDBHandler();
         orderHandler order = new orderHandler();
-        public bool addProduct(Product product)
+        public bool Add(Product product)
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
                 return false;
@@ -25,7 +26,6 @@ namespace AmazonWannabe
             string brand = product.getBrandName().Replace("'", "''");
             string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME , brandname)" +
                               "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store +"' , '" + brand + "')";
-            MessageBox.Show(addQuery);
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
                 connection.Open();
@@ -45,9 +45,128 @@ namespace AmazonWannabe
 
             return true;
         }
-        public List<Product> getProducts()
+
+        public List<Product> GetByName(string name)
+        {
+            return Get("NAME = '" + name + "'");
+        }
+        public List<Product> GetByStoreName(string storeName)
+        {
+            return Get("STORENAME = '" + storeName + "'");
+        }
+        public List<Product> Get(string extension = null)
         {
             return productDB.productsQuery();
+        }
+        public string GetLatestID()
+        {
+            string query = "SELECT MAX(ID) FROM PRODUCT";
+            string ret;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        ret = command.ExecuteScalar().ToString();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            return ret;
+
+        }
+        public bool Delete(string productId)
+        {
+            string query = "DELETE FROM PRODUCT WHERE ID = " + productId;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        public bool Update(Product product)
+        {
+            string query = "UPDATE PRODUCT SET " +
+                           "NAME = '" + product.getName() + "'," +
+                           "PRICE = " + product.getPrice() + "," +
+                           "STOCKNUM = " + product.getStockNum() + "," +
+                           "ITEMNAME = '" + product.getItemName() + "'," +
+                           "STORENAME = '" + product.getStoreName() + "'," +
+                           "BRANDNAME = '" + product.getBrandName() + "' " +
+                           "WHERE PRODUCTID = " + product.getId();
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        public int checkStock(int amount,int ID)
+        {
+            int updated;
+            string SQLquery2 = "Select StockNum from [Product] where ID='" + ID + "'\n";
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(SQLquery2, connection))
+                {
+                    try
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            updated = reader.GetInt32(0);
+                            reader.Close();
+                        }
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return 0;
+                    }
+                }
+            }
+            if (updated >= amount)
+            {
+                updated = updated - amount;
+            }
+            else
+            {
+                updated = 0;
+            }
+            return updated;
         }
         public void check(int amount, int ID, float price, string address)
         {

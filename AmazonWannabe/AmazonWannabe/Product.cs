@@ -65,7 +65,10 @@ namespace AmazonWannabe
         {
             return this.ProductId;
         }
-        
+        public int getStockNum()
+        {
+            return this.stockNum;
+        }
         public string getName()
         {
             return this.ProductName;

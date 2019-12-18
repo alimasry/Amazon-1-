@@ -18,16 +18,24 @@ namespace AmazonWannabe
         ItemHandler itemHandler = new ItemHandler();
         StoreHandler storeHandler = new StoreHandler();
         BrandHandler brandHandler = new BrandHandler();
+        QueryHandler queryHandler = new QueryHandler();
+        StoreHistoryHandler historyHandler = new StoreHistoryHandler();
+
         List<Item> items;
         List<Store> stores;
         List<Brand> brands;
+        List<Product> products;
+        List<StoreHistory> storeHistories;
+
+        string email = CredentialHandler.getCurrentUser().getEmail();
+
         public StoreOwner_Form()
         {
             InitializeComponent();
             editor.EditButtons(this);
-            items = itemHandler.getItems();
-            stores = storeHandler.Get();
-            brands = brandHandler.getBrands();
+            items = itemHandler.Get();
+            stores = storeHandler.Get(email);
+            brands = brandHandler.Get();
 
             addProductPanel.BringToFront();
 
@@ -38,6 +46,8 @@ namespace AmazonWannabe
             foreach(Store s in stores)
             {
                 storeBox.Items.Add(s.getStoreName());
+                storeBox2.Items.Add(s.getStoreName());
+                storeBox3.Items.Add(s.getStoreName());
             }
             foreach (Brand s in brands)
             {
@@ -69,13 +79,17 @@ namespace AmazonWannabe
                 if (brandBox.Text == i.getBrandName())
                     brand = i;
             }
-            Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text) , 0 , store.getStoreName() , brand.getBrandName(), item);
+            Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text) , Convert.ToInt32(stockNumBox.Text) , store.getStoreName() , brand.getBrandName(), item);
 
-            if(!productHandler.addProduct(product))
+            if(!productHandler.Add(product))
             {
                 MessageBox.Show("Could not add product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            StoreHistory storeHistory = new StoreHistory(null , storeBox.Text , nameBox.Text , "Add" , productHandler.GetLatestID() , itemBox.Text , brandBox.Text , Convert.ToInt32(stockNumBox.Text) , Convert.ToDouble(priceBox.Text));
+            historyHandler.Add(storeHistory);
+            
             MessageBox.Show("Added product successfully", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -115,22 +129,16 @@ namespace AmazonWannabe
             statsPanel.Visible = false;
             addProductPanel.Visible = false;
         }
-
-        private void userViewsLabel_Click(object sender, EventArgs e)
+        private void ShowPanel(Panel p)
         {
-
+            foreach (Control c in Controls.OfType<Panel>())
+            {
+                c.Visible = false;
+            }
+            p.Visible = true;
         }
-
-        private void productSoldLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void update_stats()
-        {
-            UserInfo userInfo = CredentialHandler.getCurrentUser();
-
-            QueryHandler queryHandler = new QueryHandler();
+        { 
             List<object[]> queries = queryHandler.getQueries();
 
             statsView.Rows.Clear();
@@ -139,6 +147,51 @@ namespace AmazonWannabe
                 statsView.Rows.Add(query);
             }
             statsView.Refresh();
+        }
+        private void update_products()
+        {
+            products = productHandler.GetByStoreName(storeBox2.Text);
+
+            ProductsGridView.Rows.Clear();
+
+            if(products == null)
+            {
+                MessageBox.Show("Failed to get Products");
+                return;
+            }
+
+            foreach(Product product in products)
+            {
+                ProductsGridView.Rows.Add(product.getId() ,
+                                          product.getName() ,
+                                          product.getPrice() ,
+                                          product.getStockNum() ,
+                                          product.getItemName() ,
+                                          product.getStoreName() ,
+                                          product.getBrandName());
+            }
+        }
+        private void update_history()
+        {
+            storeHistories = historyHandler.Get(storeBox3.Text);
+
+            HistoryGridView.Rows.Clear();
+
+            if (storeHistories == null)
+                return;
+
+            foreach(StoreHistory s in storeHistories)
+            {
+                HistoryGridView.Rows.Add(s.Id,
+                                         s.Action,
+                                         s.ProductName,
+                                         s.ProductID,
+                                         s.StoreName,
+                                         s.ItemName,
+                                         s.BrandName,
+                                         s.StockNum,
+                                         s.Price);
+            }
         }
 
         private void StatsViewButton_Click(object sender, EventArgs e)
@@ -153,6 +206,54 @@ namespace AmazonWannabe
         private void closeButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SearchButton_Click_1(object sender, EventArgs e)
+        {
+            update_products();
+        }
+
+        private void ProductViewButton_Click(object sender, EventArgs e)
+        {
+            ShowPanel(ProductsPanel);
+        }
+
+        private void SearchHistoryButton_Click(object sender, EventArgs e)
+        {
+            update_history();
+        }
+
+        private void ViewHistoryButton_Click(object sender, EventArgs e)
+        {
+            ShowPanel(HistoryPanel);
+        }
+
+        private void UndoLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(HistoryGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = HistoryGridView.CurrentRow;
+                string action = row.Cells[1].Value.ToString();
+                string productID = row.Cells[3].Value.ToString();
+                //MessageBox.Show(row.Cells[0].Value.ToString());
+                string id = row.Cells[0].Value.ToString();
+                string storeName = row.Cells[4].Value.ToString();
+                string itemName = row.Cells[5].Value.ToString();
+                string brandName = row.Cells[6].Value.ToString();
+                int stockNum = Convert.ToInt32(row.Cells[7].Value.ToString());
+                string productName = row.Cells[2].Value.ToString();
+                double price = Convert.ToDouble(row.Cells[8].Value.ToString());
+
+                StoreHistory storeHistory = new StoreHistory(id, storeName, productName, action, productID, itemName, brandName, stockNum, price);
+                
+                if(!historyHandler.UndoChange(storeHistory))
+                {
+                    MessageBox.Show("Failed to undo change");
+                }
+
+                update_history();
+                MessageBox.Show("Undo Done!");
+            }
         }
     }
 }

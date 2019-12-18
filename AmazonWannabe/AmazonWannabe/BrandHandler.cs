@@ -34,7 +34,7 @@ namespace AmazonWannabe
 
             return true;
         }
-        public List<Brand> getBrands()
+        public List<Brand> Get()
         {
             string query = "SELECT NAME , CATEGORY FROM BRAND";
             List<Brand> ret = new List<Brand>();

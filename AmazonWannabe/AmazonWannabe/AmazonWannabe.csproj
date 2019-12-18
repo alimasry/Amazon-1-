@@ -81,6 +81,9 @@
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="StoreHistory.cs" />
+    <Compile Include="StoreHistoryDBHandler.cs" />
+    <Compile Include="StoreHistoryHandler.cs" />
     <Compile Include="firstDiscount.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="orderDBHandler.cs" />
