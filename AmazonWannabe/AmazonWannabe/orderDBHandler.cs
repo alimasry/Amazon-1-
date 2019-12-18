@@ -8,8 +8,37 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class customerDBHandler
+    class orderDBHandler
     {
+        public int checkTotal(string userEmail)
+        {
+            int ret;
+            string SQLquery = "SELECT COUNT(OrderID) FROM [Order] WHERE userEmail='" + userEmail + "'";
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using(SQLiteCommand command=new SQLiteCommand(SQLquery, connection))
+                {
+                    try
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            ret = reader.GetInt32(0);
+                            reader.Close();
+                            return ret;
+                        }
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return 0;
+                    }
+                }
+                connection.Close();
+            }
+            //return 0;
+        }
         public void addOrderDB(float totalPrice, int amount, string address, int ID)
         {
             string userEmail = CredentialHandler.getCurrentUser().getEmail();
