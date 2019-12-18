@@ -12,152 +12,106 @@ namespace AmazonWannabe
     class ProductHandler
     {
 
-        ProductDBHandler productDB = new ProductDBHandler();
-        OrderHandler order = new OrderHandler();
+        ProductDBHandler productDBHandler = new ProductDBHandler();
+        OrderHandler orderDBHandler = new OrderHandler();
+        StoreHistoryHandler storeHistoryHandler = new StoreHistoryHandler();
+        public bool AddIncognito(Product product)
+        {
+            if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
+                return false;
+            return productDBHandler.Add(product);
+        }
         public bool Add(Product product)
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
                 return false;
 
+            if(!productDBHandler.Add(product))
+            {
+                return false;
+            }
+
             string name = product.getName().Replace("'", "''");
-            string price = product.getPrice().ToString();
+            double price = product.getPrice();
             string itemName = product.getItemName().Replace("'", "''");
             string store = product.getStoreName().Replace("'", "''");
             string brand = product.getBrandName().Replace("'", "''");
-            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME , brandname)" +
-                              "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store +"' , '" + brand + "')";
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
-                {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return false;
-                    }
-                }
-            }
+            int stockNum = product.getStockNum();
+
+            storeHistoryHandler = new StoreHistoryHandler();
+            StoreHistory storeHistory = new StoreHistory(null, store, name, "Add", GetLatestID(), itemName, brand, stockNum, price);
+            storeHistoryHandler.Add(storeHistory);
 
             return true;
         }
 
         public List<Product> GetByName(string name)
         {
-            return Get("NAME = '" + name + "'");
+            return productDBHandler.GetByName(name);
         }
         public List<Product> GetByStoreName(string storeName)
         {
-            return Get("STORENAME = '" + storeName + "'");
+            return productDBHandler.GetByStoreName(storeName);
         }
-        public List<Product> Get(string extension = null)
+        public Product GetByID(string id)
         {
-            return productDB.productsQuery();
+            return productDBHandler.GetByID(id);
+        }
+        public List<Product> Get()
+        {
+            return productDBHandler.Get();
         }
         public string GetLatestID()
         {
-            string query = "SELECT MAX(ID) FROM PRODUCT";
-            string ret;
-
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                {
-                    try
-                    {
-                        ret = command.ExecuteScalar().ToString();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        return null;
-                    }
-                }
-            }
-
-            return ret;
-
+            return productDBHandler.GetLatestID();
+        }
+        public bool DeleteIncognito(string productId)
+        {
+            return productDBHandler.Delete(productId);
         }
         public bool Delete(string productId)
         {
-            string query = "DELETE FROM PRODUCT WHERE ID = " + productId;
+            Product oldProduct = GetByID(productId);
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException)
-                    {
-                        return false;
-                    }
-                }
-            }
+            string name = oldProduct.getName().Replace("'", "''");
+            double price = oldProduct.getPrice();
+            string itemName = oldProduct.getItemName().Replace("'", "''");
+            string storeName = oldProduct.getStoreName().Replace("'", "''");
+            string brandName = oldProduct.getBrandName().Replace("'", "''");
+            int stockNum = oldProduct.getStockNum();
 
-            return true;
+            StoreHistoryHandler storeHistoryHandler = new StoreHistoryHandler();
+            StoreHistory storeHistory = new StoreHistory(null, storeName, name, "Remove", productId, itemName, brandName, stockNum, price);
+            storeHistoryHandler.Add(storeHistory);
+
+            return productDBHandler.Delete(productId);
+        }
+        public bool UpdateIncognito(Product product)
+        {
+            return productDBHandler.Update(product);
         }
         public bool Update(Product product)
         {
-            string query = "UPDATE PRODUCT SET " +
-                           "NAME = '" + product.getName() + "'," +
-                           "PRICE = " + product.getPrice() + "," +
-                           "STOCKNUM = " + product.getStockNum() + "," +
-                           "ITEMNAME = '" + product.getItemName() + "'," +
-                           "STORENAME = '" + product.getStoreName() + "'," +
-                           "BRANDNAME = '" + product.getBrandName() + "' " +
-                           "WHERE PRODUCTID = " + product.getId();
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException)
-                    {
-                        return false;
-                    }
-                }
-            }
+            Product oldProduct = GetByID(product.getId());
 
-            return true;
+            string name = oldProduct.getName().Replace("'", "''");
+            double price = oldProduct.getPrice();
+            string itemName = oldProduct.getItemName().Replace("'", "''");
+            string storeName = oldProduct.getStoreName().Replace("'", "''");
+            string brandName = oldProduct.getBrandName().Replace("'", "''");
+            int stockNum = oldProduct.getStockNum();
+
+            StoreHistoryHandler storeHistoryHandler = new StoreHistoryHandler();
+            StoreHistory storeHistory = new StoreHistory(null, storeName, name, "Edit", product.getId(), itemName, brandName, stockNum, price);
+            storeHistoryHandler.Add(storeHistory);
+
+            return productDBHandler.Update(product);
         }
+
         public int checkStock(int amount,int ID)
         {
-            int updated;
-            string SQLquery2 = "Select StockNum from [Product] where ID='" + ID + "'\n";
+            int updated = productDBHandler.checkStock(ID);
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(SQLquery2, connection))
-                {
-                    try
-                    {
-                        using (SQLiteDataReader reader = command.ExecuteReader())
-                        {
-                            reader.Read();
-                            updated = reader.GetInt32(0);
-                            reader.Close();
-                        }
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return 0;
-                    }
-                }
-            }
             if (updated >= amount)
             {
                 updated = updated - amount;
@@ -170,11 +124,11 @@ namespace AmazonWannabe
         }
         public void check(int amount, int ID, float price, string address)
         {
-            int updated = productDB.checkStock(amount, ID);
+            int updated = checkStock(amount, ID);
             if (updated > 0)
             {
-                productDB.updateStock(updated, ID);
-                order.addOrder(price, amount, address, ID);
+                productDBHandler.updateStock(updated, ID);
+                orderDBHandler.addOrder(price, amount, address, ID);
             }
         }
     }

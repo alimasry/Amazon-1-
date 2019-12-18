@@ -27,58 +27,19 @@ namespace AmazonWannabe
 
         public bool UndoChange(StoreHistory storeHistory)
         {
-            string action = storeHistory.Action;
+            string actionStr = storeHistory.Action;
+            IAction action = null;
 
-            if (action == "Add")
-            {
-                ProductHandler productHandler = new ProductHandler();
-                productHandler.Delete(storeHistory.ProductID);
-            }
-            else if(action == "Remove")
-            {
-                ProductHandler productHandler = new ProductHandler();
+            if (actionStr == "Add")
+                action = new AddAction();
+            else if (actionStr == "Remove")
+                action = new RemoveAction();
+            else if (actionStr == "Edit")
+                action = new EditAction();
 
-                string productId = storeHistory.ProductID;
-                string name = storeHistory.ProductName;
-                double price = storeHistory.Price;
-                int stockNum = storeHistory.StockNum;
-                string storeName = storeHistory.StoreName;
-                string brandName = storeHistory.BrandName;
-                string itemName = storeHistory.ItemName;
-
-                ItemHandler itemHandler = new ItemHandler();
-                Item item = itemHandler.GetByName(itemName);
-
-                Product product = new Product(productId, name, price, stockNum, storeName, brandName, item);
-
-                productHandler.Add(product);
-            }
-            else if(action == "Update")
-            {
-                ProductHandler productHandler = new ProductHandler();
-
-                string productId = storeHistory.ProductID;
-                string name = storeHistory.ProductName;
-                double price = storeHistory.Price;
-                int stockNum = storeHistory.StockNum;
-                string storeName = storeHistory.StoreName;
-                string brandName = storeHistory.BrandName;
-                string itemName = storeHistory.ItemName;
-
-                ItemHandler itemHandler = new ItemHandler();
-                Item item = itemHandler.GetByName(itemName);
-
-                Product product = new Product(productId, name, price, stockNum, storeName, brandName, item);
-
-                productHandler.Update(product);
-            }
-            else
-            {
-                return false;
-            }
-            handler.Delete(storeHistory.Id);
-
-            return true;
+            if (action != null)
+                return action.Undo(storeHistory);
+            return false;
         }
 
     }

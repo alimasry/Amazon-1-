@@ -117,3 +117,4 @@ C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\Amaz
 C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.csproj.CopyComplete
 C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.exe
 C:\Users\hp-pc\Source\Repos\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.pdb
+C:\Users\Fady\source\repos\Kerberos-666\Amazon-1-\AmazonWannabe\AmazonWannabe\obj\Debug\AmazonWannabe.Edit_Product.resources

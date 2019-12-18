@@ -34,6 +34,15 @@ namespace AmazonWannabe
             this.storeName = storeName;
             this.brandName = brandName;
         }
+        public Product(Product product , Item item):base(item)
+        {
+            this.ProductId = product.getId();
+            this.ProductName = product.getName();
+            this.price = product.getPrice();
+            this.stockNum = product.getStockNum();
+            this.storeName = product.getStoreName();
+            this.brandName = product.getBrandName();
+        }
 
         public bool setId(string id)
         {
@@ -49,6 +58,11 @@ namespace AmazonWannabe
         public bool setPrice(double price)
         {
             this.price = price;
+            return true;
+        }
+        public bool setStockNum(int stockNum)
+        {
+            this.stockNum = stockNum;
             return true;
         }
         public bool setStoreName(string storeName)
