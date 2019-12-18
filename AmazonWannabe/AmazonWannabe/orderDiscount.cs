@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class orderDiscount:Order
+    class OrderDiscount:Order
     {
         protected Order order;
-        public orderDiscount(Order order)
+        public OrderDiscount(Order order)
         {
             this.order = order;
         }

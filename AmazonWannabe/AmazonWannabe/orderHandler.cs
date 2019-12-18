@@ -7,30 +7,30 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class orderHandler
+    class OrderHandler
     {
-        private orderDBHandler orderDB = new orderDBHandler();
+        private OrderDBHandler orderDB = new OrderDBHandler();
         public void addOrder(float price, int amount, string address, int ID)
         {
             float totalPrice = (float)price * (float)amount;
             Int32 totalOrders;
             string type = CredentialHandler.getCurrentUser().getType();
-            Order order = new regularOrder(totalPrice,amount,address,ID);
+            Order order = new RegularOrder(totalPrice,amount,address,ID);
             MessageBox.Show(order.getPrice().ToString());
             if(type.Equals("Store Owner"))
             {
-                order = new ownerDiscount(order);
+                order = new OwnerDiscount(order);
                 MessageBox.Show(order.getPrice().ToString());
             }
             if (amount >= 2)
             {
-                order = new twoDiscount(order);
+                order = new TwoDiscount(order);
                 MessageBox.Show(order.getPrice().ToString());
             }
             totalOrders = orderDB.checkTotal(CredentialHandler.getCurrentUser().getEmail());
             if (totalOrders == 0)
             {
-                order = new firstDiscount(order);
+                order = new FirstDiscount(order);
                 MessageBox.Show(order.getPrice().ToString());
             }
             orderDB.addOrderDB(order.getPrice(), amount, address, ID);

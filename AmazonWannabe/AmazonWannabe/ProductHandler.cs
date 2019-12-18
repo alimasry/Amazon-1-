@@ -12,8 +12,8 @@ namespace AmazonWannabe
     class ProductHandler
     {
 
-        productDBHandler productDB = new productDBHandler();
-        orderHandler order = new orderHandler();
+        ProductDBHandler productDB = new ProductDBHandler();
+        OrderHandler order = new OrderHandler();
         public bool Add(Product product)
         {
             if (product.getPrice() > product.getMaxPrice() || product.getPrice() < product.getMinPrice())
