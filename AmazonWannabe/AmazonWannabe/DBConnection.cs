@@ -9,7 +9,7 @@ namespace AmazonWannabe
 {
     class DBConnection
     {
-        public const string connectionString = "Data Source=database.sqlite3";
+        public const string connectionString = @"Data Source=..\..\database.sqlite3";
 
         private DBConnection() { }
 
