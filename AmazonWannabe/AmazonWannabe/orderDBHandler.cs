@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class orderDBHandler
+    class OrderDBHandler
     {
         public int checkTotal(string userEmail)
         {

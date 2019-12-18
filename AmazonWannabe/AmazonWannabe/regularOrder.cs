@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class regularOrder : Order
+    class RegularOrder : Order
     {
-        public regularOrder(float price, int amount,string address,int ID)
+        public RegularOrder(float price, int amount,string address,int ID)
         {
             this.price = price;
             this.amount = amount;

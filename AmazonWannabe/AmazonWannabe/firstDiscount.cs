@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class firstDiscount : orderDiscount
+    class FirstDiscount : OrderDiscount
     {
-        public firstDiscount(Order order) : base(order)
+        public FirstDiscount(Order order) : base(order)
         {
 
         }

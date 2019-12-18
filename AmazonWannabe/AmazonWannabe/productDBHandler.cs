@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class productDBHandler
+    class ProductDBHandler
     {
         public List<Product> productsQuery()
         {

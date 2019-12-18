@@ -17,7 +17,7 @@ namespace AmazonWannabe
         ItemHandler itemHandler = new ItemHandler();
         ProductHandler productHandler = new ProductHandler();
         List<Item> items = new List<Item>();
-        orderHandler order = new orderHandler();
+        OrderHandler order = new OrderHandler();
         public Search_Form(string type)
         {
             InitializeComponent();
