@@ -13,6 +13,7 @@ namespace AmazonWannabe
         public bool Add(StoreHistory storeHistory)
         {
             string name = storeHistory.StoreName;
+            string productName = storeHistory.ProductName;
             string action = storeHistory.Action;
             string productID = storeHistory.ProductID;
             string itemName = storeHistory.ItemName;
@@ -22,8 +23,9 @@ namespace AmazonWannabe
 
 
             string query = "INSERT INTO [STORE HISTORY]" +
-                           "(STORENAME , ACTION , PRODUCTID , ITEMNAME , BRANDNAME , STOCKNUM , PRICE)" +
-                           "VALUES('" + name + "'," +
+                           "(PRODUCTNAME , STORENAME , ACTION , PRODUCTID , ITEMNAME , BRANDNAME , STOCKNUM , PRICE)" +
+                           "VALUES('" + productName + "'," +
+                           "'" + name + "'," +
                            "'" + action + "'," +
                            "" + productID + "," +
                            "'" + itemName + "'," +

@@ -72,13 +72,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.storeBox3 = new System.Windows.Forms.ComboBox();
             this.HistoryGridView = new System.Windows.Forms.DataGridView();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +81,14 @@
             this.HistoryBrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryStockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditLabel = new System.Windows.Forms.LinkLabel();
+            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addProductPanel.SuspendLayout();
             this.addStorePanel.SuspendLayout();
             this.statsPanel.SuspendLayout();
@@ -402,6 +403,7 @@
             // 
             // ProductsPanel
             // 
+            this.ProductsPanel.Controls.Add(this.EditLabel);
             this.ProductsPanel.Controls.Add(this.RemoveLabel);
             this.ProductsPanel.Controls.Add(this.SearchButton);
             this.ProductsPanel.Controls.Add(this.label9);
@@ -409,7 +411,7 @@
             this.ProductsPanel.Controls.Add(this.ProductsGridView);
             this.ProductsPanel.Location = new System.Drawing.Point(205, 9);
             this.ProductsPanel.Name = "ProductsPanel";
-            this.ProductsPanel.Size = new System.Drawing.Size(608, 498);
+            this.ProductsPanel.Size = new System.Drawing.Size(609, 498);
             this.ProductsPanel.TabIndex = 21;
             // 
             // RemoveLabel
@@ -421,6 +423,7 @@
             this.RemoveLabel.TabIndex = 23;
             this.RemoveLabel.TabStop = true;
             this.RemoveLabel.Text = "Remove";
+            this.RemoveLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RemoveLabel_LinkClicked);
             // 
             // SearchButton
             // 
@@ -496,9 +499,9 @@
             this.HistoryPanel.Controls.Add(this.label10);
             this.HistoryPanel.Controls.Add(this.storeBox3);
             this.HistoryPanel.Controls.Add(this.HistoryGridView);
-            this.HistoryPanel.Location = new System.Drawing.Point(206, 9);
+            this.HistoryPanel.Location = new System.Drawing.Point(205, 9);
             this.HistoryPanel.Name = "HistoryPanel";
-            this.HistoryPanel.Size = new System.Drawing.Size(608, 498);
+            this.HistoryPanel.Size = new System.Drawing.Size(609, 498);
             this.HistoryPanel.TabIndex = 23;
             // 
             // UndoLabel
@@ -568,62 +571,6 @@
             this.HistoryGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.HistoryGridView.Size = new System.Drawing.Size(608, 422);
             this.HistoryGridView.TabIndex = 0;
-            // 
-            // ProductID
-            // 
-            this.ProductID.HeaderText = "ProductID";
-            this.ProductID.MinimumWidth = 6;
-            this.ProductID.Name = "ProductID";
-            this.ProductID.ReadOnly = true;
-            this.ProductID.Width = 79;
-            // 
-            // ProductName
-            // 
-            this.ProductName.HeaderText = "Name";
-            this.ProductName.MinimumWidth = 6;
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 80;
-            // 
-            // ProductPrice
-            // 
-            this.ProductPrice.HeaderText = "Price";
-            this.ProductPrice.MinimumWidth = 6;
-            this.ProductPrice.Name = "ProductPrice";
-            this.ProductPrice.ReadOnly = true;
-            this.ProductPrice.Width = 79;
-            // 
-            // StockNum
-            // 
-            this.StockNum.HeaderText = "Stock Number";
-            this.StockNum.MinimumWidth = 6;
-            this.StockNum.Name = "StockNum";
-            this.StockNum.ReadOnly = true;
-            this.StockNum.Width = 79;
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Item";
-            this.ItemName.MinimumWidth = 6;
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
-            this.ItemName.Width = 79;
-            // 
-            // StoreName
-            // 
-            this.StoreName.HeaderText = "Store";
-            this.StoreName.MinimumWidth = 6;
-            this.StoreName.Name = "StoreName";
-            this.StoreName.ReadOnly = true;
-            this.StoreName.Width = 80;
-            // 
-            // BrandName
-            // 
-            this.BrandName.HeaderText = "Brand";
-            this.BrandName.MinimumWidth = 6;
-            this.BrandName.Name = "BrandName";
-            this.BrandName.ReadOnly = true;
-            this.BrandName.Width = 79;
             // 
             // HistoryID
             // 
@@ -699,6 +646,74 @@
             this.HistoryPrice.ReadOnly = true;
             this.HistoryPrice.Width = 79;
             // 
+            // EditLabel
+            // 
+            this.EditLabel.AutoSize = true;
+            this.EditLabel.Location = new System.Drawing.Point(502, 425);
+            this.EditLabel.Name = "EditLabel";
+            this.EditLabel.Size = new System.Drawing.Size(33, 18);
+            this.EditLabel.TabIndex = 27;
+            this.EditLabel.TabStop = true;
+            this.EditLabel.Text = "Edit";
+            this.EditLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EditLabel_LinkClicked);
+            // 
+            // ProductID
+            // 
+            this.ProductID.HeaderText = "ProductID";
+            this.ProductID.MinimumWidth = 6;
+            this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
+            this.ProductID.Visible = false;
+            this.ProductID.Width = 79;
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Name";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 93;
+            // 
+            // ProductPrice
+            // 
+            this.ProductPrice.HeaderText = "Price";
+            this.ProductPrice.MinimumWidth = 6;
+            this.ProductPrice.Name = "ProductPrice";
+            this.ProductPrice.ReadOnly = true;
+            this.ProductPrice.Width = 92;
+            // 
+            // StockNum
+            // 
+            this.StockNum.HeaderText = "Stock Number";
+            this.StockNum.MinimumWidth = 6;
+            this.StockNum.Name = "StockNum";
+            this.StockNum.ReadOnly = true;
+            this.StockNum.Width = 93;
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Item";
+            this.ItemName.MinimumWidth = 6;
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            this.ItemName.Width = 92;
+            // 
+            // StoreName
+            // 
+            this.StoreName.HeaderText = "Store";
+            this.StoreName.MinimumWidth = 6;
+            this.StoreName.Name = "StoreName";
+            this.StoreName.ReadOnly = true;
+            this.StoreName.Width = 93;
+            // 
+            // BrandName
+            // 
+            this.BrandName.HeaderText = "Brand";
+            this.BrandName.MinimumWidth = 6;
+            this.BrandName.Name = "BrandName";
+            this.BrandName.ReadOnly = true;
+            this.BrandName.Width = 92;
+            // 
             // StoreOwner_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -710,11 +725,11 @@
             this.Controls.Add(this.StatsViewButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.HistoryPanel);
             this.Controls.Add(this.ProductsPanel);
             this.Controls.Add(this.statsPanel);
             this.Controls.Add(this.addStorePanel);
             this.Controls.Add(this.addProductPanel);
+            this.Controls.Add(this.HistoryPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "StoreOwner_Form";
             this.Text = "Store Owner";
@@ -778,13 +793,6 @@
         private System.Windows.Forms.LinkLabel UndoLabel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox stockNumBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StockNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StoreName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrandName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryAction;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryProductName;
@@ -794,5 +802,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryBrandName;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryStockNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryPrice;
+        private System.Windows.Forms.LinkLabel EditLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StockNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StoreName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrandName;
     }
 }

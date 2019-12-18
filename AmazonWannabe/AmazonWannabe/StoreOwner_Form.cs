@@ -86,9 +86,6 @@ namespace AmazonWannabe
                 MessageBox.Show("Could not add product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            StoreHistory storeHistory = new StoreHistory(null , storeBox.Text , nameBox.Text , "Add" , productHandler.GetLatestID() , itemBox.Text , brandBox.Text , Convert.ToInt32(stockNumBox.Text) , Convert.ToDouble(priceBox.Text));
-            historyHandler.Add(storeHistory);
             
             MessageBox.Show("Added product successfully", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -193,7 +190,11 @@ namespace AmazonWannabe
                                          s.Price);
             }
         }
-
+        private void UpdateLists()
+        {
+            update_history();
+            update_products();
+        }
         private void StatsViewButton_Click(object sender, EventArgs e)
         {
             addStorePanel.Visible = false;
@@ -251,9 +252,51 @@ namespace AmazonWannabe
                     MessageBox.Show("Failed to undo change");
                 }
 
-                update_history();
-                MessageBox.Show("Undo Done!");
+                UpdateLists();
             }
+        }
+
+        private void EditLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (ProductsGridView.SelectedCells.Count > 0)
+            {
+                DataGridViewRow row = ProductsGridView.CurrentRow;
+                string name = row.Cells[1].Value.ToString();
+                int stockNum = Convert.ToInt32(row.Cells[3].Value.ToString());
+                string id = row.Cells[0].Value.ToString();
+                string itemName = row.Cells[4].Value.ToString();
+                string storeName = row.Cells[5].Value.ToString();
+                string brandName = row.Cells[6].Value.ToString();
+                double price = Convert.ToDouble(row.Cells[2].Value.ToString());
+                Item item = null;
+                foreach (Item i in items)
+                {
+                    if (itemName == i.getItemName())
+                    {
+                        item = i;
+                        break;
+                    }
+                }
+
+                Product product = new Product(id, name, price, stockNum, storeName, brandName, item);
+                //product.getItemName();
+                //MessageBox.Show("1");
+                Edit_Product form = new Edit_Product(product);
+                form.ShowDialog();
+
+                UpdateLists();
+            }
+        }
+
+        private void RemoveLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DataGridViewRow row = ProductsGridView.CurrentRow;
+            if(!productHandler.Delete(row.Cells[0].Value.ToString()))
+            {
+                MessageBox.Show("Failed to delete Product");
+            }
+
+            UpdateLists();
         }
     }
 }

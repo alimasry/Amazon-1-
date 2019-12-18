@@ -10,9 +10,12 @@ namespace AmazonWannabe
 {
     class ProductDBHandler
     {
-        public List<Product> productsQuery()
+        private List<Product> Get(string extension = null)
         {
-            string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname FROM product";
+            string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname FROM product ";
+            if (extension != null)
+                query += "WHERE " + extension;
+
             List<Product> ret = new List<Product>();
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
@@ -43,7 +46,135 @@ namespace AmazonWannabe
             }
             return ret;
         }
-        public int checkStock(int amount, int ID)
+        public List<Product> GetByName(string name)
+        {
+            return Get("NAME = '" + name + "'");
+        }
+        public List<Product> GetByStoreName(string storeName)
+        {
+            return Get("STORENAME = '" + storeName + "'");
+        }
+        public Product GetByID(string id)
+        {
+            List<Product> product = Get("ID = " + id);
+            return product[0];
+        }
+        public List<Product> Get()
+        {
+            return Get();
+        }
+        public string GetLatestID()
+        {
+            string query = "SELECT MAX(ID) FROM PRODUCT";
+            string ret;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        ret = command.ExecuteScalar().ToString();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            return ret;
+
+        }
+        public bool Add(Product product)
+        {
+            string name = product.getName().Replace("'", "''");
+            double price = product.getPrice();
+            string itemName = product.getItemName().Replace("'", "''");
+            string store = product.getStoreName().Replace("'", "''");
+            string brand = product.getBrandName().Replace("'", "''");
+            int stockNum = product.getStockNum();
+            string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME , BRANDNAME , STOCKNUM)" +
+                              "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store + "' , '" + brand + "'," + stockNum + ")";
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        public bool Delete(string productId)
+        {
+            string query = "DELETE FROM PRODUCT WHERE ID = " + productId;
+
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        public bool Update(Product product)
+        {
+            string name = product.getName().Replace("'", "''");
+            double price = product.getPrice();
+            string itemName = product.getItemName().Replace("'", "''");
+            string storeName = product.getStoreName().Replace("'", "''");
+            string brandName = product.getBrandName().Replace("'", "''");
+            int stockNum = product.getStockNum();
+
+            string query = "UPDATE PRODUCT SET " +
+                           "NAME = '" + name + "'," +
+                           "PRICE = " + price + "," +
+                           "STOCKNUM = " + stockNum + "," +
+                           "ITEMNAME = '" + itemName + "'," +
+                           "STORENAME = '" + storeName + "'," +
+                           "BRANDNAME = '" + brandName + "' " +
+                           "WHERE ID = " + product.getId();
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        public int checkStock(int ID)
         {
             int updated;
             string SQLquery2 = "Select StockNum from [Product] where ID='" + ID + "'\n";
@@ -65,18 +196,11 @@ namespace AmazonWannabe
                     catch (SQLiteException e)
                     {
                         MessageBox.Show(e.Message);
-                        return 0;
+                        return -1;
                     }
                 }
             }
-            if (updated >= amount)
-            {
-                updated = updated - amount;
-            }
-            else
-            {
-                updated = 0;
-            }
+
             return updated;
         }
 
