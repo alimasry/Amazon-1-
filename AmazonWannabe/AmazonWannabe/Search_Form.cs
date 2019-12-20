@@ -38,15 +38,15 @@ namespace AmazonWannabe
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            List<Product> products = productHandler.Get();
+            productsGrid.Rows.Clear();
+            List<Product> products = productHandler.GetByName(searchBar.Text);
             foreach(Product p in products)
             {
                 DataGridViewRow r = (DataGridViewRow)productsGrid.Rows[0].Clone();
                 r.Cells[0].Value = p.getName();
                 r.Cells[1].Value = p.getPrice();
                 r.Cells[2].Value = p.getId();
-                if (r.Cells[0].Value.ToString() != searchBar.Text && searchBar.Text != "")
-                    continue;
+                r.Cells[3].Value = p.getOffer();
 
                 productsGrid.Rows.Add(r);
             }
@@ -107,9 +107,11 @@ namespace AmazonWannabe
             else
             {
                 int amount = Int32.Parse(amountBox.Text);
-                float price = Int32.Parse(Convert.ToString(selectedRow.Cells[1].Value));
+                string priceString = Convert.ToString(selectedRow.Cells[1].Value);
+                float price = float.Parse(priceString);
                 string address = addressBox.Text;
-                productHandler.check(amount,ID,price,address);
+                float discount= float.Parse(Convert.ToString(selectedRow.Cells[3].Value));
+                productHandler.check(amount,ID,price,address,discount);
             }
 
         }

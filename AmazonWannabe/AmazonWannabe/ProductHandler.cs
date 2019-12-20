@@ -13,7 +13,7 @@ namespace AmazonWannabe
     {
 
         ProductDBHandler productDBHandler = new ProductDBHandler();
-        OrderHandler orderDBHandler = new OrderHandler();
+        OrderHandler orderHandler = new OrderHandler();
         StoreHistoryHandler storeHistoryHandler = new StoreHistoryHandler();
         public bool AddIncognito(Product product)
         {
@@ -122,14 +122,18 @@ namespace AmazonWannabe
             }
             return updated;
         }
-        public void check(int amount, int ID, float price, string address)
+        public void check(int amount, int ID, float price, string address,float discount)
         {
             int updated = checkStock(amount, ID);
             if (updated > 0)
             {
                 productDBHandler.updateStock(updated, ID);
-                orderDBHandler.addOrder(price, amount, address, ID);
+                orderHandler.addOrder(price, amount, address, ID,discount);
             }
+        }
+        public void updateOffer(int ID,int Percentage)
+        {
+            productDBHandler.updateDBOffer(ID,Percentage);
         }
     }
 }

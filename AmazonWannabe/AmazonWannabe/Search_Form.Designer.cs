@@ -34,6 +34,7 @@
             this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchItem = new System.Windows.Forms.ComboBox();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,7 +69,8 @@
             this.productsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.productName,
             this.productPrice,
-            this.ID});
+            this.ID,
+            this.Offer});
             this.productsGrid.Location = new System.Drawing.Point(12, 159);
             this.productsGrid.Name = "productsGrid";
             this.productsGrid.ReadOnly = true;
@@ -97,6 +99,13 @@
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // Offer
+            // 
+            this.Offer.HeaderText = "Offer";
+            this.Offer.Name = "Offer";
+            this.Offer.ReadOnly = true;
             // 
             // searchItem
             // 
@@ -343,10 +352,11 @@
         private System.Windows.Forms.Label Term2;
         private System.Windows.Forms.Label Term1;
         private System.Windows.Forms.Label Terms;
+        private System.Windows.Forms.Button adminFormButton;
+        private System.Windows.Forms.Button storeOwnerFormButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn productPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.Button adminFormButton;
-        private System.Windows.Forms.Button storeOwnerFormButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Offer;
     }
 }

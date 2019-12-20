@@ -165,7 +165,8 @@ namespace AmazonWannabe
                                           product.getStockNum() ,
                                           product.getItemName() ,
                                           product.getStoreName() ,
-                                          product.getBrandName());
+                                          product.getBrandName(),
+                                          product.getOffer());
             }
         }
         private void update_history()
@@ -216,6 +217,7 @@ namespace AmazonWannabe
 
         private void ProductViewButton_Click(object sender, EventArgs e)
         {
+            ProductsGridView.Rows.Clear();
             ShowPanel(ProductsPanel);
         }
 
@@ -297,6 +299,21 @@ namespace AmazonWannabe
             }
 
             UpdateLists();
+        }
+
+        private void addButton_Click_1(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = ProductsGridView.CurrentRow;
+            string productID = Convert.ToString(selectedRow.Cells[0].Value);
+            int ID = int.Parse(productID);
+            int percentage = Int32.Parse(offerBox.Text);
+            if (percentage < 0 || percentage > 100)
+            {
+                MessageBox.Show("Please Enter a suitable percentage");
+            }
+            else { 
+                productHandler.updateOffer(ID, percentage);
+            }
         }
     }
 }
