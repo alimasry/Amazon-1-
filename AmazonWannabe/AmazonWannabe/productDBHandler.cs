@@ -62,7 +62,7 @@ namespace AmazonWannabe
         }
         public List<Product> Get()
         {
-            return Get();
+            return Get(null);
         }
         public string GetLatestID()
         {
