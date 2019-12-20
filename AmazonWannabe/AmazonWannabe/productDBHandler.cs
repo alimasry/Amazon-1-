@@ -12,7 +12,7 @@ namespace AmazonWannabe
     {
         private List<Product> Get(string extension = null)
         {
-            string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname FROM product ";
+            string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname, Offer FROM product ";
             if (extension != null)
                 query += "WHERE " + extension;
 
@@ -34,7 +34,8 @@ namespace AmazonWannabe
                                     Convert.ToInt32(reader["stocknum"]),
                                     reader["Storename"].ToString(),
                                     reader["brandname"].ToString(),
-                                    new Item(reader["itemname"].ToString(), 0, 0)));
+                                    new Item(reader["itemname"].ToString(), 0, 0),
+                                    Convert.ToInt32(reader["Offer"])));
                             }
                             catch (SQLiteException e)
                             {
@@ -61,7 +62,7 @@ namespace AmazonWannabe
         }
         public List<Product> Get()
         {
-            return Get();
+            return Get(null);
         }
         public string GetLatestID()
         {
@@ -225,6 +226,26 @@ namespace AmazonWannabe
             }
 
             return updated;
+        }
+        public void updateDBOffer(int ID,int Percentage)
+        {
+            string SQLquery3 = "UPDATE [Product] set Offer =" + Percentage + " where ID=" + ID + "\n";
+            using (SQLiteConnection connection = DBConnection.getConnection())
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Offers Successfully Updated");
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message + "1");
+                    }
+                }
+            }
         }
     }
 }

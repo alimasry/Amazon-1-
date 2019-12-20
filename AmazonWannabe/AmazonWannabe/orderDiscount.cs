@@ -14,7 +14,7 @@ namespace AmazonWannabe
             this.order = order;
         }
 
-        public override float getPrice()
+        public override float getPrice(float discount=0)
         {
             return order.getPrice();
         }

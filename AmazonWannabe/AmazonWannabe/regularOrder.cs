@@ -15,7 +15,7 @@ namespace AmazonWannabe
             this.address = address;
             this.ID = ID;
         }
-        public override float getPrice()
+        public override float getPrice(float discount=0)
         {
             return this.price;
         }

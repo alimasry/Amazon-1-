@@ -12,6 +12,6 @@ namespace AmazonWannabe
         protected int amount;
         protected string address;
         protected int ID;
-        public abstract float getPrice();
+        public abstract float getPrice(float discount=0);
     }
 }

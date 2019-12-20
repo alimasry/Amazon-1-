@@ -14,8 +14,9 @@ namespace AmazonWannabe
         private string storeName;
         private int stockNum;
         private string brandName;
-        //private double rating;
-        public Product(string id , string name , double price , int stockNum , string storeName , string brandName , Item item):base(item)
+        private int Offer;
+        
+        public Product(string id , string name , double price , int stockNum , string storeName , string brandName , Item item,int Offer=0):base(item)
         {
             this.ProductId = id;
             this.ProductName = name;
@@ -23,8 +24,13 @@ namespace AmazonWannabe
             this.stockNum = stockNum;
             this.storeName = storeName;
             this.brandName = brandName;
+            this.Offer = Offer;
         }
 
+        public int getOffer()
+        {
+            return this.Offer;
+        }
         public Product(string name , double price , string storeName , string brandName , Item item):base(item)
         {
             this.ProductId = null;

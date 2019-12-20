@@ -12,7 +12,7 @@ namespace AmazonWannabe
         {
 
         }
-        public override float getPrice()
+        public override float getPrice(float discount=0)
         {
             return order.getPrice() - (order.getPrice() * ((float)10 / (float)100));
         }
