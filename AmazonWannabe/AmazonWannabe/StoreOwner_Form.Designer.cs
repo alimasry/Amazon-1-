@@ -60,6 +60,9 @@
             this.statsView = new System.Windows.Forms.DataGridView();
             this.ProductViewButton = new System.Windows.Forms.Button();
             this.ProductsPanel = new System.Windows.Forms.Panel();
+            this.addButton = new System.Windows.Forms.Button();
+            this.offerBox = new System.Windows.Forms.TextBox();
+            this.Add_Offer = new System.Windows.Forms.Label();
             this.EditLabel = new System.Windows.Forms.LinkLabel();
             this.RemoveLabel = new System.Windows.Forms.LinkLabel();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -73,6 +76,7 @@
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StoreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewHistoryButton = new System.Windows.Forms.Button();
             this.HistoryPanel = new System.Windows.Forms.Panel();
             this.UndoLabel = new System.Windows.Forms.LinkLabel();
@@ -89,10 +93,7 @@
             this.HistoryBrandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryStockNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoryPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Add_Offer = new System.Windows.Forms.Label();
-            this.offerBox = new System.Windows.Forms.TextBox();
-            this.addButton = new System.Windows.Forms.Button();
+            this.addCollabButton = new System.Windows.Forms.Button();
             this.addProductPanel.SuspendLayout();
             this.addStorePanel.SuspendLayout();
             this.statsPanel.SuspendLayout();
@@ -108,7 +109,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 15);
+            this.label1.Size = new System.Drawing.Size(139, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Product Name : ";
             // 
@@ -116,14 +117,14 @@
             // 
             this.nameBox.Location = new System.Drawing.Point(190, 11);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(396, 21);
+            this.nameBox.Size = new System.Drawing.Size(396, 28);
             this.nameBox.TabIndex = 1;
             // 
             // priceBox
             // 
             this.priceBox.Location = new System.Drawing.Point(190, 59);
             this.priceBox.Name = "priceBox";
-            this.priceBox.Size = new System.Drawing.Size(396, 21);
+            this.priceBox.Size = new System.Drawing.Size(396, 28);
             this.priceBox.TabIndex = 3;
             // 
             // label2
@@ -131,7 +132,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 15);
+            this.label2.Size = new System.Drawing.Size(133, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "Product Price : ";
             // 
@@ -140,7 +141,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 188);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 15);
+            this.label3.Size = new System.Drawing.Size(58, 22);
             this.label3.TabIndex = 4;
             this.label3.Text = "Item : ";
             // 
@@ -150,7 +151,7 @@
             this.itemBox.FormattingEnabled = true;
             this.itemBox.Location = new System.Drawing.Point(77, 185);
             this.itemBox.Name = "itemBox";
-            this.itemBox.Size = new System.Drawing.Size(509, 23);
+            this.itemBox.Size = new System.Drawing.Size(509, 30);
             this.itemBox.TabIndex = 5;
             // 
             // addProductButton
@@ -233,7 +234,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(12, 111);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(139, 15);
+            this.label11.Size = new System.Drawing.Size(205, 22);
             this.label11.TabIndex = 18;
             this.label11.Text = "Product Stock Number : ";
             // 
@@ -241,7 +242,7 @@
             // 
             this.stockNumBox.Location = new System.Drawing.Point(190, 108);
             this.stockNumBox.Name = "stockNumBox";
-            this.stockNumBox.Size = new System.Drawing.Size(396, 21);
+            this.stockNumBox.Size = new System.Drawing.Size(396, 28);
             this.stockNumBox.TabIndex = 19;
             // 
             // brandBox
@@ -250,7 +251,7 @@
             this.brandBox.FormattingEnabled = true;
             this.brandBox.Location = new System.Drawing.Point(77, 276);
             this.brandBox.Name = "brandBox";
-            this.brandBox.Size = new System.Drawing.Size(509, 23);
+            this.brandBox.Size = new System.Drawing.Size(509, 30);
             this.brandBox.TabIndex = 17;
             // 
             // label8
@@ -258,7 +259,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 279);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 15);
+            this.label8.Size = new System.Drawing.Size(73, 22);
             this.label8.TabIndex = 16;
             this.label8.Text = "Brand : ";
             // 
@@ -268,7 +269,7 @@
             this.storeBox.FormattingEnabled = true;
             this.storeBox.Location = new System.Drawing.Point(77, 232);
             this.storeBox.Name = "storeBox";
-            this.storeBox.Size = new System.Drawing.Size(509, 23);
+            this.storeBox.Size = new System.Drawing.Size(509, 30);
             this.storeBox.TabIndex = 15;
             // 
             // label4
@@ -276,7 +277,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 235);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 15);
+            this.label4.Size = new System.Drawing.Size(68, 22);
             this.label4.TabIndex = 14;
             this.label4.Text = "Store : ";
             // 
@@ -300,7 +301,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 211);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.Size = new System.Drawing.Size(93, 22);
             this.label7.TabIndex = 19;
             this.label7.Text = "Location : ";
             // 
@@ -308,7 +309,7 @@
             // 
             this.storeLocationBox.Location = new System.Drawing.Point(113, 208);
             this.storeLocationBox.Name = "storeLocationBox";
-            this.storeLocationBox.Size = new System.Drawing.Size(473, 21);
+            this.storeLocationBox.Size = new System.Drawing.Size(473, 28);
             this.storeLocationBox.TabIndex = 20;
             // 
             // label6
@@ -316,7 +317,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 139);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 15);
+            this.label6.Size = new System.Drawing.Size(66, 22);
             this.label6.TabIndex = 17;
             this.label6.Text = "Type : ";
             // 
@@ -324,7 +325,7 @@
             // 
             this.storeTypeBox.Location = new System.Drawing.Point(113, 136);
             this.storeTypeBox.Name = "storeTypeBox";
-            this.storeTypeBox.Size = new System.Drawing.Size(473, 21);
+            this.storeTypeBox.Size = new System.Drawing.Size(473, 28);
             this.storeTypeBox.TabIndex = 18;
             // 
             // label5
@@ -332,7 +333,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 73);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 15);
+            this.label5.Size = new System.Drawing.Size(120, 22);
             this.label5.TabIndex = 14;
             this.label5.Text = "Store Name : ";
             // 
@@ -340,7 +341,7 @@
             // 
             this.storeNameBox.Location = new System.Drawing.Point(113, 70);
             this.storeNameBox.Name = "storeNameBox";
-            this.storeNameBox.Size = new System.Drawing.Size(473, 21);
+            this.storeNameBox.Size = new System.Drawing.Size(473, 28);
             this.storeNameBox.TabIndex = 15;
             // 
             // addStoreButton
@@ -421,12 +422,42 @@
             this.ProductsPanel.Size = new System.Drawing.Size(609, 498);
             this.ProductsPanel.TabIndex = 21;
             // 
+            // addButton
+            // 
+            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addButton.ImageList = this.imageList2;
+            this.addButton.Location = new System.Drawing.Point(315, 456);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(148, 42);
+            this.addButton.TabIndex = 30;
+            this.addButton.Text = "Add Offer";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click_1);
+            // 
+            // offerBox
+            // 
+            this.offerBox.Location = new System.Drawing.Point(113, 468);
+            this.offerBox.Name = "offerBox";
+            this.offerBox.Size = new System.Drawing.Size(100, 28);
+            this.offerBox.TabIndex = 29;
+            // 
+            // Add_Offer
+            // 
+            this.Add_Offer.AutoSize = true;
+            this.Add_Offer.Location = new System.Drawing.Point(7, 468);
+            this.Add_Offer.Name = "Add_Offer";
+            this.Add_Offer.Size = new System.Drawing.Size(128, 22);
+            this.Add_Offer.TabIndex = 28;
+            this.Add_Offer.Text = "Add New Offer";
+            // 
             // EditLabel
             // 
             this.EditLabel.AutoSize = true;
             this.EditLabel.Location = new System.Drawing.Point(502, 425);
             this.EditLabel.Name = "EditLabel";
-            this.EditLabel.Size = new System.Drawing.Size(28, 15);
+            this.EditLabel.Size = new System.Drawing.Size(41, 22);
             this.EditLabel.TabIndex = 27;
             this.EditLabel.TabStop = true;
             this.EditLabel.Text = "Edit";
@@ -437,7 +468,7 @@
             this.RemoveLabel.AutoSize = true;
             this.RemoveLabel.Location = new System.Drawing.Point(541, 425);
             this.RemoveLabel.Name = "RemoveLabel";
-            this.RemoveLabel.Size = new System.Drawing.Size(53, 15);
+            this.RemoveLabel.Size = new System.Drawing.Size(76, 22);
             this.RemoveLabel.TabIndex = 23;
             this.RemoveLabel.TabStop = true;
             this.RemoveLabel.Text = "Remove";
@@ -462,7 +493,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(4, 438);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 15);
+            this.label9.Size = new System.Drawing.Size(68, 22);
             this.label9.TabIndex = 2;
             this.label9.Text = "Store : ";
             // 
@@ -472,7 +503,7 @@
             this.storeBox2.FormattingEnabled = true;
             this.storeBox2.Location = new System.Drawing.Point(66, 435);
             this.storeBox2.Name = "storeBox2";
-            this.storeBox2.Size = new System.Drawing.Size(163, 23);
+            this.storeBox2.Size = new System.Drawing.Size(163, 30);
             this.storeBox2.TabIndex = 1;
             // 
             // ProductsGridView
@@ -554,6 +585,12 @@
             this.BrandName.ReadOnly = true;
             this.BrandName.Width = 92;
             // 
+            // Offer
+            // 
+            this.Offer.HeaderText = "Offer";
+            this.Offer.Name = "Offer";
+            this.Offer.ReadOnly = true;
+            // 
             // ViewHistoryButton
             // 
             this.ViewHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -585,7 +622,7 @@
             this.UndoLabel.AutoSize = true;
             this.UndoLabel.Location = new System.Drawing.Point(561, 425);
             this.UndoLabel.Name = "UndoLabel";
-            this.UndoLabel.Size = new System.Drawing.Size(37, 15);
+            this.UndoLabel.Size = new System.Drawing.Size(53, 22);
             this.UndoLabel.TabIndex = 25;
             this.UndoLabel.TabStop = true;
             this.UndoLabel.Text = "Undo";
@@ -610,7 +647,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(4, 435);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 15);
+            this.label10.Size = new System.Drawing.Size(68, 22);
             this.label10.TabIndex = 4;
             this.label10.Text = "Store : ";
             // 
@@ -620,7 +657,7 @@
             this.storeBox3.FormattingEnabled = true;
             this.storeBox3.Location = new System.Drawing.Point(66, 432);
             this.storeBox3.Name = "storeBox3";
-            this.storeBox3.Size = new System.Drawing.Size(163, 23);
+            this.storeBox3.Size = new System.Drawing.Size(163, 30);
             this.storeBox3.TabIndex = 3;
             // 
             // HistoryGridView
@@ -722,48 +759,27 @@
             this.HistoryPrice.ReadOnly = true;
             this.HistoryPrice.Width = 79;
             // 
-            // Offer
+            // addCollabButton
             // 
-            this.Offer.HeaderText = "Offer";
-            this.Offer.Name = "Offer";
-            this.Offer.ReadOnly = true;
-            // 
-            // Add_Offer
-            // 
-            this.Add_Offer.AutoSize = true;
-            this.Add_Offer.Location = new System.Drawing.Point(7, 468);
-            this.Add_Offer.Name = "Add_Offer";
-            this.Add_Offer.Size = new System.Drawing.Size(85, 15);
-            this.Add_Offer.TabIndex = 28;
-            this.Add_Offer.Text = "Add New Offer";
-            // 
-            // offerBox
-            // 
-            this.offerBox.Location = new System.Drawing.Point(113, 468);
-            this.offerBox.Name = "offerBox";
-            this.offerBox.Size = new System.Drawing.Size(100, 21);
-            this.offerBox.TabIndex = 29;
-            // 
-            // addButton
-            // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addButton.ImageList = this.imageList2;
-            this.addButton.Location = new System.Drawing.Point(315, 456);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(148, 42);
-            this.addButton.TabIndex = 30;
-            this.addButton.Text = "Add Offer";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click_1);
+            this.addCollabButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addCollabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addCollabButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addCollabButton.ImageList = this.imageList2;
+            this.addCollabButton.Location = new System.Drawing.Point(9, 252);
+            this.addCollabButton.Name = "addCollabButton";
+            this.addCollabButton.Size = new System.Drawing.Size(190, 42);
+            this.addCollabButton.TabIndex = 24;
+            this.addCollabButton.Text = "add Collaborator";
+            this.addCollabButton.UseVisualStyleBackColor = true;
+            this.addCollabButton.Click += new System.EventHandler(this.addCollabButton_Click);
             // 
             // StoreOwner_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(825, 519);
+            this.Controls.Add(this.addCollabButton);
             this.Controls.Add(this.ViewHistoryButton);
             this.Controls.Add(this.ProductViewButton);
             this.Controls.Add(this.StatsViewButton);
@@ -858,5 +874,6 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.TextBox offerBox;
         private System.Windows.Forms.Label Add_Offer;
+        private System.Windows.Forms.Button addCollabButton;
     }
 }

@@ -85,6 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddAction.cs" />
+    <Compile Include="AddCollaborator_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCollaborator_Form.Designer.cs">
+      <DependentUpon>AddCollaborator_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrator.cs" />
     <Compile Include="Administrator_Form.cs">
       <SubType>Form</SubType>
@@ -100,6 +106,8 @@
     </Compile>
     <Compile Include="Brand.cs" />
     <Compile Include="BrandHandler.cs" />
+    <Compile Include="Collaborator.cs" />
+    <Compile Include="CollaboratorDBHandler.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="EditAction.cs" />
     <Compile Include="Edit_Product.cs">
@@ -162,6 +170,9 @@
     <Compile Include="ViewItem.Designer.cs">
       <DependentUpon>ViewItem.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCollaborator_Form.resx">
+      <DependentUpon>AddCollaborator_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrator_Form.resx">
       <DependentUpon>Administrator_Form.cs</DependentUpon>
     </EmbeddedResource>

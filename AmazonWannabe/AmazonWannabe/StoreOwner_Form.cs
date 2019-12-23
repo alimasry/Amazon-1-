@@ -118,6 +118,7 @@ namespace AmazonWannabe
             addStorePanel.Visible = false;
             statsPanel.Visible = false;
             addProductPanel.Visible = true;
+            addProductPanel.BringToFront();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -125,6 +126,7 @@ namespace AmazonWannabe
             addStorePanel.Visible = true;
             statsPanel.Visible = false;
             addProductPanel.Visible = false;
+            addStorePanel.BringToFront();
         }
         private void ShowPanel(Panel p)
         {
@@ -304,6 +306,8 @@ namespace AmazonWannabe
         private void addButton_Click_1(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = ProductsGridView.CurrentRow;
+            if (selectedRow == null)
+                return;
             string productID = Convert.ToString(selectedRow.Cells[0].Value);
             int ID = int.Parse(productID);
             int percentage = Int32.Parse(offerBox.Text);
@@ -314,6 +318,13 @@ namespace AmazonWannabe
             else { 
                 productHandler.updateOffer(ID, percentage);
             }
+        }
+
+        private void addCollabButton_Click(object sender, EventArgs e)
+        {
+            AddCollaborator_Form addForm = new AddCollaborator_Form();
+            addForm.ShowDialog();
+            addForm.Dispose();
         }
     }
 }

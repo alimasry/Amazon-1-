@@ -59,11 +59,11 @@ namespace AmazonWannabe
             return true;
         }
 
-        public List<Store> Get(string email , string name = null)
+        public List<Store> Get(string email , string name = null, bool ownedOnly = false)
         {
-            string query = "SELECT * FROM store ";
+            string query = "SELECT * FROM store WHERE email = '" + email + "'";
             if (name != null)
-                query += "WHERE NAME = " + name;
+                query += "WHERE NAME = '" + name + "'";
             List<Store> ret = new List<Store>();
             using (SQLiteConnection connection = DBConnection.getConnection())
             {
@@ -80,6 +80,31 @@ namespace AmazonWannabe
                                     reader["approved"].ToString(), reader["name"].ToString(),
                                     reader["location"].ToString(), reader["type"].ToString(),
                                     Int32.Parse(reader["userviews"].ToString())));
+                        }
+                    }
+                }
+            }
+
+            if (!ownedOnly)
+            {
+                query = "Select * FROM store INNER JOIN collaborator on " +
+                    "store.name = collaborator.store where collaborator.email = '" + email + "'";
+                using (SQLiteConnection connection = DBConnection.getConnection())
+                {
+                    connection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                ret.Add(new Store(reader["email"].ToString(),
+                                        Int32.Parse(reader["soldNum"].ToString()),
+                                        reader["approved"].ToString(), reader["name"].ToString(),
+                                        reader["location"].ToString(), reader["type"].ToString(),
+                                        Int32.Parse(reader["userviews"].ToString())));
+                            }
                         }
                     }
                 }

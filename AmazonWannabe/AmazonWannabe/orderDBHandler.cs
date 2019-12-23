@@ -35,9 +35,7 @@ namespace AmazonWannabe
                         return 0;
                     }
                 }
-                connection.Close();
             }
-            //return 0;
         }
         public void addOrderDB(float totalPrice, int amount, string address, int ID)
         {
