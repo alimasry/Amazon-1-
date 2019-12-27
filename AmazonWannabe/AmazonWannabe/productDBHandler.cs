@@ -8,87 +8,90 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class ProductDBHandler
+    static class ProductDBHandler
     {
-        private List<Product> Get(string extension = null)
+        private static List<Product> Get(string extension = null)
         {
             string query = "SELECT ID , name , price , stocknum , itemname , storename , brandname, Offer FROM product ";
             if (extension != null)
                 query += "WHERE " + extension;
 
             List<Product> ret = new List<Product>();
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        try
                         {
-                            try
-                            {
-                                ret.Add(new Product(reader["id"].ToString(),
-                                    reader["name"].ToString(),
-                                    Convert.ToDouble(reader["price"]),
-                                    Convert.ToInt32(reader["stocknum"]),
-                                    reader["Storename"].ToString(),
-                                    reader["brandname"].ToString(),
-                                    new Item(reader["itemname"].ToString(), 0, 0),
-                                    Convert.ToInt32(reader["Offer"])));
-                            }
-                            catch (SQLiteException e)
-                            {
-                                MessageBox.Show(e.Message);
-                            }
+                            ret.Add(new Product(reader["id"].ToString(),
+                                reader["name"].ToString(),
+                                Convert.ToDouble(reader["price"]),
+                                Convert.ToInt32(reader["stocknum"]),
+                                reader["Storename"].ToString(),
+                                reader["brandname"].ToString(),
+                                new Item(reader["itemname"].ToString(), 0, 0),
+                                Convert.ToInt32(reader["Offer"])));
+                        }
+                        catch (SQLiteException e)
+                        {
+                            MessageBox.Show(e.Message);
                         }
                     }
                 }
             }
+
             return ret;
         }
-        public List<Product> GetByName(string name)
+
+        public static List<Product> GetByName(string name)
         {
             return Get("NAME = '" + name + "'");
         }
-        public List<Product> GetByStoreName(string storeName)
+
+        public static List<Product> GetByStoreName(string storeName)
         {
             return Get("STORENAME = '" + storeName + "'");
         }
-        public Product GetByID(string id)
+
+        public static Product GetByID(string id)
         {
             List<Product> product = Get("ID = " + id);
             return product[0];
         }
-        public List<Product> Get()
+
+        public static List<Product> Get()
         {
             return Get(null);
         }
-        public string GetLatestID()
+
+        public static string GetLatestID()
         {
             string query = "SELECT MAX(ID) FROM PRODUCT";
             string ret;
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        ret = command.ExecuteScalar().ToString();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        return null;
-                    }
+                    ret = command.ExecuteScalar().ToString();
+                }
+                catch (SQLiteException)
+                {
+                    return null;
                 }
             }
 
             return ret;
 
         }
-        public bool Add(Product product)
+
+        public static bool Add(Product product)
         {
             string name = product.getName().Replace("'", "''");
             double price = product.getPrice();
@@ -98,48 +101,46 @@ namespace AmazonWannabe
             int stockNum = product.getStockNum();
             string addQuery = "INSERT INTO PRODUCT(NAME , PRICE , ITEMNAME, STORENAME , BRANDNAME , STOCKNUM)" +
                               "VALUES('" + name + "' , " + price + " , '" + itemName + "' , '" + store + "' , '" + brand + "'," + stockNum + ")";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(addQuery, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message);
+                    return false;
                 }
             }
 
             return true;
         }
-        public bool Delete(string productId)
+
+        public static bool Delete(string productId)
         {
             string query = "DELETE FROM PRODUCT WHERE ID = " + productId;
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException)
-                    {
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
+                {
+                    return false;
                 }
             }
 
             return true;
         }
-        public bool Update(Product product)
+
+        public static bool Update(Product product)
         {
             string name = product.getName().Replace("'", "''");
             double price = product.getPrice();
@@ -156,94 +157,88 @@ namespace AmazonWannabe
                            "STORENAME = '" + storeName + "'," +
                            "BRANDNAME = '" + brandName + "' " +
                            "WHERE ID = " + product.getId();
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message);
+                    return false;
                 }
             }
 
             return true;
         }
-        public int checkStock(int ID)
+
+        public static int checkStock(int ID)
         {
             int updated;
             string SQLquery2 = "Select StockNum from [Product] where ID='" + ID + "'\n";
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(SQLquery2, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(SQLquery2, connection))
+                try
                 {
-                    try
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        using (SQLiteDataReader reader = command.ExecuteReader())
-                        {
-                            reader.Read();
-                            updated = reader.GetInt32(0);
-                            reader.Close();
-                        }
+                        reader.Read();
+                        updated = reader.GetInt32(0);
+                        reader.Close();
                     }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return -1;
-                    }
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message);
+                    return -1;
                 }
             }
 
             return updated;
         }
 
-        public int updateStock(int updated, int ID)
+        public static int updateStock(int updated, int ID)
         {
             string SQLquery3 = "UPDATE [Product] set StockNum =" + updated + " where ID=" + ID + "\n";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message + "1");
-                        return 0;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message + "1");
+                    return 0;
                 }
             }
 
             return updated;
         }
-        public void updateDBOffer(int ID,int Percentage)
+
+        public static void updateDBOffer(int ID,int Percentage)
         {
             string SQLquery3 = "UPDATE [Product] set Offer =" + Percentage + " where ID=" + ID + "\n";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(SQLquery3, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Offers Successfully Updated");
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message + "1");
-                    }
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Offers Successfully Updated");
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message + "1");
                 }
             }
         }

@@ -25,8 +25,7 @@ namespace AmazonWannabe
             if (item == null || item.getMinPrice() > item.getMaxPrice())
                 return false;
 
-            ItemHandler itemHandler = new ItemHandler();
-            if (!itemHandler.addItem(item))
+            if (!ItemDBHandler.Add(item))
                 return false;
 
 
@@ -37,8 +36,7 @@ namespace AmazonWannabe
             if (brand == null || brand.getBrandName() == "" || brand.getBrandCategory() == "")
                 return false;
 
-            BrandHandler brandHandler = new BrandHandler();
-            if (!brandHandler.addBrand(brand))
+            if (!BrandDBHandler.Add(brand))
                 return false;
 
             return true;

@@ -9,20 +9,19 @@ namespace AmazonWannabe
 {
     class StoreHistoryHandler
     {
-        StoreHistoryDBHandler handler = new StoreHistoryDBHandler();
         public bool Add(StoreHistory storeHistory)
         {
-            return handler.Add(storeHistory);
+            return StoreHistoryDBHandler.Add(storeHistory);
         }
 
         public bool Delete(string ID)
         {
-            return handler.Delete(ID);
+            return StoreHistoryDBHandler.Delete(ID);
         }
 
         public List<StoreHistory> Get(string name)
         {
-            return handler.Get(name);
+            return StoreHistoryDBHandler.Get(name);
         }
 
         public bool UndoChange(StoreHistory storeHistory)

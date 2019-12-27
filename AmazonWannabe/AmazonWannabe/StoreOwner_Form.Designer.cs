@@ -864,7 +864,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoryPrice;
         private System.Windows.Forms.LinkLabel EditLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn StockNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;

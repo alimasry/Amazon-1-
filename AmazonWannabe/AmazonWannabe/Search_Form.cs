@@ -14,26 +14,31 @@ namespace AmazonWannabe
     public partial class Search_Form : Form
     {
         FormEditor editor = new FormEditor();
-        ItemHandler itemHandler = new ItemHandler();
         ProductHandler productHandler = new ProductHandler();
         List<Item> items = new List<Item>();
         OrderHandler order = new OrderHandler();
-        public Search_Form(string type)
+        Form toolsForm;
+
+        public Search_Form()
         {
             InitializeComponent();
             editor.EditButtons(this);
             Confirm_panel.Visible = false;
-            items = itemHandler.Get();
+            items = ItemDBHandler.Get();
             foreach (Item s in items)
             {
                 searchItem.Items.Add(s.getItemName());
             }
 
-            // TODO: make code below better
-            if (type != "Administrator")
-                adminFormButton.Visible = false;
-            if (type != "Store Owner")
-                storeOwnerFormButton.Visible = false;
+            string type = CredentialHandler.getCurrentUser().getType();
+
+            if (type == "Customer")
+                toolsButton.Visible = false;
+            else if (type == "Administrator")
+                toolsForm = new Administrator_Form();
+            else if (type == "Store Owner")
+                toolsForm = new StoreOwner_Form();
+             
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -118,9 +123,8 @@ namespace AmazonWannabe
 
         private void AdminFormButton_Click(object sender, EventArgs e)
         {
-            Administrator_Form adminForm = new Administrator_Form();
-            adminForm.ShowDialog();
-            adminForm.Dispose();
+            toolsForm.ShowDialog();
+            toolsForm.Dispose();
         }
 
         private void storeOwnerFormButton_Click(object sender, EventArgs e)

@@ -12,7 +12,6 @@ namespace AmazonWannabe
 {
     public partial class ViewItem : Form
     {
-        private StoreHandler storeHandler = new StoreHandler();
         private Product product;
         public ViewItem(Product product)
         {
@@ -25,7 +24,7 @@ namespace AmazonWannabe
             ProductName.Text = product.getName();
             ProductPrice.Text = product.getPrice().ToString();
             StoreName.Text = product.getStoreName();
-            storeHandler.addUserView(product.getStoreName());
+            StoreDBHandler.addUserView(product.getStoreName());
         }
     }
 }

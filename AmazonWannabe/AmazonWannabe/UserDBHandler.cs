@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class UserDBHandler
+    static class UserDBHandler
     {
-        public bool Insert(object user)
+        public static bool Add(object user)
         {
             UserInfo userInfo = (UserInfo)user;
             string email = userInfo.getEmail().Replace("'", "''");
@@ -18,46 +18,42 @@ namespace AmazonWannabe
             string username = userInfo.getUsername().Replace("'", "''");
             string type = userInfo.getType().Replace("'", "''");
 
-            string query = "INSERT INTO [USER INFO](email, password, username , type) VALUES ('" + email + "','" +
+            string query = "INSERT INTO [USER INFO](EMAIL, PASSWORD, USERNAME, TYPE) VALUES ('" + email + "','" +
                 password + "','" + username + "','" + type + "')";
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message);
+                    return false;
                 }
             }
 
             query = "INSERT INTO [" + type + "] VALUES('" + email + "')";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException)
-                    {
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
+                {
+                    return false;
                 }
             }
+
             return true;
         }
 
-        public Object Get(object user)
+        public static object Get(object user)
         {
             UserInfo userInfo = (UserInfo)user;
 
@@ -68,22 +64,20 @@ namespace AmazonWannabe
                                     "WHERE EMAIL = '" + email.Replace("'", "''") + "'\n" +
                                     "and PASSWORD = '" + password.Replace("'", "''") + "'\n";
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(queryCheckUser, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(queryCheckUser, connection))
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            string type = reader["TYPE"].ToString();
-                            string username = reader["USERNAME"].ToString();
-                            return new UserInfo(email, password, username, type);
-                        }
-                        else
-                            return null;
+                        string type = reader["TYPE"].ToString();
+                        string username = reader["USERNAME"].ToString();
+                        return new UserInfo(email, password, username, type);
                     }
+                    else
+                        return null;
                 }
             }
         }

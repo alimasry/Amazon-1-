@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    public abstract class CredentialHandler
+    public static class CredentialHandler
     {
         private static UserInfo currentUser = null;
 
@@ -16,16 +16,15 @@ namespace AmazonWannabe
         {
             if (password != confirmPassword)
                 return false;
-            UserDBHandler userDBHandler = new UserDBHandler();
+            
             UserInfo newUser = new UserInfo(email, username, password, type);
-            return userDBHandler.Insert(newUser);
+            return UserDBHandler.Add(newUser);
         }
 
         static public bool login(string email, string password)
         {
-            UserDBHandler userDBHandler = new UserDBHandler();
             UserInfo userInfo = new UserInfo(email, null, password, null);
-            currentUser = (UserInfo)userDBHandler.Get(userInfo);
+            currentUser = (UserInfo)UserDBHandler.Get(userInfo);
             return currentUser != null;
         }
 

@@ -7,15 +7,20 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class DBConnection
+    static class DBConnection
     {
         public const string connectionString = @"Data Source=..\..\database.sqlite3";
 
-        private DBConnection() { }
+        private static SQLiteConnection connection = null;
 
         public static SQLiteConnection getConnection()
         {
-            return new SQLiteConnection(connectionString);
+            if (connection == null)
+            {
+                connection = new SQLiteConnection(connectionString);
+                connection.Open();
+            }
+            return connection;
         }
     }
 }

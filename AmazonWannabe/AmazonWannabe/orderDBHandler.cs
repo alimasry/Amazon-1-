@@ -8,56 +8,53 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class OrderDBHandler
+    static class OrderDBHandler
     {
-        public int checkTotal(string userEmail)
+        public static int checkTotal(string userEmail)
         {
             int ret;
-            string SQLquery = "SELECT COUNT(OrderID) FROM [Order] WHERE userEmail='" + userEmail + "'";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            string SQLquery = "SELECT COUNT(OrderID) FROM [Order] WHERE USEREMAIL='" + userEmail + "'";
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using(SQLiteCommand command=new SQLiteCommand(SQLquery, connection))
             {
-                connection.Open();
-                using(SQLiteCommand command=new SQLiteCommand(SQLquery, connection))
+                try
                 {
-                    try
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        using (SQLiteDataReader reader = command.ExecuteReader())
-                        {
-                            reader.Read();
-                            ret = reader.GetInt32(0);
-                            reader.Close();
-                            return ret;
-                        }
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return 0;
+                        reader.Read();
+                        ret = reader.GetInt32(0);
+                        reader.Close();
+                        return ret;
                     }
                 }
+                catch (SQLiteException)
+                {
+                    return 0;
+                }
             }
+            
         }
-        public void addOrderDB(float totalPrice, int amount, string address, int ID)
+        public static void Add(float totalPrice, int amount, string address, int ID)
         {
             string userEmail = CredentialHandler.getCurrentUser().getEmail();
-            string SQLquery = "insert into [Order]( Price, Amount , Address , productID , userEmail )\n" +
-                                 "values(" + totalPrice + " , " + amount + " , '" + address + "' , " + ID + " , '" + userEmail + "')";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            string SQLquery = "INSERT INTO [Order]( PRICE, AMOUNT , ADDRESS , PRODUCTID , USEREMAIL )\n" +
+                                 "VALUES(" + totalPrice + " , " + amount + " , '" + address + "' , " + ID + " , '" + userEmail + "')";
+
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(SQLquery, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(SQLquery, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
+                {
+                    return;
                 }
             }
+            
         }
     }
 }

@@ -37,7 +37,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.addButton = new System.Windows.Forms.Button();
             this.view_pending = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pendingStoresPanel = new System.Windows.Forms.Panel();
             this.Close = new System.Windows.Forms.Button();
             this.Approve = new System.Windows.Forms.Button();
             this.StoresGridView = new System.Windows.Forms.DataGridView();
@@ -52,7 +52,7 @@
             this.Add_Brand = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.addStatsButton = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.pendingStoresPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StoresGridView)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -136,13 +136,13 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.Close);
-            this.panel1.Controls.Add(this.Approve);
-            this.panel1.Controls.Add(this.StoresGridView);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(579, 359);
-            this.panel1.TabIndex = 15;
+            this.pendingStoresPanel.Controls.Add(this.Close);
+            this.pendingStoresPanel.Controls.Add(this.Approve);
+            this.pendingStoresPanel.Controls.Add(this.StoresGridView);
+            this.pendingStoresPanel.Location = new System.Drawing.Point(12, 12);
+            this.pendingStoresPanel.Name = "panel1";
+            this.pendingStoresPanel.Size = new System.Drawing.Size(579, 359);
+            this.pendingStoresPanel.TabIndex = 15;
             // 
             // Close
             // 
@@ -320,12 +320,12 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameBox);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pendingStoresPanel);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Administrator_Form";
             this.Text = "Administrative Tools";
-            this.panel1.ResumeLayout(false);
+            this.pendingStoresPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.StoresGridView)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -343,7 +343,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button view_pending;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pendingStoresPanel;
         private new System.Windows.Forms.Button Close;
         private System.Windows.Forms.Button Approve;
         private System.Windows.Forms.DataGridView StoresGridView;

@@ -8,27 +8,26 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class CollaboratorDBHandler
+    static class CollaboratorDBHandler
     {
         public static bool Add(string email, string storeName)
         {
             string query = "INSERT INTO COLLABORATOR(EMAIL, STORE) VALUES('" + email + "', '" + storeName + "')";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch(SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch(SQLiteException e)
+                {
+                    MessageBox.Show(e.Message);
+                    return false;
                 }
             }
+            
             return true;
         }
     }

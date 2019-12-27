@@ -20,13 +20,13 @@ namespace AmazonWannabe
             string brandName = storeHistory.BrandName;
             string itemName = storeHistory.ItemName;
 
-            ItemHandler itemHandler = new ItemHandler();
-            Item item = itemHandler.GetByName(itemName);
+            Item item = ItemDBHandler.GetByName(itemName);
 
             Product product = new Product(productId, name, price, stockNum, storeName, brandName, item);
 
             if (!productHandler.UpdateIncognito(product))
                 return false;
+
             StoreHistoryHandler storeHistoryHandler = new StoreHistoryHandler();
             storeHistoryHandler.Delete(storeHistory.Id);
 

@@ -15,10 +15,6 @@ namespace AmazonWannabe
     {
         FormEditor editor = new FormEditor();
         ProductHandler productHandler = new ProductHandler();
-        ItemHandler itemHandler = new ItemHandler();
-        StoreHandler storeHandler = new StoreHandler();
-        BrandHandler brandHandler = new BrandHandler();
-        QueryHandler queryHandler = new QueryHandler();
         StoreHistoryHandler historyHandler = new StoreHistoryHandler();
 
         List<Item> items;
@@ -33,9 +29,9 @@ namespace AmazonWannabe
         {
             InitializeComponent();
             editor.EditButtons(this);
-            items = itemHandler.Get();
-            stores = storeHandler.Get(email);
-            brands = brandHandler.Get();
+            items = ItemDBHandler.Get();
+            stores = StoreDBHandler.Get(email);
+            brands = BrandDBHandler.Get();
 
             addProductPanel.BringToFront();
 
@@ -106,7 +102,7 @@ namespace AmazonWannabe
             string location = storeLocationBox.Text;
 
             Store store = new Store(email, name, location, type);
-            if (!storeHandler.Add(store))
+            if (!StoreDBHandler.Add(store))
             {
                 MessageBox.Show("Could not add store.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -115,19 +111,14 @@ namespace AmazonWannabe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            addStorePanel.Visible = false;
-            statsPanel.Visible = false;
-            addProductPanel.Visible = true;
-            addProductPanel.BringToFront();
+            ShowPanel(addProductPanel);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            addStorePanel.Visible = true;
-            statsPanel.Visible = false;
-            addProductPanel.Visible = false;
-            addStorePanel.BringToFront();
+            ShowPanel(addStorePanel);
         }
+
         private void ShowPanel(Panel p)
         {
             foreach (Control c in Controls.OfType<Panel>())
@@ -136,15 +127,16 @@ namespace AmazonWannabe
             }
             p.Visible = true;
         }
+
         private void update_stats()
         { 
-            List<object[]> queries = queryHandler.getQueries();
+            List<object[]> queries = Query.Get();
 
             statsView.Rows.Clear();
 
-            foreach (object[] query in queries) {
+            foreach (object[] query in queries)
                 statsView.Rows.Add(query);
-            }
+
             statsView.Refresh();
         }
         private void update_products()

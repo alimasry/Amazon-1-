@@ -9,7 +9,6 @@ namespace AmazonWannabe
 {
     class OrderHandler
     {
-        private OrderDBHandler orderDB = new OrderDBHandler();
         public void addOrder(float price, int amount, string address, int ID,float discount)
         {
             float totalPrice = (float)price * (float)amount;
@@ -27,7 +26,7 @@ namespace AmazonWannabe
                 order = new TwoDiscount(order);
                 MessageBox.Show(order.getPrice().ToString());
             }
-            totalOrders = orderDB.checkTotal(CredentialHandler.getCurrentUser().getEmail());
+            totalOrders = OrderDBHandler.checkTotal(CredentialHandler.getCurrentUser().getEmail());
             if (totalOrders == 0)
             {
                 order = new FirstDiscount(order);
@@ -36,7 +35,7 @@ namespace AmazonWannabe
             order = new OfferDiscount(order);
             float finalPrice = order.getPrice(discount);
             MessageBox.Show("Offer Discount:"+finalPrice.ToString());
-            orderDB.addOrderDB(finalPrice, amount, address, ID);
+            OrderDBHandler.Add(finalPrice, amount, address, ID);
             MessageBox.Show("Order successfully added");
         }
     }

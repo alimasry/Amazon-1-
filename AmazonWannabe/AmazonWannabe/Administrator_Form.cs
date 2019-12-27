@@ -13,9 +13,9 @@ namespace AmazonWannabe
 {
     public partial class Administrator_Form : Form
     {
-        ItemHandler itemHandler = new ItemHandler();
         FormEditor editor = new FormEditor();
         Administrator admin;
+
         public Administrator_Form()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace AmazonWannabe
             admin = new Administrator(CredentialHandler.getCurrentUser());
 
             editor.EditButtons(this);
-            panel1.Visible = false;
+            pendingStoresPanel.Visible = false;
             panel2.Visible = false;
         }
 
@@ -39,30 +39,12 @@ namespace AmazonWannabe
         }
 
         private void ViewPendingButton_Click(object sender, EventArgs e)
-        {
-            SQLiteDataAdapter adapter;
-            DataSet ds = new DataSet();
-            using (SQLiteConnection connection = DBConnection.getConnection())
-            {
-                connection.Open();
-                string SQLquery = "SELECT * FROM Store Where Approved=0";
-                using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
-                {
-                    try
-                    {
-                        adapter = new SQLiteDataAdapter(SQLcommand);
-                        adapter.Fill(ds);
-                        StoresGridView.DataSource = ds.Tables[0];
-                        panel1.BringToFront();
-                        panel1.Visible = true;
-                    }
-                    catch (SQLiteException)
-                    {
-                        MessageBox.Show("Error");
-                        return;
-                    }
-                }
-            }
+        {   
+           if (StoreDBHandler.GetPending() != null)
+                StoresGridView.DataSource = StoreDBHandler.GetPending();
+
+            pendingStoresPanel.BringToFront();
+            pendingStoresPanel.Visible = true;
         }
 
         private void Close_Click(object sender, EventArgs e)
@@ -74,28 +56,14 @@ namespace AmazonWannabe
         {
             DataGridViewRow selectedRow = StoresGridView.CurrentRow;
             string StoreName = Convert.ToString(selectedRow.Cells[0].Value);
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            
+            if (StoreName != null)
             {
-                connection.Open();
-                string SQLquery = "UPDATE Store SET Approved=1 where Name='" + StoreName + "'";
-                if (StoreName != null)
-                {
-                    using (SQLiteCommand SQLcommand = new SQLiteCommand(SQLquery, connection))
-                    {
-                        try
-                        {
-                            SQLcommand.ExecuteNonQuery();
-                        }
-                        catch (SQLiteException ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            return;
-                        }
-                    }
-                }
-                else
-                    MessageBox.Show("Please select a specific row");
+                StoreDBHandler.Approve(StoreName);
             }
+            else
+                MessageBox.Show("Please select a specific row");
+            
         }
 
         private void closeButton2_Click(object sender, EventArgs e)

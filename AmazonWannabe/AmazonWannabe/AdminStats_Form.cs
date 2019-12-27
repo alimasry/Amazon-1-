@@ -26,12 +26,15 @@ namespace AmazonWannabe
         {
             if (name == "" || type == "" || field == "")
             {
-                MessageBox.Show("Cannot add query.");
+                MessageBox.Show("Cannot Add Query.");
                 return;
             }
 
-            QueryHandler queryHandler = new QueryHandler();
-            queryHandler.addQuery(name, type, field);
+            if (QueryDBHandler.addQuery(name, type, field))
+                MessageBox.Show("Query Added Successfully.");
+            else
+                MessageBox.Show("Cannot Add Query.");
+
         }
     }
 }

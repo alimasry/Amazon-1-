@@ -105,7 +105,7 @@
       <DependentUpon>AdminStats_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Brand.cs" />
-    <Compile Include="BrandHandler.cs" />
+    <Compile Include="BrandDBHandler.cs" />
     <Compile Include="Collaborator.cs" />
     <Compile Include="CollaboratorDBHandler.cs" />
     <Compile Include="Customer.cs" />
@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="IAction.cs" />
     <Compile Include="OfferDiscount.cs" />
+    <Compile Include="Query.cs" />
     <Compile Include="RemoveAction.cs" />
     <Compile Include="StoreHistory.cs" />
     <Compile Include="StoreHistoryDBHandler.cs" />
@@ -135,7 +136,7 @@
     <Compile Include="DBConnection.cs" />
     <Compile Include="FormEditor.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ItemHandler.cs" />
+    <Compile Include="ItemDBHandler.cs" />
     <Compile Include="Login_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,7 +144,7 @@
       <DependentUpon>Login_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductHandler.cs" />
-    <Compile Include="QueryHandler.cs" />
+    <Compile Include="QueryDBHandler.cs" />
     <Compile Include="Search_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,7 +155,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store.cs" />
-    <Compile Include="StoreHandler.cs" />
+    <Compile Include="StoreDBHandler.cs" />
     <Compile Include="StoreOwner.cs" />
     <Compile Include="StoreOwner_Form.cs">
       <SubType>Form</SubType>

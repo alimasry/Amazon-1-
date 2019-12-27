@@ -20,8 +20,7 @@ namespace AmazonWannabe
             string brandName = storeHistory.BrandName;
             string itemName = storeHistory.ItemName;
 
-            ItemHandler itemHandler = new ItemHandler();
-            Item item = itemHandler.GetByName(itemName);
+            Item item = ItemDBHandler.GetByName(itemName);
 
             Product product = new Product(productId, name, price, stockNum, storeName, brandName, item);
 

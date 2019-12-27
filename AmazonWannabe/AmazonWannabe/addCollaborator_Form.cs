@@ -23,8 +23,7 @@ namespace AmazonWannabe
         {
             string email = CredentialHandler.getCurrentUser().getEmail();
 
-            StoreHandler storeHandler = new StoreHandler();
-            List<Store> stores = storeHandler.Get(email);
+            List<Store> stores = StoreDBHandler.Get(email);
 
             foreach (Store store in stores)
                 collaboratorStores.Items.Add(store.getStoreName());

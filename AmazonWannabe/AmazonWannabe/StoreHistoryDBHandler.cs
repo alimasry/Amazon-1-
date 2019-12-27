@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace AmazonWannabe
 {
-    class StoreHistoryDBHandler
+    static class StoreHistoryDBHandler
     {
-        public bool Add(StoreHistory storeHistory)
+        public static bool Add(StoreHistory storeHistory)
         {
             string name = storeHistory.StoreName;
             string productName = storeHistory.ProductName;
@@ -32,82 +32,77 @@ namespace AmazonWannabe
                            "'" + brandName + "'," +
                            "" + stockNum + "," +
                            "" + price + ")";
-            using (SQLiteConnection connection = DBConnection.getConnection())
+
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query , connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query , connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException e)
-                    {
-                        MessageBox.Show(e.Message);
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException e)
+                {
+                    MessageBox.Show(e.Message);
+                    return false;
                 }
             }
             
             return true;
         }
 
-        public bool Delete(string ID)
+        public static bool Delete(string ID)
         {
             string query = "DELETE FROM [STORE HISTORY] WHERE ID = " + ID;
 
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SQLiteException)
-                    {
-                        return false;
-                    }
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException)
+                {
+                    return false;
                 }
             }
 
             return true;
         }
-        public List<StoreHistory> Get(string name)
+        public static List<StoreHistory> Get(string name)
         {
             string query = "SELECT * FROM [STORE HISTORY] WHERE STORENAME = '" + name + "'";
             List<StoreHistory> ret = new List<StoreHistory>();
-            using (SQLiteConnection connection = DBConnection.getConnection())
+            SQLiteConnection connection = DBConnection.getConnection();
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        try
                         {
-                            try
-                            {
-                                ret.Add(new StoreHistory(reader["id"].ToString(),
-                                    reader["storename"].ToString(),
-                                    reader["productname"].ToString(),
-                                    reader["action"].ToString(),
-                                    reader["productid"].ToString(),
-                                    reader["itemname"].ToString(),
-                                    reader["brandname"].ToString(),
-                                    Convert.ToInt32(reader["stocknum"].ToString()),
-                                    Convert.ToDouble(reader["price"].ToString())));
-                            }
-                            catch (SQLiteException)
-                            {
-                                return null;
-                            }
+                            ret.Add(new StoreHistory(reader["id"].ToString(),
+                                reader["storename"].ToString(),
+                                reader["productname"].ToString(),
+                                reader["action"].ToString(),
+                                reader["productid"].ToString(),
+                                reader["itemname"].ToString(),
+                                reader["brandname"].ToString(),
+                                Convert.ToInt32(reader["stocknum"].ToString()),
+                                Convert.ToDouble(reader["price"].ToString())));
+                        }
+                        catch (SQLiteException)
+                        {
+                            return null;
                         }
                     }
                 }
-
             }
+
             return ret;
         }
     }

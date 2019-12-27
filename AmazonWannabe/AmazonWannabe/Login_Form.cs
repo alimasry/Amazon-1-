@@ -67,7 +67,7 @@ namespace AmazonWannabe
             if (CredentialHandler.login(email, password))
             {
                 this.Visible = false;
-                Search_Form searchForm = new Search_Form(CredentialHandler.getCurrentUser().getType());
+                Search_Form searchForm = new Search_Form();
                 searchForm.ShowDialog();
                 searchForm.Dispose();
                 this.Close();
