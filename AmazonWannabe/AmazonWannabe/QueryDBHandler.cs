@@ -18,7 +18,7 @@ namespace AmazonWannabe
             string query = "INSERT INTO QUERY([NAME], [TYPE], [FIELD]) VALUES ('"
                 + name + "','" + type + "','" + field + "')";
 
-            MessageBox.Show(query);
+            //MessageBox.Show(query);
 
             SQLiteConnection connection = DBConnection.getConnection();
             
