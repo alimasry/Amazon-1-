@@ -30,6 +30,11 @@ namespace AmazonWannabe
                 searchItem.Items.Add(s.getItemName());
             }
 
+            SetTools();
+             
+        }
+        private void SetTools()
+        {
             string type = CredentialHandler.getCurrentUser().getType();
 
             if (type == "Customer")
@@ -38,7 +43,6 @@ namespace AmazonWannabe
                 toolsForm = new Administrator_Form();
             else if (type == "Store Owner")
                 toolsForm = new StoreOwner_Form();
-             
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -104,10 +108,12 @@ namespace AmazonWannabe
             if (!Agreement.Checked)
             {
                 MessageBox.Show("please select the checkbox to confirm");
+                return;
             }
             if (amountBox.Text == "" || addressBox.Text == "")
             {
                 MessageBox.Show("please enter amount and address");
+                return;
             }
             else
             {
@@ -123,15 +129,18 @@ namespace AmazonWannabe
 
         private void AdminFormButton_Click(object sender, EventArgs e)
         {
+            SetTools();
             toolsForm.ShowDialog();
             toolsForm.Dispose();
         }
 
-        private void storeOwnerFormButton_Click(object sender, EventArgs e)
+        private void LogoutButton_Click(object sender, EventArgs e)
         {
-            StoreOwner_Form storeOwnerForm = new StoreOwner_Form();
-            storeOwnerForm.ShowDialog();
-            storeOwnerForm.Dispose();
+            this.Visible = false;
+            this.Close();
+            Login_Form LoginForm = new Login_Form();
+            LoginForm.ShowDialog();
+            LoginForm.Dispose();
         }
     }
 }

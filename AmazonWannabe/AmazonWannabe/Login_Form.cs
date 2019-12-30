@@ -55,7 +55,7 @@ namespace AmazonWannabe
             string type = typeRegisterBox.Text;
 
             if (CredentialHandler.register(username, email, password, confirmPassword, type))
-                MessageBox.Show("Registration Succeceeded.");
+                MessageBox.Show("Registration Succeeded.");
             else
                 MessageBox.Show("Registration Failed.");
         }

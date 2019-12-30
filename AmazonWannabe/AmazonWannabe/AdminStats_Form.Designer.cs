@@ -41,9 +41,9 @@
             // 
             this.qureryNameLabel.AutoSize = true;
             this.qureryNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qureryNameLabel.Location = new System.Drawing.Point(12, 25);
+            this.qureryNameLabel.Location = new System.Drawing.Point(11, 20);
             this.qureryNameLabel.Name = "qureryNameLabel";
-            this.qureryNameLabel.Size = new System.Drawing.Size(70, 25);
+            this.qureryNameLabel.Size = new System.Drawing.Size(58, 20);
             this.qureryNameLabel.TabIndex = 0;
             this.qureryNameLabel.Text = "Name:";
             // 
@@ -56,18 +56,19 @@
             "min",
             "sum",
             "avg"});
-            this.queryType.Location = new System.Drawing.Point(88, 71);
+            this.queryType.Location = new System.Drawing.Point(78, 57);
+            this.queryType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.queryType.Name = "queryType";
-            this.queryType.Size = new System.Drawing.Size(229, 28);
+            this.queryType.Size = new System.Drawing.Size(204, 24);
             this.queryType.TabIndex = 1;
             // 
             // queryTypeLabel
             // 
             this.queryTypeLabel.AutoSize = true;
             this.queryTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queryTypeLabel.Location = new System.Drawing.Point(12, 71);
+            this.queryTypeLabel.Location = new System.Drawing.Point(11, 57);
             this.queryTypeLabel.Name = "queryTypeLabel";
-            this.queryTypeLabel.Size = new System.Drawing.Size(63, 25);
+            this.queryTypeLabel.Size = new System.Drawing.Size(50, 20);
             this.queryTypeLabel.TabIndex = 2;
             this.queryTypeLabel.Text = "Type:";
             // 
@@ -75,11 +76,11 @@
             // 
             this.queryFieldLabel.AutoSize = true;
             this.queryFieldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queryFieldLabel.Location = new System.Drawing.Point(12, 118);
+            this.queryFieldLabel.Location = new System.Drawing.Point(11, 94);
             this.queryFieldLabel.Name = "queryFieldLabel";
-            this.queryFieldLabel.Size = new System.Drawing.Size(54, 25);
+            this.queryFieldLabel.Size = new System.Drawing.Size(50, 20);
             this.queryFieldLabel.TabIndex = 4;
-            this.queryFieldLabel.Text = "Field";
+            this.queryFieldLabel.Text = "Field:";
             // 
             // queryField
             // 
@@ -88,16 +89,18 @@
             this.queryField.Items.AddRange(new object[] {
             "UserViews",
             "SoldNum"});
-            this.queryField.Location = new System.Drawing.Point(88, 118);
+            this.queryField.Location = new System.Drawing.Point(78, 94);
+            this.queryField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.queryField.Name = "queryField";
-            this.queryField.Size = new System.Drawing.Size(229, 28);
+            this.queryField.Size = new System.Drawing.Size(204, 24);
             this.queryField.TabIndex = 3;
             // 
             // queryName
             // 
-            this.queryName.Location = new System.Drawing.Point(88, 25);
+            this.queryName.Location = new System.Drawing.Point(78, 20);
+            this.queryName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.queryName.Name = "queryName";
-            this.queryName.Size = new System.Drawing.Size(229, 26);
+            this.queryName.Size = new System.Drawing.Size(204, 22);
             this.queryName.TabIndex = 5;
             // 
             // addButton
@@ -106,9 +109,10 @@
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addButton.ImageIndex = 6;
-            this.addButton.Location = new System.Drawing.Point(97, 169);
+            this.addButton.Location = new System.Drawing.Point(86, 135);
+            this.addButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(139, 42);
+            this.addButton.Size = new System.Drawing.Size(124, 34);
             this.addButton.TabIndex = 13;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -116,9 +120,9 @@
             // 
             // AdminStats_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 223);
+            this.ClientSize = new System.Drawing.Size(304, 178);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.queryName);
             this.Controls.Add(this.queryFieldLabel);
@@ -126,6 +130,7 @@
             this.Controls.Add(this.queryTypeLabel);
             this.Controls.Add(this.queryType);
             this.Controls.Add(this.qureryNameLabel);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AdminStats_Form";
             this.Text = "AdminStats_Form";
             this.ResumeLayout(false);

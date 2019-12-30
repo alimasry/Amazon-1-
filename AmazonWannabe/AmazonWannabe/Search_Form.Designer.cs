@@ -54,6 +54,7 @@
             this.Confirm = new System.Windows.Forms.Button();
             this.Close_panel = new System.Windows.Forms.Button();
             this.toolsButton = new System.Windows.Forms.Button();
+            this.LogoutButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
             this.Confirm_panel.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +74,7 @@
             this.productsGrid.Location = new System.Drawing.Point(12, 159);
             this.productsGrid.Name = "productsGrid";
             this.productsGrid.ReadOnly = true;
+            this.productsGrid.RowHeadersWidth = 51;
             this.productsGrid.Size = new System.Drawing.Size(909, 348);
             this.productsGrid.TabIndex = 0;
             this.productsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsGrid_CellDoubleClick_1);
@@ -81,6 +83,7 @@
             // 
             this.productName.DataPropertyName = "Name";
             this.productName.HeaderText = "Name";
+            this.productName.MinimumWidth = 6;
             this.productName.Name = "productName";
             this.productName.ReadOnly = true;
             this.productName.Width = 433;
@@ -89,6 +92,7 @@
             // 
             this.productPrice.DataPropertyName = "Price";
             this.productPrice.HeaderText = "Price";
+            this.productPrice.MinimumWidth = 6;
             this.productPrice.Name = "productPrice";
             this.productPrice.ReadOnly = true;
             this.productPrice.Width = 433;
@@ -96,15 +100,19 @@
             // ID
             // 
             this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
+            this.ID.Width = 125;
             // 
             // Offer
             // 
             this.Offer.HeaderText = "Offer";
+            this.Offer.MinimumWidth = 6;
             this.Offer.Name = "Offer";
             this.Offer.ReadOnly = true;
+            this.Offer.Width = 125;
             // 
             // searchItem
             // 
@@ -112,7 +120,7 @@
             this.searchItem.FormattingEnabled = true;
             this.searchItem.Location = new System.Drawing.Point(70, 89);
             this.searchItem.Name = "searchItem";
-            this.searchItem.Size = new System.Drawing.Size(185, 30);
+            this.searchItem.Size = new System.Drawing.Size(185, 26);
             this.searchItem.TabIndex = 1;
             // 
             // searchBar
@@ -121,7 +129,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBar.Location = new System.Drawing.Point(70, 62);
             this.searchBar.Name = "searchBar";
-            this.searchBar.Size = new System.Drawing.Size(851, 28);
+            this.searchBar.Size = new System.Drawing.Size(851, 24);
             this.searchBar.TabIndex = 2;
             // 
             // label1
@@ -129,7 +137,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 22);
+            this.label1.Size = new System.Drawing.Size(67, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "Search : ";
             // 
@@ -191,7 +199,7 @@
             this.Term3.AutoSize = true;
             this.Term3.Location = new System.Drawing.Point(51, 218);
             this.Term3.Name = "Term3";
-            this.Term3.Size = new System.Drawing.Size(402, 22);
+            this.Term3.Size = new System.Drawing.Size(324, 18);
             this.Term3.TabIndex = 10;
             this.Term3.Text = "-Payment will be given to delivery guy on delivery";
             // 
@@ -200,7 +208,7 @@
             this.Term2.AutoSize = true;
             this.Term2.Location = new System.Drawing.Point(51, 189);
             this.Term2.Name = "Term2";
-            this.Term2.Size = new System.Drawing.Size(310, 22);
+            this.Term2.Size = new System.Drawing.Size(253, 18);
             this.Term2.TabIndex = 9;
             this.Term2.Text = "-No refunds are allowed after 15 days";
             // 
@@ -209,7 +217,7 @@
             this.Term1.AutoSize = true;
             this.Term1.Location = new System.Drawing.Point(48, 157);
             this.Term1.Name = "Term1";
-            this.Term1.Size = new System.Drawing.Size(422, 22);
+            this.Term1.Size = new System.Drawing.Size(343, 18);
             this.Term1.TabIndex = 8;
             this.Term1.Text = "-The product will be shipped withing 3 working days";
             // 
@@ -218,7 +226,7 @@
             this.Terms.AutoSize = true;
             this.Terms.Location = new System.Drawing.Point(29, 129);
             this.Terms.Name = "Terms";
-            this.Terms.Size = new System.Drawing.Size(191, 22);
+            this.Terms.Size = new System.Drawing.Size(158, 18);
             this.Terms.TabIndex = 7;
             this.Terms.Text = "Terms and Conditions:";
             // 
@@ -227,7 +235,7 @@
             this.Address.AutoSize = true;
             this.Address.Location = new System.Drawing.Point(55, 80);
             this.Address.Name = "Address";
-            this.Address.Size = new System.Drawing.Size(76, 22);
+            this.Address.Size = new System.Drawing.Size(62, 18);
             this.Address.TabIndex = 6;
             this.Address.Text = "Address";
             // 
@@ -236,7 +244,7 @@
             this.Amount.AutoSize = true;
             this.Amount.Location = new System.Drawing.Point(55, 32);
             this.Amount.Name = "Amount";
-            this.Amount.Size = new System.Drawing.Size(71, 22);
+            this.Amount.Size = new System.Drawing.Size(59, 18);
             this.Amount.TabIndex = 5;
             this.Amount.Text = "Amount";
             // 
@@ -244,14 +252,14 @@
             // 
             this.addressBox.Location = new System.Drawing.Point(150, 80);
             this.addressBox.Name = "addressBox";
-            this.addressBox.Size = new System.Drawing.Size(100, 28);
+            this.addressBox.Size = new System.Drawing.Size(100, 24);
             this.addressBox.TabIndex = 4;
             // 
             // amountBox
             // 
             this.amountBox.Location = new System.Drawing.Point(150, 32);
             this.amountBox.Name = "amountBox";
-            this.amountBox.Size = new System.Drawing.Size(100, 28);
+            this.amountBox.Size = new System.Drawing.Size(100, 24);
             this.amountBox.TabIndex = 3;
             // 
             // Agreement
@@ -259,7 +267,7 @@
             this.Agreement.AutoSize = true;
             this.Agreement.Location = new System.Drawing.Point(29, 263);
             this.Agreement.Name = "Agreement";
-            this.Agreement.Size = new System.Drawing.Size(274, 26);
+            this.Agreement.Size = new System.Drawing.Size(227, 22);
             this.Agreement.TabIndex = 2;
             this.Agreement.Text = "Agree to terms and conditions";
             this.Agreement.UseVisualStyleBackColor = true;
@@ -294,12 +302,23 @@
             this.toolsButton.UseVisualStyleBackColor = true;
             this.toolsButton.Click += new System.EventHandler(this.AdminFormButton_Click);
             // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Location = new System.Drawing.Point(834, 12);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(75, 35);
+            this.LogoutButton.TabIndex = 15;
+            this.LogoutButton.Text = "Logout";
+            this.LogoutButton.UseVisualStyleBackColor = true;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
             // Search_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.Buy_button);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.label1);
@@ -345,5 +364,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn productPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Offer;
+        private System.Windows.Forms.Button LogoutButton;
     }
 }

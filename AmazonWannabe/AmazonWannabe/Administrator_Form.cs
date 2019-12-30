@@ -68,7 +68,7 @@ namespace AmazonWannabe
 
         private void closeButton2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            panel2.Visible = false;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
