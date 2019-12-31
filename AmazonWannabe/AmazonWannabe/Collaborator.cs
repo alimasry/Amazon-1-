@@ -23,14 +23,11 @@ namespace AmazonWannabe
             return CollaboratorDBHandler.isCollaborator(email);
         }
 
-        public static void Add(string email, string storeName)
+        public static bool Add(string email, string storeName)
         {
             email = email.Replace("'", "''");
             storeName = storeName.Replace("'", "''");
-            if (CollaboratorDBHandler.Add(email, storeName))
-                MessageBox.Show("Collaborator Added Successfuly.");
-            else
-                MessageBox.Show("Coudn't Add Collaborator.");
+            return CollaboratorDBHandler.Add(email, storeName);
         }
     }
 }

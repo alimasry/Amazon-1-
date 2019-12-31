@@ -13,6 +13,7 @@ namespace AmazonWannabe
     public partial class ViewItem : Form
     {
         private Product product;
+
         public ViewItem(Product product)
         {
             InitializeComponent();
@@ -21,6 +22,8 @@ namespace AmazonWannabe
 
         private void ViewItem_Load(object sender, EventArgs e)
         {
+            if (product == null)
+                return;
             ProductName.Text = product.getName();
             ProductPrice.Text = product.getPrice().ToString();
             StoreName.Text = product.getStoreName();

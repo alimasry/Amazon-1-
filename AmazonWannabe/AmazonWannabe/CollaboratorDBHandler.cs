@@ -23,7 +23,7 @@ namespace AmazonWannabe
                 }
                 catch(SQLiteException e)
                 {
-                    MessageBox.Show(e.Message);
+                    //MessageBox.Show(e.Message);
                     return false;
                 }
             }

@@ -384,9 +384,13 @@
             // 
             // statsView
             // 
+            this.statsView.AllowUserToAddRows = false;
+            this.statsView.AllowUserToDeleteRows = false;
+            this.statsView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.statsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.statsView.Location = new System.Drawing.Point(0, 0);
             this.statsView.Name = "statsView";
+            this.statsView.ReadOnly = true;
             this.statsView.RowHeadersWidth = 51;
             this.statsView.RowTemplate.Height = 28;
             this.statsView.Size = new System.Drawing.Size(608, 422);
@@ -787,11 +791,11 @@
             this.Controls.Add(this.StatsViewButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.HistoryPanel);
-            this.Controls.Add(this.ProductsPanel);
             this.Controls.Add(this.statsPanel);
             this.Controls.Add(this.addStorePanel);
             this.Controls.Add(this.addProductPanel);
+            this.Controls.Add(this.HistoryPanel);
+            this.Controls.Add(this.ProductsPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "StoreOwner_Form";
             this.Text = "Store Owner";
