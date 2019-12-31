@@ -30,5 +30,26 @@ namespace AmazonWannabe
             
             return true;
         }
+
+        public static bool isCollaborator(string email)
+        {
+            string query = "SELECT COUNT(*) FROM COLLABORATOR WHERE EMAIL = '" + email + "'";
+
+            SQLiteConnection connection = DBConnection.getConnection();
+
+            string res = null;
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                try
+                {
+                    res = command.ExecuteScalar().ToString();
+                }
+                catch(SQLiteException)
+                {
+                    return false;
+                }
+            }
+            return res != "0";
+        }
     }
 }

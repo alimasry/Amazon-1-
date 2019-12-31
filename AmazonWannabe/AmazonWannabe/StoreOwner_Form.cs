@@ -18,7 +18,8 @@ namespace AmazonWannabe
         StoreHistoryHandler historyHandler = new StoreHistoryHandler();
 
         List<Item> items;
-        List<Store> stores;
+        List<Store> allStores;
+        List<Store> ownedStores;
         List<Brand> brands;
         List<Product> products;
         List<StoreHistory> storeHistories;
@@ -30,7 +31,8 @@ namespace AmazonWannabe
             InitializeComponent();
             editor.EditButtons(this);
             items = ItemDBHandler.Get();
-            stores = StoreDBHandler.Get(email);
+            allStores = StoreDBHandler.Get(email);
+            ownedStores = StoreDBHandler.Get(email , null , true);
             brands = BrandDBHandler.Get();
 
             addProductPanel.BringToFront();
@@ -39,10 +41,13 @@ namespace AmazonWannabe
             {
                 itemBox.Items.Add(s.getItemName());
             }
-            foreach(Store s in stores)
+            foreach(Store s in allStores)
             {
                 storeBox.Items.Add(s.getStoreName());
                 storeBox2.Items.Add(s.getStoreName());
+            }
+            foreach(Store s in ownedStores)
+            {
                 storeBox3.Items.Add(s.getStoreName());
             }
             foreach (Brand s in brands)
@@ -65,7 +70,7 @@ namespace AmazonWannabe
                 if (itemBox.Text == i.getItemName())
                     item = i;
             }
-            foreach (Store i in stores)
+            foreach (Store i in allStores)
             {
                 if (storeBox.Text == i.getStoreName())
                     store = i;

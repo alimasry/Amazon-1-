@@ -30,20 +30,17 @@ namespace AmazonWannabe
                 searchItem.Items.Add(s.getItemName());
             }
 
-            SetTools();
-             
-        }
-        private void SetTools()
-        {
             string type = CredentialHandler.getCurrentUser().getType();
+            string email = CredentialHandler.getCurrentUser().getEmail();
 
-            if (type == "Customer")
-                toolsButton.Visible = false;
-            else if (type == "Administrator")
-                toolsForm = new Administrator_Form();
-            else if (type == "Store Owner")
-                toolsForm = new StoreOwner_Form();
+            if (type != "Administrator")
+                AdminToolsButton.Visible = false;
+            if (type != "Store Owner" && !Collaborator.isCollaborator(email))
+                StoreOwnerToolsButton.Visible = false;
+
+            
         }
+        
 
         private void searchButton_Click(object sender, EventArgs e)
         {
@@ -127,11 +124,11 @@ namespace AmazonWannabe
 
         }
 
-        private void AdminFormButton_Click(object sender, EventArgs e)
+        private void StoreOwnerToolsButton_Click(object sender, EventArgs e)
         {
-            SetTools();
-            toolsForm.ShowDialog();
-            toolsForm.Dispose();
+            StoreOwner_Form storeOwnerForm = new StoreOwner_Form();
+            storeOwnerForm.ShowDialog();
+            storeOwnerForm.Dispose();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -141,6 +138,13 @@ namespace AmazonWannabe
             Login_Form LoginForm = new Login_Form();
             LoginForm.ShowDialog();
             LoginForm.Dispose();
+        }
+
+        private void AdminToolsButton_Click(object sender, EventArgs e)
+        {
+            Administrator_Form adminForm = new Administrator_Form();
+            adminForm.ShowDialog();
+            adminForm.Dispose();
         }
     }
 }
