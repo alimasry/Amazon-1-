@@ -18,6 +18,11 @@ namespace AmazonWannabe
             this.storeName = storeName;
         }
 
+        public static bool isCollaborator(string email)
+        {
+            return CollaboratorDBHandler.isCollaborator(email);
+        }
+
         public static void Add(string email, string storeName)
         {
             email = email.Replace("'", "''");

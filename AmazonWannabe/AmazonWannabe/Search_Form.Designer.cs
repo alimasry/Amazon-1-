@@ -53,8 +53,9 @@
             this.Agreement = new System.Windows.Forms.CheckBox();
             this.Confirm = new System.Windows.Forms.Button();
             this.Close_panel = new System.Windows.Forms.Button();
-            this.toolsButton = new System.Windows.Forms.Button();
+            this.StoreOwnerToolsButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
+            this.AdminToolsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
             this.Confirm_panel.SuspendLayout();
             this.SuspendLayout();
@@ -120,7 +121,7 @@
             this.searchItem.FormattingEnabled = true;
             this.searchItem.Location = new System.Drawing.Point(70, 89);
             this.searchItem.Name = "searchItem";
-            this.searchItem.Size = new System.Drawing.Size(185, 26);
+            this.searchItem.Size = new System.Drawing.Size(185, 30);
             this.searchItem.TabIndex = 1;
             // 
             // searchBar
@@ -129,7 +130,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBar.Location = new System.Drawing.Point(70, 62);
             this.searchBar.Name = "searchBar";
-            this.searchBar.Size = new System.Drawing.Size(851, 24);
+            this.searchBar.Size = new System.Drawing.Size(851, 28);
             this.searchBar.TabIndex = 2;
             // 
             // label1
@@ -137,7 +138,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 18);
+            this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 3;
             this.label1.Text = "Search : ";
             // 
@@ -199,7 +200,7 @@
             this.Term3.AutoSize = true;
             this.Term3.Location = new System.Drawing.Point(51, 218);
             this.Term3.Name = "Term3";
-            this.Term3.Size = new System.Drawing.Size(324, 18);
+            this.Term3.Size = new System.Drawing.Size(402, 22);
             this.Term3.TabIndex = 10;
             this.Term3.Text = "-Payment will be given to delivery guy on delivery";
             // 
@@ -208,7 +209,7 @@
             this.Term2.AutoSize = true;
             this.Term2.Location = new System.Drawing.Point(51, 189);
             this.Term2.Name = "Term2";
-            this.Term2.Size = new System.Drawing.Size(253, 18);
+            this.Term2.Size = new System.Drawing.Size(310, 22);
             this.Term2.TabIndex = 9;
             this.Term2.Text = "-No refunds are allowed after 15 days";
             // 
@@ -217,7 +218,7 @@
             this.Term1.AutoSize = true;
             this.Term1.Location = new System.Drawing.Point(48, 157);
             this.Term1.Name = "Term1";
-            this.Term1.Size = new System.Drawing.Size(343, 18);
+            this.Term1.Size = new System.Drawing.Size(422, 22);
             this.Term1.TabIndex = 8;
             this.Term1.Text = "-The product will be shipped withing 3 working days";
             // 
@@ -226,7 +227,7 @@
             this.Terms.AutoSize = true;
             this.Terms.Location = new System.Drawing.Point(29, 129);
             this.Terms.Name = "Terms";
-            this.Terms.Size = new System.Drawing.Size(158, 18);
+            this.Terms.Size = new System.Drawing.Size(191, 22);
             this.Terms.TabIndex = 7;
             this.Terms.Text = "Terms and Conditions:";
             // 
@@ -235,7 +236,7 @@
             this.Address.AutoSize = true;
             this.Address.Location = new System.Drawing.Point(55, 80);
             this.Address.Name = "Address";
-            this.Address.Size = new System.Drawing.Size(62, 18);
+            this.Address.Size = new System.Drawing.Size(76, 22);
             this.Address.TabIndex = 6;
             this.Address.Text = "Address";
             // 
@@ -244,7 +245,7 @@
             this.Amount.AutoSize = true;
             this.Amount.Location = new System.Drawing.Point(55, 32);
             this.Amount.Name = "Amount";
-            this.Amount.Size = new System.Drawing.Size(59, 18);
+            this.Amount.Size = new System.Drawing.Size(71, 22);
             this.Amount.TabIndex = 5;
             this.Amount.Text = "Amount";
             // 
@@ -252,14 +253,14 @@
             // 
             this.addressBox.Location = new System.Drawing.Point(150, 80);
             this.addressBox.Name = "addressBox";
-            this.addressBox.Size = new System.Drawing.Size(100, 24);
+            this.addressBox.Size = new System.Drawing.Size(100, 28);
             this.addressBox.TabIndex = 4;
             // 
             // amountBox
             // 
             this.amountBox.Location = new System.Drawing.Point(150, 32);
             this.amountBox.Name = "amountBox";
-            this.amountBox.Size = new System.Drawing.Size(100, 24);
+            this.amountBox.Size = new System.Drawing.Size(100, 28);
             this.amountBox.TabIndex = 3;
             // 
             // Agreement
@@ -267,7 +268,7 @@
             this.Agreement.AutoSize = true;
             this.Agreement.Location = new System.Drawing.Point(29, 263);
             this.Agreement.Name = "Agreement";
-            this.Agreement.Size = new System.Drawing.Size(227, 22);
+            this.Agreement.Size = new System.Drawing.Size(274, 26);
             this.Agreement.TabIndex = 2;
             this.Agreement.Text = "Agree to terms and conditions";
             this.Agreement.UseVisualStyleBackColor = true;
@@ -292,15 +293,15 @@
             this.Close_panel.UseVisualStyleBackColor = true;
             this.Close_panel.Click += new System.EventHandler(this.Close_panel_Click);
             // 
-            // toolsButton
+            // StoreOwnerToolsButton
             // 
-            this.toolsButton.Location = new System.Drawing.Point(12, 12);
-            this.toolsButton.Name = "toolsButton";
-            this.toolsButton.Size = new System.Drawing.Size(98, 35);
-            this.toolsButton.TabIndex = 14;
-            this.toolsButton.Text = "Tools";
-            this.toolsButton.UseVisualStyleBackColor = true;
-            this.toolsButton.Click += new System.EventHandler(this.AdminFormButton_Click);
+            this.StoreOwnerToolsButton.Location = new System.Drawing.Point(158, 12);
+            this.StoreOwnerToolsButton.Name = "StoreOwnerToolsButton";
+            this.StoreOwnerToolsButton.Size = new System.Drawing.Size(138, 35);
+            this.StoreOwnerToolsButton.TabIndex = 14;
+            this.StoreOwnerToolsButton.Text = "Store Tools";
+            this.StoreOwnerToolsButton.UseVisualStyleBackColor = true;
+            this.StoreOwnerToolsButton.Click += new System.EventHandler(this.StoreOwnerToolsButton_Click);
             // 
             // LogoutButton
             // 
@@ -312,12 +313,23 @@
             this.LogoutButton.UseVisualStyleBackColor = true;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
+            // AdminToolsButton
+            // 
+            this.AdminToolsButton.Location = new System.Drawing.Point(12, 12);
+            this.AdminToolsButton.Name = "AdminToolsButton";
+            this.AdminToolsButton.Size = new System.Drawing.Size(138, 35);
+            this.AdminToolsButton.TabIndex = 16;
+            this.AdminToolsButton.Text = "Admin Tools";
+            this.AdminToolsButton.UseVisualStyleBackColor = true;
+            this.AdminToolsButton.Click += new System.EventHandler(this.AdminToolsButton_Click);
+            // 
             // Search_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.AdminToolsButton);
             this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.Buy_button);
             this.Controls.Add(this.searchButton);
@@ -326,7 +338,7 @@
             this.Controls.Add(this.searchItem);
             this.Controls.Add(this.productsGrid);
             this.Controls.Add(this.Confirm_panel);
-            this.Controls.Add(this.toolsButton);
+            this.Controls.Add(this.StoreOwnerToolsButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Search_Form";
             this.Text = "Search";
@@ -359,11 +371,12 @@
         private System.Windows.Forms.Label Term2;
         private System.Windows.Forms.Label Term1;
         private System.Windows.Forms.Label Terms;
-        private System.Windows.Forms.Button toolsButton;
+        private System.Windows.Forms.Button StoreOwnerToolsButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn productPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Offer;
         private System.Windows.Forms.Button LogoutButton;
+        private System.Windows.Forms.Button AdminToolsButton;
     }
 }
