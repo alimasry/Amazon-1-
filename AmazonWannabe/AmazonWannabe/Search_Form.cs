@@ -99,19 +99,30 @@ namespace AmazonWannabe
         private void Confirm_Click(object sender, EventArgs e)
         {
             bool agreed = Agreement.Checked;
-             DataGridViewRow selectedRow = productsGrid.CurrentRow;
+            DataGridViewRow selectedRow = productsGrid.CurrentRow;
+             
+            if (selectedRow == null)
+                return;
+
             string productID = Convert.ToString(selectedRow.Cells[2].Value);
+
+            if (productID == "")
+                return;
+
             int ID = int.Parse(productID);
+
             if (!Agreement.Checked)
             {
                 MessageBox.Show("please select the checkbox to confirm");
                 return;
             }
+
             if (amountBox.Text == "" || addressBox.Text == "")
             {
                 MessageBox.Show("please enter amount and address");
                 return;
             }
+
             else
             {
                 int amount = Int32.Parse(amountBox.Text);

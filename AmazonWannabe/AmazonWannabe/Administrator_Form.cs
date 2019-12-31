@@ -29,6 +29,8 @@ namespace AmazonWannabe
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (nameBox.Text == "" || minPriceBox.Text == "" || maxPriceBox.Text == "")
+                return;
             Item item = new Item(nameBox.Text, Convert.ToDouble(minPriceBox.Text), Convert.ToDouble(maxPriceBox.Text));
             if (!admin.AddItem(item))
             {
@@ -55,6 +57,8 @@ namespace AmazonWannabe
         private void Approve_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = StoresGridView.CurrentRow;
+            if (selectedRow == null)
+                return;
             string StoreName = Convert.ToString(selectedRow.Cells[0].Value);
             
             if (StoreName != null)

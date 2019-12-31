@@ -63,7 +63,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameBox.Location = new System.Drawing.Point(95, 56);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(496, 24);
+            this.nameBox.Size = new System.Drawing.Size(496, 28);
             this.nameBox.TabIndex = 0;
             // 
             // label2
@@ -71,7 +71,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 128);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 18);
+            this.label2.Size = new System.Drawing.Size(184, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "Item Maximum Price : ";
             // 
@@ -81,7 +81,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maxPriceBox.Location = new System.Drawing.Point(145, 134);
             this.maxPriceBox.Name = "maxPriceBox";
-            this.maxPriceBox.Size = new System.Drawing.Size(151, 24);
+            this.maxPriceBox.Size = new System.Drawing.Size(151, 28);
             this.maxPriceBox.TabIndex = 2;
             // 
             // minPriceBox
@@ -90,7 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.minPriceBox.Location = new System.Drawing.Point(147, 95);
             this.minPriceBox.Name = "minPriceBox";
-            this.minPriceBox.Size = new System.Drawing.Size(151, 24);
+            this.minPriceBox.Size = new System.Drawing.Size(151, 28);
             this.minPriceBox.TabIndex = 4;
             // 
             // imageList1
@@ -134,13 +134,13 @@
             this.view_pending.UseVisualStyleBackColor = true;
             this.view_pending.Click += new System.EventHandler(this.ViewPendingButton_Click);
             // 
-            // panel1
+            // pendingStoresPanel
             // 
             this.pendingStoresPanel.Controls.Add(this.Close);
             this.pendingStoresPanel.Controls.Add(this.Approve);
             this.pendingStoresPanel.Controls.Add(this.StoresGridView);
             this.pendingStoresPanel.Location = new System.Drawing.Point(12, 12);
-            this.pendingStoresPanel.Name = "panel1";
+            this.pendingStoresPanel.Name = "pendingStoresPanel";
             this.pendingStoresPanel.Size = new System.Drawing.Size(579, 359);
             this.pendingStoresPanel.TabIndex = 15;
             // 
@@ -174,9 +174,12 @@
             // 
             // StoresGridView
             // 
+            this.StoresGridView.AllowUserToAddRows = false;
+            this.StoresGridView.AllowUserToDeleteRows = false;
             this.StoresGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StoresGridView.Location = new System.Drawing.Point(3, 3);
             this.StoresGridView.Name = "StoresGridView";
+            this.StoresGridView.ReadOnly = true;
             this.StoresGridView.RowHeadersWidth = 51;
             this.StoresGridView.Size = new System.Drawing.Size(576, 300);
             this.StoresGridView.TabIndex = 2;
@@ -186,7 +189,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 18);
+            this.label1.Size = new System.Drawing.Size(110, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "Item Name : ";
             // 
@@ -207,14 +210,14 @@
             // 
             this.Category_box.Location = new System.Drawing.Point(139, 98);
             this.Category_box.Name = "Category_box";
-            this.Category_box.Size = new System.Drawing.Size(147, 24);
+            this.Category_box.Size = new System.Drawing.Size(147, 28);
             this.Category_box.TabIndex = 18;
             // 
             // Name_box
             // 
             this.Name_box.Location = new System.Drawing.Point(139, 58);
             this.Name_box.Name = "Name_box";
-            this.Name_box.Size = new System.Drawing.Size(147, 24);
+            this.Name_box.Size = new System.Drawing.Size(147, 28);
             this.Name_box.TabIndex = 17;
             // 
             // Brand_Category
@@ -222,7 +225,7 @@
             this.Brand_Category.AutoSize = true;
             this.Brand_Category.Location = new System.Drawing.Point(37, 95);
             this.Brand_Category.Name = "Brand_Category";
-            this.Brand_Category.Size = new System.Drawing.Size(111, 18);
+            this.Brand_Category.Size = new System.Drawing.Size(136, 22);
             this.Brand_Category.TabIndex = 16;
             this.Brand_Category.Text = "Brand Category";
             // 
@@ -231,7 +234,7 @@
             this.Brand_Name.AutoSize = true;
             this.Brand_Name.Location = new System.Drawing.Point(37, 54);
             this.Brand_Name.Name = "Brand_Name";
-            this.Brand_Name.Size = new System.Drawing.Size(91, 18);
+            this.Brand_Name.Size = new System.Drawing.Size(110, 22);
             this.Brand_Name.TabIndex = 15;
             this.Brand_Name.Text = "Brand Name";
             // 
@@ -285,7 +288,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 18);
+            this.label3.Size = new System.Drawing.Size(179, 22);
             this.label3.TabIndex = 17;
             this.label3.Text = "Item Minimum Price : ";
             // 
@@ -306,7 +309,7 @@
             // 
             // Administrator_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(603, 383);

@@ -33,10 +33,17 @@ namespace AmazonWannabe
         {
             string email = collaboratorEmail.Text;
             string storeName = collaboratorStores.Text;
-            if (email == null || storeName == null)
+            if (email == "" || storeName == "")
                 MessageBox.Show("Please fill all entries.");
+            else if (email == CredentialHandler.getCurrentUser().getEmail())
+                MessageBox.Show("You can't add your own email.");
             else
-                Collaborator.Add(email, storeName);
+            {
+                if (Collaborator.Add(email, storeName))
+                    MessageBox.Show("Collaborator Added Successfully.");
+                else
+                    MessageBox.Show("Couldn't Add Collaborator.");
+            }
         }
     }
 }

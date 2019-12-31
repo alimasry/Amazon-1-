@@ -80,6 +80,10 @@ namespace AmazonWannabe
                 if (brandBox.Text == i.getBrandName())
                     brand = i;
             }
+
+            if (nameBox.Text == "" || priceBox.Text == "" || stockNumBox.Text == "")
+                return;
+
             Product product = new Product("" , nameBox.Text, Convert.ToDouble(priceBox.Text) , Convert.ToInt32(stockNumBox.Text) , store.getStoreName() , brand.getBrandName(), item);
 
             if(!productHandler.Add(product))
