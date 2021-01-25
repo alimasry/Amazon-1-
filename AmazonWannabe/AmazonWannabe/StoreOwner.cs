@@ -15,10 +15,7 @@ namespace AmazonWannabe
         {
             this.userInfo = userInfo;
         }
-        public bool addProduct(Product product)
-        {
-            return true;
-        }
+
         public UserInfo getUserInfo()
         {
             return this.userInfo;

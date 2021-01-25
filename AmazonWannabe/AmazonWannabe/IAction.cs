@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AmazonWannabe
 {
-    class ItemHandler
+    interface IAction
     {
+        bool Undo(StoreHistory storeHistory);
     }
 }
